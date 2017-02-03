@@ -1,4 +1,6 @@
 class Image < ApplicationRecord
+  belongs_to :suggested_by, class_name: 'User'
+
   mount_uploader :image, ImageUploader
 
   before_save :apply_tag_change, if: :tag_names_changed?

@@ -16,7 +16,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new(image_params)
+    @image = Image.new(image_params.merge(suggested_by: current_user))
 
     if @image.save
       redirect_to @image, notice: 'Image was successfully created.'

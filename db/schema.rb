@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203113529) do
+ActiveRecord::Schema.define(version: 20170203132846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,12 @@ ActiveRecord::Schema.define(version: 20170203113529) do
   create_table "images", force: :cascade do |t|
     t.integer  "upvotes"
     t.integer  "downvotes"
-    t.string   "tag_names",  default: [],   null: false, array: true
-    t.string   "sources",    default: [""], null: false, array: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "tag_names",       default: [],   null: false, array: true
+    t.string   "sources",         default: [""], null: false, array: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image"
+    t.integer  "suggested_by_id"
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
   end
 
@@ -51,4 +52,5 @@ ActiveRecord::Schema.define(version: 20170203113529) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "images", "users", column: "suggested_by_id"
 end
