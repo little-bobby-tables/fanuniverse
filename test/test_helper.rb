@@ -8,4 +8,8 @@ end
 
 class ActionController::TestCase
   include Devise::Test::ControllerHelpers
+
+  def json_response
+    ActiveSupport::JSON.decode @response.body
+  end
 end

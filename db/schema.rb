@@ -10,21 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203132846) do
+ActiveRecord::Schema.define(version: 20170203141636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "images", force: :cascade do |t|
-    t.integer  "upvotes"
-    t.integer  "downvotes"
     t.string   "tag_names",       default: [],   null: false, array: true
     t.string   "sources",         default: [""], null: false, array: true
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "image"
     t.integer  "suggested_by_id"
+    t.integer  "stars",           default: 0,    null: false
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
+  end
+
+  create_table "rating_stars", force: :cascade do |t|
+    t.integer  "resource_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id", "resource_id"], name: "index_rating_stars_on_user_id_and_resource_id", using: :btree
+    t.index ["user_id"], name: "index_rating_stars_on_user_id", using: :btree
   end
 
   create_table "tags", primary_key: "name", id: :string, force: :cascade do |t|
