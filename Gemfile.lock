@@ -64,6 +64,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    bcrypt (3.1.11)
     builder (3.2.3)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
@@ -71,6 +72,12 @@ GEM
       mime-types (>= 1.16)
     closure-compiler (1.1.12)
     concurrent-ruby (1.0.4)
+    devise (4.2.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.1)
+      responders
+      warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
@@ -102,6 +109,7 @@ GEM
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     normalize-rails (4.1.1)
+    orm_adapter (0.5.0)
     pg (0.19.0)
     pg_array_parser (0.0.9)
     puma (3.7.0)
@@ -135,6 +143,8 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    responders (2.3.0)
+      railties (>= 4.2.0, < 5.1)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -163,6 +173,8 @@ GEM
     tilt (2.0.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    warden (1.2.6)
+      rack (>= 1.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -176,6 +188,7 @@ DEPENDENCIES
   babel-transpiler
   carrierwave
   closure-compiler
+  devise
   factory_girl_rails
   font-awesome-sass
   listen (~> 3.0.5)

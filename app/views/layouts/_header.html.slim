@@ -2,3 +2,5 @@
   a.header__link href="/" Steven!
   a.header__link href="/images/new" Upload
   a.header__link href="/images" Browse
+  - if !user_signed_in?
+    a.header__link href=new_user_session_path Log in

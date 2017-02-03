@@ -9,6 +9,8 @@ gem 'postgres_ext', github: 'little-bobby-tables/postgres_ext', branch: 'rails-5
 # Image processing
 gem 'carrierwave'
 gem 'mini_magick'
+# User management
+gem 'devise'
 # Front-end
 gem 'slim-rails', github: 'slim-template/slim-rails'
 gem 'sass-rails'
