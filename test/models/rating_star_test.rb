@@ -7,10 +7,10 @@ class RatingStarTest < ActiveSupport::TestCase
   end
 
   test 'toggles rating stars for given resource and user' do
-    RatingStar.toggle resource_id: @resource.id, user_id: @user.id
+    assert_equal :added, RatingStar.toggle(resource_id: @resource.id, user_id: @user.id)
     assert RatingStar.exists? resource_id: @resource.id, user_id: @user.id
 
-    RatingStar.toggle resource_id: @resource.id, user_id: @user.id
+    assert_equal :removed, RatingStar.toggle(resource_id: @resource.id, user_id: @user.id)
     refute RatingStar.exists? resource_id: @resource.id, user_id: @user.id
   end
 

@@ -2,8 +2,10 @@ class RatingStar < ApplicationRecord
   def self.toggle(user_id:, resource_id:)
     if exists? user_id: user_id, resource_id: resource_id
       remove(user_id, resource_id)
+      :removed
     else
       add(user_id, resource_id)
+      :added
     end
   end
 

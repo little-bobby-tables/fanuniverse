@@ -20,15 +20,17 @@ class Api::RatingStarsControllerTest < ActionController::TestCase
     assert_response :forbidden
   end
 
-  test 'returns the current number of stars if interaction succeeds' do
+  test 'returns the current number of stars and interaction status if it succeeds' do
     sign_in @user
 
     post :toggle, params: { resource_id: @image.id }
     assert_response :success
     assert_equal 1, json_response['stars']
+    assert_equal 'added', json_response['status']
 
     post :toggle, params: { resource_id: @image.id }
     assert_response :success
     assert_equal 0, json_response['stars']
+    assert_equal 'removed', json_response['status']
   end
 end
