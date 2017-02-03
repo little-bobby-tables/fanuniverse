@@ -1,0 +1,33 @@
+###
+### Rails
+### 
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore Byebug command history file.
+.byebug_history
+
+###
+### Application
+###
+
+# CarrierWave uploads
+/public/uploads/
+
+###
+### Poor man's .gitignore_global
+###
+
+# Vim
+*.swp
+
+# IDEA & RubyMine
+.idea/
+

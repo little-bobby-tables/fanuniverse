@@ -1,0 +1,74 @@
+@import "global";
+
+/* Checkboxes */
+
+.checkbox {
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.checkbox__default-input {
+  display: none;
+}
+
+.checkbox__label {
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox__text {
+  padding-left: 22px;
+}
+
+.checkbox__text::before,
+.checkbox__text::after {
+  position: absolute;
+  margin: auto;
+  content: '';
+  top: 0;
+  bottom: 0;
+}
+
+.checkbox__text::before {
+  box-sizing: border-box;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  //background-color: $input_color;
+  //border: 1px solid $input_border;
+  //@include bg-border-transition;
+}
+
+.checkbox__text::after {
+  content: '\f00c';
+  font-family: 'FontAwesome';
+  left: 2px;
+  top: 2px;
+  color: transparent;
+  //@include color-transition;
+}
+
+.checkbox__text:hover::before {
+  //border: 1px solid $input_border_active;
+  //background: $input_color_active;
+}
+
+.checkbox__default-input:checked + .checkbox__label > .checkbox__text::after {
+  //color: $foreground_color;
+}
+
+/* File upload */
+
+.file-upload__input {
+  position: absolute;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.file-upload__label {
+  display: inline-block;
+  cursor: pointer;
+}

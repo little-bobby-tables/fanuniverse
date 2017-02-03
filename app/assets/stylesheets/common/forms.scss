@@ -1,0 +1,21 @@
+@import "global";
+
+.input {
+  display: block;
+  box-sizing: border-box;
+  padding: 6px;
+  margin-bottom: 6px;
+  //border: 1px solid $input_border;
+  font-size: 16px;
+  //font-family: $font_family_monospace;
+  //color: $input_text_color;
+  //background: $input_color;
+  max-width: 100%; /* prevent resizable inputs from overflowing the container */
+}
+
+.button {
+  display: block;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  font-size: 16px;
+}

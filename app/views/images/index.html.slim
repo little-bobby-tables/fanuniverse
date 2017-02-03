@@ -1,0 +1,10 @@
+h1 Images
+
+.image-grid data-masonry='{ "itemSelector": ".image-grid__item" }'
+  - @images.each do |image|
+    .image-grid__item.block
+      .block__content
+        a href=image_path(image)
+          img src=image.image.url
+        - image.tag_names.each do |tag_name|
+          .tag = tag_name

@@ -1,0 +1,9 @@
+= form_for @image do |f|
+  = render partial: 'layouts/errors', locals: { model: @image }
+
+  = render partial: 'layouts/image_upload', locals: { form: f, field: :image }
+
+  = f.label :tags, t('.tags')
+  = f.text_area :tags, class: 'input'
+
+  = f.submit class: 'button'

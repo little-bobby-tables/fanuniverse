@@ -1,0 +1,36 @@
+@import 'global';
+
+.layout {
+  margin-top: $header_spacing;
+  margin-bottom: $header_spacing;
+  flex: 1 0 auto;
+  clear: both;
+
+  > h1 {
+    margin: 0 0 12px;
+  }
+}
+
+.layout--wide, .layout--medium, .layout--narrow {
+  box-sizing: border-box;
+}
+
+.layout--medium, .layout--narrow {
+  margin-left: auto;
+  margin-right: auto;
+  width: 96vw;
+}
+
+.layout--narrow {
+  max-width: $limited_layout_width;
+}
+
+.layout--medium {
+  max-width: $medium_layout_width;
+}
+
+.layout--wide {
+  width: 100%;
+  padding-left: $layout_side_margin;
+  padding-right: $layout_side_margin;
+}

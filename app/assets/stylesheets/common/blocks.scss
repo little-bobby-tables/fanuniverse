@@ -1,0 +1,92 @@
+@import "global";
+
+.block {
+  margin-bottom: $block_spacing;
+}
+
+.block__content, .block__tab {
+  padding: $block_spacing;
+}
+
+.block__content img, .block__tab img {
+  max-width: 100%;
+}
+
+.block__header, .block__header--single-link,
+.block__header a {
+  font-size: 14px;
+  line-height: $block_header_height;
+}
+
+.block__header--single-link, .block__header a {
+  padding: 0 $header_spacing;
+}
+
+.block__header__title {
+  font-size: 14px;
+  margin: 0;
+  padding: 0 ($header_spacing / 2) 0 $header_spacing;
+}
+
+.block__header, a.block__header--single-link {
+  //background: $block_header_color;
+  //color: $foreground_color;
+}
+
+a.block__header--single-link {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.block__header a, a.block__header--single-link {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  //background: $block_header_color;
+  //color: $block_header_link_text_color;
+  //@include bg-color-transition;
+  &:hover {
+    //background: $block_header_hover_color;
+    //color: $block_header_link_text_hover_color;
+  }
+}
+
+.block__header--light {
+  //background: $block_header_light_color;
+  a {
+    //background: $block_header_light_color;
+    //color: $block_header_light_link_text_color;
+    &:hover {
+      //background: $block_header_light_hover_color;
+      //color: $block_header_light_link_text_hover_color;
+    }
+  }
+}
+
+.block__content, .block__tab {
+  //background: $background_color;
+}
+
+/* Fixed blocks do not have header and content */
+.block--fixed {
+  padding: 6px $header_spacing;
+  //background: $background_color;
+  //border: $border;
+}
+
+.block--fixed--sub {
+  padding: 3px $header_spacing;
+}
+
+.block--no-margin {
+  margin: 0;
+}
+
+/* Somewhat dirty workaround for <h*> margins */
+
+.block__content, .block__tab, .block--fixed {
+  > h1, > h2, > h3, > h4, > h5, > h6 {
+    margin-top: 6px;
+  }
+}

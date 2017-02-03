@@ -1,0 +1,7 @@
+/ Accepts :form (form builder object), :field (CarrierWave's mounted_as)
+
+= form.file_field field, class: 'input file-upload__input'
+= form.label field, class: 'button file-upload__label' do
+  i.fa.fa-upload>
+  span Choose a file…
+= form.hidden_field :"#{field}_cache"
