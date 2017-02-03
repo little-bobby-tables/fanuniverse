@@ -11,6 +11,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 # User management
 gem 'devise'
+gem 'corral_acl', require: 'corral', github: 'deliciousblackink/Corral'
 # Front-end
 gem 'slim-rails', github: 'slim-template/slim-rails'
 gem 'sass-rails'

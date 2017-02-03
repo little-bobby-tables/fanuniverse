@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/deliciousblackink/Corral.git
+  revision: 1d9753f2469ab31419fcce1bd5a945414a14431f
+  specs:
+    corral_acl (1.0.1)
+      rails (~> 5.0)
+
+GIT
   remote: git://github.com/little-bobby-tables/postgres_ext.git
   revision: f7a1cb3cab1783a307e5a87fdfb99d1d8fcb2619
   branch: rails-5
@@ -188,6 +195,7 @@ DEPENDENCIES
   babel-transpiler
   carrierwave
   closure-compiler
+  corral_acl!
   devise
   factory_girl_rails
   font-awesome-sass
