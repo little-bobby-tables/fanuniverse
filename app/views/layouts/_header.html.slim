@@ -2,5 +2,8 @@
   a.header__link href="/" Steven!
   a.header__link href="/images/new" Upload
   a.header__link href="/images" Browse
-  - if !user_signed_in?
+  - if user_signed_in?
+    a.header__link href=user_path(current_user) = current_user.name
+    a.header__link href=destroy_user_session_path data-method="delete" Log out
+  - else
     a.header__link href=new_user_session_path Log in

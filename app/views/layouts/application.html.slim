@@ -8,6 +8,14 @@ html
     script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"
   body
     header
-      include _header.html
+      = render partial: 'layouts/header'
+    - if flash[:notice]
+      .flash.flash--success = flash[:notice]
+    - if flash[:alert]
+      .flash.flash--warning = flash[:alert]
+    - if flash[:error]
+      .flash.flash--warning = flash[:error]
+    - if flash[:warning]
+      .flash.flash--warning = flash[:warning]
     main.layout class=(content_for(:layout_class) || 'layout--narrow')
       = yield
