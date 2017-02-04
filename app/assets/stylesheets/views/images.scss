@@ -1,6 +1,34 @@
+@import "common/global";
+
 .image-grid__item {
-  background: #F7F7F7;
+  background: $grid_item_background;
   width: 300px;
   margin: 10px;
   border-radius: 4px;
+}
+
+.star {
+  display: inline-block;
+  border-radius: 4px;
+
+  background: $meta_background;
+  color: #737374;
+  padding: 4px;
+  margin-bottom: 6px;
+
+  &:hover {
+    color: #000;
+    cursor: pointer;
+
+    background: $meta_hover_background;
+  }
+}
+
+.star--active {
+  background: $meta_background;
+  color: #000;
+  
+  &:hover {
+    background: $meta_hover_background;
+  }
 }
