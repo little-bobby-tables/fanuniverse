@@ -2,23 +2,30 @@
 ### Rails
 ### 
 
-# Ignore bundler config.
+# Bundler config
 /.bundle
 
-# Ignore all logfiles and tempfiles.
+# Logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
-# Ignore Byebug command history file.
+# Byebug command history file.
 .byebug_history
+
+###
+### NodeJS
+###
+
+bower_components/
+node_modules/
 
 ###
 ### Application
 ###
 
-# CarrierWave uploads
+/public/assets/
 /public/uploads/
 
 ###
