@@ -17,9 +17,9 @@ GIT
 
 GIT
   remote: git://github.com/slim-template/slim-rails.git
-  revision: d4750723e47de1ed30c47147ebd802d9ed537ec4
+  revision: 607b52605c34a4e78a54040105f3b06b65088f17
   specs:
-    slim-rails (3.1.1)
+    slim-rails (3.1.2)
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
@@ -65,19 +65,12 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
-    autoprefixer-rails (6.7.2)
-      execjs
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     bcrypt (3.1.11)
     builder (3.2.3)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    closure-compiler (1.1.12)
     concurrent-ruby (1.0.4)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -86,7 +79,6 @@ GEM
       responders
       warden (~> 1.2.3)
     erubis (2.7.0)
-    execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.8.0)
@@ -95,8 +87,6 @@ GEM
     faker (1.7.2)
       i18n (~> 0.5)
     ffi (1.9.17)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.8.0)
@@ -117,7 +107,6 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    normalize-rails (4.1.1)
     orm_adapter (0.5.0)
     pg (0.19.0)
     pg_array_parser (0.0.9)
@@ -158,13 +147,6 @@ GEM
       ffi (>= 0.5.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
-    sass (3.4.23)
-    sass-rails (5.0.6)
-      railties (>= 4.0.0, < 6)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
@@ -173,7 +155,7 @@ GEM
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
-    sprockets (4.0.0.beta4)
+    sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.0)
@@ -186,40 +168,31 @@ GEM
     tilt (2.0.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    warden (1.2.6)
+    warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    yui-compressor (0.12.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  autoprefixer-rails
-  babel-transpiler
   carrierwave
-  closure-compiler
   corral_acl!
   devise
   factory_girl_rails
   faker
-  font-awesome-sass
   listen (~> 3.0.5)
   mini_magick
-  normalize-rails
   pg
   postgres_ext!
   puma
   rails (~> 5.0.1)
   rails-controller-testing
-  sass-rails
   slim-rails!
   spring
   spring-watcher-listen (~> 2.0.0)
-  sprockets (~> 4.0.0.beta4)
-  yui-compressor
 
 BUNDLED WITH
    1.14.3

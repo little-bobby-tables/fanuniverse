@@ -3,9 +3,8 @@ html
   head
     title Steven Universe
     = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: :all
-    /= javascript_include_tag 'application', async: true
-    script src="assets/application.js"
+    link href=asset_path('application.css') rel="stylesheet" media="all"
+    script src=asset_path('application.js') async="async"
   body
     header
       = render partial: 'layouts/header'

@@ -1,9 +1,24 @@
-# Be sure to restart your server when you modify this file.
+# frozen_string_literal: true
 
-# Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '1.0'
+# Application assets are handled by Gulp.js. This file
+# introduces a couple of helpers to integrate it into Rails.
 
-# Add additional assets to the asset load path
-# Rails.application.config.assets.paths << Emoji.images_path
+class Assets
+  def path(name)
+    if Rails.env.development? || Rails.env.test?
+      "/assets/#{name}"
+    else
+      "/assets/#{manifest[name]}"
+    end
+  end
 
-Rails.application.config.assets.precompile += %w(application.css vendor/masonry.min.js)
+  private
+
+  def manifest
+    @manifest ||= JSON.parse(manifest_file)
+  end
+
+  def manifest_file
+    File.read(Rails.root.join('public', 'assets', 'manifest.json'))
+  end
+end
