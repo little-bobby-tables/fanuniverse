@@ -3,11 +3,12 @@
 /* Dependencies */
 
 import gulp from 'gulp';
-import bower from 'gulp-bower';
 
 import rev from 'gulp-rev';
 import environments from 'gulp-environments';
 import sourcemaps from 'gulp-sourcemaps';
+import stream from 'event-stream';
+import concat from 'gulp-concat';
 
 import rollup from 'rollup-stream';
 import buble from 'rollup-plugin-buble';
@@ -23,32 +24,33 @@ import autoprefixer from 'gulp-autoprefixer';
 const development = environments.development,
       production = environments.production;
 
-/* Asset paths */
+/* Paths */
 
 const railsRoot = '../../..';
+
 const assets = {
+  dest:               `${railsRoot}/public/assets`,
+  fontDest:           `${railsRoot}/public/assets/fonts`,
+  productionManifest: `${railsRoot}/public/assets/manifest.json`
+};
 
-  /* Sources */
-  bower:                 `./bower_components`,
-  javascripts:           `${railsRoot}/app/assets/javascripts`,
-  applicationJavascript: `${railsRoot}/app/assets/javascripts/application.js`,
-  stylesheets:           `${railsRoot}/app/assets/stylesheets`,
-  applicationStylesheet: `${railsRoot}/app/assets/stylesheets/application.scss`,
-  fontawesomeSass:       `./bower_components/font-awesome/scss`,
-  fontawesomeWebfont:    `./bower_components/font-awesome/fonts/**.*`,
+const javascripts = {
+  vendor: [
+               './bower_components/**/*.js',
+               `${railsRoot}/app/assets/javascripts/vendor/**/*.js`
+  ],
+  all:         `${railsRoot}/app/assets/**/*.js`,
+  application: `${railsRoot}/app/assets/javascripts/application.js`,
+};
 
-  /* Destinations */
-  dest:                  `${railsRoot}/public/assets`,
-  fontDest:              `${railsRoot}/public/assets/fonts`,
-  productionManifest:    `${railsRoot}/public/assets/manifest.json`
-
+const stylesheets = {
+  all:                `${railsRoot}/app/assets/stylesheets/**/*.scss`,
+  application:        `${railsRoot}/app/assets/stylesheets/application.scss`,
+  fontawesomeSass:    `./bower_components/font-awesome/scss`,
+  fontawesomeWebfont: `./bower_components/font-awesome/fonts/**.*`,
 };
 
 /* Tasks */
-
-gulp.task('init', () => {
-  return bower().pipe(gulp.dest(assets.bower))
-});
 
 gulp.task('default', ['compile-javascripts', 'compile-stylesheets']);
 
@@ -65,17 +67,26 @@ const revManifest = {
 
 const rollupConfig = {
   plugins: [buble()],
-  entry: assets.applicationJavascript,
+  entry: javascripts.application,
   format: 'iife',
   sourceMap: development()
 };
 
-gulp.task('compile-javascripts', () => {
+function applicationJavascripts() {
   return rollup(rollupConfig)
       .pipe(source('application.js'))
       .pipe(buffer())
       .pipe(development(sourcemaps.init({ loadMaps: true })))
-      .pipe(development(sourcemaps.write()))
+      .pipe(development(sourcemaps.write()));
+}
+
+function vendorJavascripts() {
+  return gulp.src(javascripts.vendor);
+}
+
+gulp.task('compile-javascripts', () => {
+  return stream.merge(vendorJavascripts(), applicationJavascripts())
+      .pipe(concat('application.js'))
       .pipe(production(uglify()))
       .pipe(production(rev()))
       .pipe(gulp.dest(assets.dest))
@@ -85,7 +96,7 @@ gulp.task('compile-javascripts', () => {
 });
 
 gulp.task('watch-javascripts', () => {
-  gulp.watch(`${assets.javascripts}/**/*.js`, ['compile-javascripts']);
+  gulp.watch(javascripts.all, ['compile-javascripts']);
 });
 
 /* Stylesheets */
@@ -98,19 +109,19 @@ const autoprefixerConfig = {
 const sassConfig = {
   indentedSyntax: false,
   errLogToConsole: true,
-  includePaths: [`${assets.fontawesomeSass}`]
+  includePaths: [stylesheets.fontawesomeSass]
 };
 
 gulp.task('compile-stylesheets', ['compile-font-awesome', 'compile-scss']);
 
 gulp.task('compile-font-awesome', () => {
-  return gulp.src(assets.fontawesomeWebfont)
+  return gulp.src(stylesheets.fontawesomeWebfont)
       .pipe(rev())
       .pipe(gulp.dest(assets.fontDest));
 });
 
 gulp.task('compile-scss', () => {
-  return gulp.src(assets.applicationStylesheet)
+  return gulp.src(stylesheets.application)
       .pipe(development(sourcemaps.init()))
       .pipe(sass(sassConfig))
       .pipe(autoprefixer(autoprefixerConfig))
@@ -123,5 +134,5 @@ gulp.task('compile-scss', () => {
 });
 
 gulp.task('watch-stylesheets', () => {
-  gulp.watch(`${assets.stylesheets}/**/*.scss`, ['compile-stylesheets']);
+  gulp.watch(stylesheets.all, ['compile-stylesheets']);
 });
