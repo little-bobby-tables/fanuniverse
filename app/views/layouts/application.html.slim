@@ -4,8 +4,8 @@ html
     title Steven Universe
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: :all
-    = javascript_include_tag 'application', async: true
-    script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"
+    /= javascript_include_tag 'application', async: true
+    script src="assets/application.js"
   body
     header
       = render partial: 'layouts/header'

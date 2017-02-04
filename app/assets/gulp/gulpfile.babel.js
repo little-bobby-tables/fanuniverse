@@ -36,7 +36,7 @@ const assets = {
 
 const javascripts = {
   vendor: [
-               './bower_components/**/*.js',
+               './node_modules/masonry-layout/dist/masonry.pkgd.min.js',
                `${railsRoot}/app/assets/javascripts/vendor/**/*.js`
   ],
   all:         `${railsRoot}/app/assets/**/*.js`,
@@ -46,8 +46,8 @@ const javascripts = {
 const stylesheets = {
   all:                `${railsRoot}/app/assets/stylesheets/**/*.scss`,
   application:        `${railsRoot}/app/assets/stylesheets/application.scss`,
-  fontawesomeSass:    `./bower_components/font-awesome/scss`,
-  fontawesomeWebfont: `./bower_components/font-awesome/fonts/**.*`,
+  fontawesomeSass:    `./node_modules/font-awesome/scss`,
+  fontawesomeWebfont: `./node_modules/font-awesome/fonts/**.*`,
 };
 
 /* Tasks */

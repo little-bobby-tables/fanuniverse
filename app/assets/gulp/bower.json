@@ -1,9 +1,0 @@
-{
-  "name": "steven-on-rails-vendor-assets",
-  "description": "Third-party assets for Steven-on-Rails application.",
-  "main": "",
-  "private": true,
-  "dependencies": {
-    "font-awesome": "fontawesome#^4.7.0"
-  }
-}
