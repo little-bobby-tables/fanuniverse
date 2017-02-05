@@ -9,18 +9,19 @@
 
 .star {
   display: inline-block;
-  border-radius: 4px;
-
-  background: $meta_background;
-  color: #737374;
   padding: 4px;
   margin-bottom: 6px;
+  border-radius: 4px;
+  font-size: 14px;
+
+  background: $meta_background;
+  color: $meta_color;
 
   &:hover {
-    color: #000;
     cursor: pointer;
 
     background: $meta_hover_background;
+    color: $meta_hover_color;
   }
 }
 

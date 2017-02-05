@@ -4,9 +4,9 @@ h1 Images
   - @images.each do |image|
     .image-grid__item.block
       .block__content
-        a.star
+        a.star data-resource-id=image.id
           i.fa.fa-star>
-          = image.stars
+          span.star__count= image.stars
         br
         a href=image_path(image)
           img src=image.image.url

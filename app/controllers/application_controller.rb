@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include JsDatastore
+
   protect_from_forgery with: :exception
 
   before_action :set_permitted_parameters_for_devise, if: :devise_controller?

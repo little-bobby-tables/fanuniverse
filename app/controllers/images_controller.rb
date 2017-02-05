@@ -3,6 +3,9 @@ class ImagesController < ApplicationController
 
   def index
     @images = Image.all
+    if user_signed_in?
+      js_data[:stars] = RatingStar.resource_ids_with_stars(user: current_user, resources: @images)
+    end
   end
 
   def show

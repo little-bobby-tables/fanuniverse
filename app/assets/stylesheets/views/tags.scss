@@ -3,13 +3,16 @@
 .tag {
   display: inline-block;
   font-size: 14px;
-  background: $meta_background;
   margin: 0 6px 2px 0;
-  border-radius: 4px;
   padding: 4px 6px;
+  border-radius: 4px;
+
+  background: $meta_background;
+  color: $meta_color;
 
   &:hover {
     background: $meta_hover_background;
+    color: $meta_hover_color;
     cursor: pointer;
   }
 }

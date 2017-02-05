@@ -22,4 +22,11 @@ class RatingStarTest < ActiveSupport::TestCase
       RatingStar.toggle resource_id: @resource.id, user_id: @user.id
     end
   end
+
+  test 'returns resource ids with stars for given user and resource array' do
+    resources = [1, 2, 3].map { |id| OpenStruct.new(id: id) }
+    resources.each { |res| RatingStar.toggle resource_id: res.id, user_id: @user.id }
+
+    assert_equal [1, 2, 3], RatingStar.resource_ids_with_stars(user: @user, resources: resources)
+  end
 end

@@ -9,6 +9,10 @@ class RatingStar < ApplicationRecord
     end
   end
 
+  def self.resource_ids_with_stars(user:, resources:)
+    RatingStar.where(user_id: user.id, resource_id: resources.map(&:id)).pluck(:resource_id)
+  end
+
   private
 
   def self.add(user_id, resource_id)
