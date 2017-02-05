@@ -15,7 +15,7 @@ export default function() {
 }
 
 function toggleStar(resourceId) {
-  post('api/rating_stars/toggle', { resource_id: resourceId })
+  post('api/stars/toggle', { resource_id: resourceId })
       .then(data => {
         if (data['status'] === 'added') show(resourceId);
         else remove(resourceId);

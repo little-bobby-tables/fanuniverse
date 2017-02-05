@@ -26,13 +26,13 @@ ActiveRecord::Schema.define(version: 20170203141636) do
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
   end
 
-  create_table "rating_stars", force: :cascade do |t|
+  create_table "stars", force: :cascade do |t|
     t.integer  "resource_id"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["user_id", "resource_id"], name: "index_rating_stars_on_user_id_and_resource_id", using: :btree
-    t.index ["user_id"], name: "index_rating_stars_on_user_id", using: :btree
+    t.index ["user_id", "resource_id"], name: "index_stars_on_user_id_and_resource_id", using: :btree
+    t.index ["user_id"], name: "index_stars_on_user_id", using: :btree
   end
 
   create_table "tags", primary_key: "name", id: :string, force: :cascade do |t|

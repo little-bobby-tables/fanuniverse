@@ -1,4 +1,4 @@
-class RatingStar < ApplicationRecord
+class Star < ApplicationRecord
   def self.toggle(user_id:, resource_id:)
     if exists? user_id: user_id, resource_id: resource_id
       remove(user_id, resource_id)
@@ -10,7 +10,7 @@ class RatingStar < ApplicationRecord
   end
 
   def self.resource_ids_with_stars(user:, resources:)
-    RatingStar.where(user_id: user.id, resource_id: resources.map(&:id)).pluck(:resource_id)
+    where(user_id: user.id, resource_id: resources.map(&:id)).pluck(:resource_id)
   end
 
   private

@@ -1,6 +1,6 @@
-class CreateRatingStars < ActiveRecord::Migration[5.0]
+class CreateStars < ActiveRecord::Migration[5.0]
   def change
-    create_table :rating_stars do |t|
+    create_table :stars do |t|
       t.integer :resource_id
       t.integer :user_id
       t.timestamps

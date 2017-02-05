@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Api::RatingStarsControllerTest < ActionController::TestCase
+class Api::StarsControllerTest < ActionController::TestCase
   setup do
     @image = create(:image)
     @user = create(:user)
