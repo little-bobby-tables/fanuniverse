@@ -1,5 +1,5 @@
 function data(key) {
-  const property =  document.querySelector('.js-datastore').dataset[key];
+  const property = document.querySelector('.js-datastore').dataset[key];
   try {
     return JSON.parse(property);
   }

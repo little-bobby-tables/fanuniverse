@@ -1,14 +1,15 @@
 class ImagesController < ApplicationController
+  include StarrableResource
+
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   def index
     @images = Image.all
-    if user_signed_in?
-      js_data[:stars] = Star.resource_ids_with_stars(user: current_user, resources: @images)
-    end
+    load_stars @images
   end
 
   def show
+    load_stars [@image]
   end
 
   def new

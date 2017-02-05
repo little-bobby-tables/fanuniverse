@@ -2,10 +2,10 @@ import { data } from './utils/datastore';
 import { post } from './utils/requests'
 
 export default function() {
-  const interactions = data('stars');
+  const stars = data('stars');
 
-  if (interactions) {
-    interactions.forEach(id => show(id));
+  if (stars) {
+    stars.forEach(resource => show(resource));
 
     document.addEventListener('click', (e) => {
       const resourceId = e.target && e.target.closest('.star').getAttribute('data-resource-id');
@@ -15,7 +15,7 @@ export default function() {
 }
 
 function toggleStar(resourceId) {
-  post('api/stars/toggle', { resource_id: resourceId })
+  post('/api/stars/toggle', { resource_id: resourceId })
       .then(data => {
         if (data['status'] === 'added') show(resourceId);
         else remove(resourceId);

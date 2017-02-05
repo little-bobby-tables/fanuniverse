@@ -1,5 +1,9 @@
 .block
   .block__content
+    a.star data-resource-id=@image.id
+      i.fa.fa-star>
+      span.star__count= @image.stars
+  .block__content
     img src=@image.image.url
 .block
   .block__content
