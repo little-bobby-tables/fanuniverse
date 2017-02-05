@@ -17,6 +17,8 @@
   background: $meta_background;
   color: $meta_color;
 
+  @include bg-color-transition;
+
   &:hover {
     cursor: pointer;
 
@@ -26,10 +28,10 @@
 }
 
 .star--active {
-  background: $meta_background;
-  color: #000;
-  
+  background: $meta_active_background;
+  color: $meta_active_color;
+
   &:hover {
-    background: $meta_hover_background;
+    background: $meta_active_hover_background;
   }
 }

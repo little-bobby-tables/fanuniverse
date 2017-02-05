@@ -4,7 +4,8 @@ html
     title Steven Universe
     = csrf_meta_tags
     link href=asset_path('application.css') rel="stylesheet" media="all"
-    script src=asset_path('application.js') async="async"
+    / Masonry doesn't behave correctly when loaded asynchronously (async="async")
+    script src=asset_path('application.js')
   body
     header
       = render partial: 'layouts/header'

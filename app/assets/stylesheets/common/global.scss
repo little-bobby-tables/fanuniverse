@@ -5,7 +5,11 @@ $grid_item_background: #f7f7f7;
 $meta_background: #e3e1e4;
 $meta_hover_background: #cbc0d2;
 
-$meta_color: #59595a;
+$meta_active_background: #d7c7de;
+$meta_active_hover_background: #bcaac3;
+
+$meta_color: #5d5d5d;
+$meta_active_color: #4f4952;
 $meta_hover_color: #000000;
 
 /* Dimensions */
@@ -20,3 +24,10 @@ $block_header_height: 32px;
 $limited_layout_width: 980px;
 $medium_layout_width: 1330px;
 $layout_side_margin: 24px;
+
+/* Mixins */
+
+@mixin bg-color-transition {
+  transition: background 0.1s ease-in-out,
+              color 0.1s ease-in-out;
+}
