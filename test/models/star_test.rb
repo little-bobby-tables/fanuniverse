@@ -29,4 +29,11 @@ class StarTest < ActiveSupport::TestCase
 
     assert_equal [1, 2, 3], Star.resource_ids_with_stars(user: @user, resources: resources)
   end
+
+  test 'returns user ids for given resource' do
+    @users = [@user, create(:user)]
+    @users.each { |u| Star.toggle resource_id: @resource.id, user_id: u.id }
+
+    assert_equal @users.map(&:id), Star.user_ids_for_resource(@resource)
+  end
 end

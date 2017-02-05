@@ -78,6 +78,19 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    elasticsearch (1.1.0)
+      elasticsearch-api (= 1.1.0)
+      elasticsearch-transport (= 1.1.0)
+    elasticsearch-api (1.1.0)
+      multi_json
+    elasticsearch-model (0.1.9)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.9)
+    elasticsearch-transport (1.1.0)
+      faraday
+      multi_json
     erubis (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -86,9 +99,12 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.2)
       i18n (~> 0.5)
+    faraday (0.10.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    hashie (3.4.6)
     i18n (0.8.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -104,6 +120,8 @@ GEM
     mini_magick (4.6.0)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    multi_json (1.12.1)
+    multipart-post (2.0.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -181,6 +199,9 @@ DEPENDENCIES
   carrierwave
   corral_acl!
   devise
+  elasticsearch
+  elasticsearch-model
+  elasticsearch-rails
   factory_girl_rails
   faker
   listen (~> 3.0.5)

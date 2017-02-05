@@ -13,6 +13,10 @@ class Star < ApplicationRecord
     where(user_id: user.id, resource_id: resources.map(&:id)).pluck(:resource_id)
   end
 
+  def self.user_ids_for_resource(resource)
+    where(resource_id: resource.id).pluck(:user_id)
+  end
+
   private
 
   def self.add(user_id, resource_id)
