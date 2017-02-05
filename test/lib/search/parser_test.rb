@@ -34,6 +34,18 @@ class SearchParserTest < ActiveSupport::TestCase
                  query('pearl OR (garnet, amethyst)')
   end
 
+  test 'complex string terms' do
+    # string with balanced parentheses
+    assert_equal expression(:or, term('pearl (yellow diamond)'),
+                                 expression(:and, term('pearl (blue diamond)'), term('pearl'))),
+                 query('pearl (yellow diamond) OR (pearl (blue diamond), pearl)')
+
+    # quoted string
+    assert_equal expression(:or, term('"hologram" pearl'),
+                            expression(:and, term('pearl'), term('thrust :('))),
+                 query('"\"hologram\" pearl" OR (pearl, "thrust :(")')
+  end
+
   # Helpers
 
   def query(string)

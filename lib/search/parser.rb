@@ -8,7 +8,8 @@ module Search
       @fields_regex = Regexp.union(queryable_fields)
     end
 
-    delegate :match, :count, :skip, :match_regex, to: :@lexer
+    delegate :safe_string, :quoted_string, :string_with_balanced_parentheses,
+             :match, :count, :skip, :match_regex, to: :@lexer
 
     # query                    = expression
     #                          ;
@@ -35,11 +36,13 @@ module Search
     end
 
     def expression
+      skip :whitespace
       left = boolean_clause
+
+      skip :whitespace
       operator = match :binary_operator
 
       skip :whitespace
-
       right = expression if operator
 
       if operator == ','
@@ -53,6 +56,8 @@ module Search
 
     def boolean_clause
       negation = match :negation
+      skip :whitespace
+
       body = clause
 
       redundant_negation = negation && body.is_a?(NegatedClause)
@@ -89,16 +94,16 @@ module Search
       field = match_regex @fields_regex
 
       if field && skip(:term_delimiter)
-        field_query = match_until :reserved
+        field_query = safe_string
 
         FieldTerm.new field, field_query
       end
     end
 
     def term
-      string = match_until :reserved
+      string = quoted_string || string_with_balanced_parentheses
 
-      Term.new string.strip
+      Term.new string
     end
   end
 end

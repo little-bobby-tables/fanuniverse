@@ -28,6 +28,14 @@ class SearchLexerTest < ActiveSupport::TestCase
                expected: 'this is a "quoted" string ) , AND OR ((( ',
                source: '"this is a \"quoted\" string ) , AND OR ((( "irrelevant part',
                should_remain: 'irrelevant part'
+    assert_lex :quoted_string,
+               expected: '"beginning" and ending with a "quote"',
+               source: '"\"beginning\" and ending with a \"quote\"", irrelevant part',
+               should_remain: ', irrelevant part'
+    assert_lex :quoted_string,
+               expected: 'one string',
+               source: '"one string" BUT WAIT "there\'s more"',
+               should_remain: ' BUT WAIT "there\'s more"'
   end
 
   test 'matches raw strings (safe with balanced parentheses)' do

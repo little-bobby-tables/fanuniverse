@@ -11,7 +11,7 @@ module Search
       term_delimiter: /:/,
 
       safe_string_until: /(\s*)(,|OR|NOT|"|\(|\))/,
-      quoted_string: /"(?:[^\\]|\\.)*"/,
+      quoted_string: /"(?:[^\\]|\\.)*?"/,
       string_with_balanced_parentheses_until: /(\s*)(,|OR|NOT)/
     }
 
@@ -40,24 +40,29 @@ module Search
 
     # May contain any characters except for quotes (the latter are allowed when escaped).
     def quoted_string
-      string = match(:quoted_string)[1..-2] # ignore quotes
+      string = match(:quoted_string)
+
       if string
-        string.gsub(/\\"/, '"')
+        string[1..-2] # ignore quotes
+              .gsub(/\\"/, '"')
               .gsub(/\\\\/, '\\')
       end
     end
 
     def string_with_balanced_parentheses
-      source = match_until TOKENS[:string_with_balanced_parentheses_until]
-      opening_parens = source.count('(')
+      string = match_until TOKENS[:string_with_balanced_parentheses_until]
 
-      balanced = source.split(')')[0..opening_parens].join(')')
-      balanced += ')' if opening_parens > 0 && source.ends_with?(')')
+      if string
+        opening_parens = string.count('(')
 
-      cutoff = source.length - balanced.length
-      @scanner.pos -= cutoff
+        balanced = string.split(')')[0..opening_parens].join(')')
+        balanced += ')' if opening_parens > 0 && string.ends_with?(')')
 
-      balanced
+        cutoff = string.length - balanced.length
+        @scanner.pos -= cutoff
+
+        balanced
+      end
     end
 
     # StringScanner#scan_until returns everything up to and including the regex.
