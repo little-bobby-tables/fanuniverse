@@ -30,7 +30,7 @@ const railsRoot = '../../..';
 
 const assets = {
   dest:               `${railsRoot}/public/assets`,
-  fontDest:           `${railsRoot}/public/assets/fonts`,
+  fontDest:           `${railsRoot}/public/fonts`,
   productionManifest: `${railsRoot}/public/assets/manifest.json`
 };
 
@@ -119,7 +119,6 @@ gulp.task('compile-stylesheets', ['compile-font-awesome', 'compile-scss']);
 
 gulp.task('compile-font-awesome', () => {
   return gulp.src(stylesheets.fontawesomeWebfont)
-      .pipe(rev())
       .pipe(gulp.dest(assets.fontDest));
 });
 
