@@ -63,10 +63,30 @@ class SearchParserTest < ActiveSupport::TestCase
                  query('"\"quoted\" string" OR (pearl, "string with special characters =(")')
   end
 
+  test 'simple field queries' do
+    assert_equal field_term('date', '3 years ago'),
+                 query('date:3 years ago', [:date])
+
+    assert_equal negated(field_term('date', '3 years ago')),
+                 query('NOT date:3 years ago', [:date])
+  end
+
+  test 'field queries require a delimiter' do
+    assert_equal expression(:and, term('date'), field_term('date', '3 years ago')),
+                 query('date, date:3 years ago', [:date])
+  end
+
+  test 'field queries as a part of a complex expression' do
+    assert_equal expression(:or, term('pearl'),
+                            negated(expression(:and, field_term('date', '3 years ago'),
+                                               expression(:and, field_term('stars', '5'), term('ruby'))))),
+                 query('pearl OR NOT (date:3 years ago, stars:5, ruby)', [:date, :stars])
+  end
+
   # Helpers
 
-  def query(string)
-    Search::Parser.new(string).ast
+  def query(string, fields = [])
+    Search::Parser.new(string, fields).ast
   end
 
   def expression(op, left, right)
@@ -79,5 +99,9 @@ class SearchParserTest < ActiveSupport::TestCase
 
   def negated(body)
     Search::NegatedClause.new(body)
+  end
+
+  def field_term(field, query)
+    Search::FieldTerm.new(field, query)
   end
 end

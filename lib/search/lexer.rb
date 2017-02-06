@@ -6,23 +6,32 @@ module Search
       whitespace: /\s+/,
       binary_operator: /,|OR/,
       negation: /NOT/,
-      term_delimiter: /:/,
+      field_query_delimiter: /:/,
 
       safe_string_until: /(\s*)(,|OR|NOT|"|\(|\))/,
       quoted_string: /"(?:[^\\]|\\.)*?"/,
       string_with_balanced_parentheses_until: /(\s*)(,|OR|NOT)/
     }
 
-    def initialize(string)
+    def initialize(string, queryable_fields)
       @scanner = StringScanner.new(string)
+      @field_regex = /(#{queryable_fields.join('|')}):/ if queryable_fields.any?
     end
 
     def match(token)
       @scanner.scan TOKENS[token]
     end
 
-    def match_regex(regex)
-      @scanner.scan regex
+    def skip(token)
+      @scanner.skip TOKENS[token]
+    end
+
+    def match_field
+      return unless @field_regex
+      field = @scanner.scan @field_regex
+      if field
+        field[0..-2] # remove field query delimiter (":")
+      end
     end
 
     def left_parentheses
@@ -31,10 +40,6 @@ module Search
 
     def right_parentheses(expected_count)
       @scanner.skip /\){,#{expected_count}}/
-    end
-
-    def skip(token)
-      @scanner.skip TOKENS[token]
     end
 
     # May contain words, numbers, spaces, dashes, and underscores.
@@ -72,8 +77,7 @@ module Search
     # StringScanner#scan_until returns everything up to and including the regex.
     # To avoid including the pattern, we use a lookahead.
     def match_until(regex)
-      pattern = /.+?(?=#{regex.source}|\z)/
-      match_regex(pattern)
+      @scanner.scan /.+?(?=#{regex.source}|\z)/
     end
   end
 end

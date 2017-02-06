@@ -4,13 +4,12 @@ require 'search/ast'
 module Search
   class Parser
     def initialize(query, queryable_fields = [])
-      @lexer = Lexer.new(query)
-      @fields_regex = Regexp.union(queryable_fields)
+      @lexer = Lexer.new(query, queryable_fields)
     end
 
-    delegate :safe_string, :quoted_string, :string_with_balanced_parentheses,
-             :left_parentheses, :right_parentheses,
-             :match, :skip, :match_regex, to: :@lexer
+    delegate :match, :skip,
+             :match_field, :left_parentheses, :right_parentheses,
+             :safe_string, :quoted_string, :string_with_balanced_parentheses, to: :@lexer
 
     # query                    = expression
     #                          ;
@@ -95,9 +94,9 @@ module Search
     end
 
     def field_term
-      field = match_regex @fields_regex
+      field = match_field
 
-      if field && skip(:term_delimiter)
+      if field
         field_query = safe_string
 
         FieldTerm.new field, field_query
