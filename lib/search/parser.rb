@@ -9,7 +9,8 @@ module Search
     end
 
     delegate :safe_string, :quoted_string, :string_with_balanced_parentheses,
-             :match, :count, :skip, :match_regex, to: :@lexer
+             :left_parentheses, :right_parentheses,
+             :match, :skip, :match_regex, to: :@lexer
 
     # query                    = expression
     #                          ;
@@ -76,15 +77,16 @@ module Search
     end
 
     def parenthesized_expression
-      opening_parens = count :left_parentheses
+      opening_parens = left_parentheses
 
       if opening_parens
         body = expression
-        closing_parens = count :right_parentheses
+        closing_parens = right_parentheses(opening_parens)
 
         if opening_parens == closing_parens
           body
         else
+          false
           # imbalanced parentheses
         end
       end

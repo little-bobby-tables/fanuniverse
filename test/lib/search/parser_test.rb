@@ -19,19 +19,28 @@ class SearchParserTest < ActiveSupport::TestCase
   end
 
   test 'operator precedence and associativity' do
-    assert_equal expression(:and, term('pearl'), expression(:or, term('garnet'), term('amethyst'))),
-                 query('pearl, garnet OR amethyst')
+    assert_equal expression(:and, term('pearl'), expression(:or, term('ruby'), term('sapphire'))),
+                 query('pearl, ruby OR sapphire')
 
-    assert_equal expression(:and, negated(term('pearl')), negated(term('steven'))),
-                 query('NOT pearl, NOT steven')
+    assert_equal expression(:and, negated(term('pearl')), negated(term('ruby'))),
+                 query('NOT pearl, NOT ruby')
 
-    assert_equal expression(:or, negated(term('pearl')), negated(term('steven'))),
-                 query('NOT pearl OR NOT steven')
+    assert_equal expression(:or, negated(term('pearl')), negated(term('ruby'))),
+                 query('NOT pearl OR NOT ruby')
   end
 
   test 'parenthesized expressions' do
-    assert_equal expression(:or, term('pearl'), expression(:and, term('garnet'), term('amethyst'))),
-                 query('pearl OR (garnet, amethyst)')
+    assert_equal expression(:or, term('pearl'), expression(:and, term('ruby'), term('sapphire'))),
+                 query('pearl OR (ruby, sapphire)')
+  end
+
+  test 'nested parenthesized expressions' do
+    assert_equal expression(:or, term('pearl'),
+                            expression(:and, term('nested'),
+                                       negated(expression(:or, negated((expression(:and, term('ruby'),
+                                                                                   term('sapphire')))),
+                                                          term('pearl'))))),
+                 query('pearl OR (nested, NOT (NOT (ruby, sapphire) OR pearl))')
   end
 
   test 'complex string terms' do
@@ -41,9 +50,9 @@ class SearchParserTest < ActiveSupport::TestCase
                  query('pearl (yellow diamond) OR (pearl (blue diamond), pearl)')
 
     # quoted string
-    assert_equal expression(:or, term('"hologram" pearl'),
-                            expression(:and, term('pearl'), term('thrust :('))),
-                 query('"\"hologram\" pearl" OR (pearl, "thrust :(")')
+    assert_equal expression(:or, term('"quoted" string'),
+                            expression(:and, term('pearl'), term('string with special characters =('))),
+                 query('"\"quoted\" string" OR (pearl, "string with special characters =(")')
   end
 
   # Helpers

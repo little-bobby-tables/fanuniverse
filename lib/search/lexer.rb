@@ -27,11 +27,17 @@ module Search
       @scanner.scan regex
     end
 
-    def count(token)
-      @scanner.skip TOKENS[token]
+    def left_parentheses
+      @scanner.skip /\(/
     end
 
-    alias skip count
+    def right_parentheses(expected_count)
+      @scanner.skip /\){,#{expected_count}}/
+    end
+
+    def skip(token)
+      @scanner.skip TOKENS[token]
+    end
 
     # May contain words, numbers, spaces, dashes, and underscores.
     def safe_string
