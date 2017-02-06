@@ -6,8 +6,6 @@ module Search
       whitespace: /\s+/,
       binary_operator: /,|OR/,
       negation: /NOT/,
-      left_parentheses: /\(+/,
-      right_parentheses: /\)+/,
       term_delimiter: /:/,
 
       safe_string_until: /(\s*)(,|OR|NOT|"|\(|\))/,

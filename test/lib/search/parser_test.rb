@@ -10,6 +10,14 @@ class SearchParserTest < ActiveSupport::TestCase
                  query('NOT lapis lazuli')
   end
 
+  test 'redundant negation' do
+    assert_equal negated(term('peridot')),
+                 query('NOT NOT NOT NOT NOT peridot')
+
+    assert_equal term('peridot'),
+                 query('NOT NOT NOT NOT NOT NOT peridot')
+  end
+
   test 'single conjunction and disjunction' do
     assert_equal expression(:and, term('peridot'), term('lapis lazuli')),
                  query('peridot, lapis lazuli')

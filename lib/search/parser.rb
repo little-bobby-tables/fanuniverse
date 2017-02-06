@@ -18,7 +18,8 @@ module Search
     #                          | boolean clause , "OR" , expression
     #                          | boolean clause
     #                          ;
-    # boolean clause           = [ "NOT" ] , clause
+    # boolean clause           = "NOT" , boolean clause
+    #                          | clause
     #                          ;
     # clause                   = parenthesized expression
     #                          | field term
@@ -59,16 +60,17 @@ module Search
       negation = match :negation
       skip :whitespace
 
-      body = clause
+      if negation
+        body = boolean_clause
+        redundant_negation = body.is_a?(NegatedClause)
 
-      redundant_negation = negation && body.is_a?(NegatedClause)
-
-      if redundant_negation
-        body.body
-      elsif negation
-        NegatedClause.new body
+        if redundant_negation
+          body.body
+        else
+          NegatedClause.new body
+        end
       else
-        body
+        clause
       end
     end
 
