@@ -5,6 +5,7 @@ Elasticfusion.define Image do
     mappings dynamic: false, _source: { enabled: false }, _all: { enabled: false } do
       indexes :id, type: 'integer'
       indexes :tag_names, type: 'keyword'
+      indexes :stars, type: 'integer'
       indexes :suggested_by, type: 'keyword'
       indexes :starred_by_ids, type: 'keyword'
       indexes :created_at, type: 'date'
@@ -14,6 +15,7 @@ Elasticfusion.define Image do
   def as_indexed_json(*)
     {
       id: id,
+      stars: stars,
       tag_names: tag_names,
       suggested_by: suggested_by.name.downcase,
       starred_by_ids: Star.user_ids_for_resource(self),
@@ -22,8 +24,12 @@ Elasticfusion.define Image do
   end
 
   elasticfusion do
+    reindex_when_updated [:stars]
+
     keyword_field :tag_names
 
-    allowed_search_fields [:suggested_by, :created_at]
+    allowed_search_fields [:stars, :suggested_by, :created_at]
+
+    default_sort created_at: :desc
   end
 end

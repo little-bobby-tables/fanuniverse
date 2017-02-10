@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   def index
-    @images = Image.all
+    @images = search_images
     load_stars @images
   end
 
@@ -43,6 +43,16 @@ class ImagesController < ApplicationController
   end
 
   private
+
+  def search_images
+    query = params[:q].presence
+    search = if query
+      Image.search_by_query(query)
+    else
+      Image.custom_search
+    end
+    paginate(search).records
+  end
 
   def set_image
     @image = Image.find(params[:id])

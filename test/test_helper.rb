@@ -21,10 +21,14 @@ def prepare
 
   indexed_models.each do |m|
     m.index_name "test_#{m.model_name.plural}"
-    m.__elasticsearch__.create_index! force: true
-    m.__elasticsearch__.import
-    m.__elasticsearch__.refresh_index!
+    m.__elasticsearch__.tap do |es|
+      es.create_index! force: true
+    end
   end
+end
+
+def refresh_index(model)
+  model.__elasticsearch__.refresh_index!
 end
 
 prepare

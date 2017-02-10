@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ImagesControllerTest < ActionController::TestCase
+  include ActiveJob::TestHelper
+
   setup do
     @image = create(:image)
     @user = create(:user)
@@ -22,5 +24,22 @@ class ImagesControllerTest < ActionController::TestCase
     get :show, params: { id: @image.id }
     assert_equal @image, assigns(:image)
     assert_response :success
+  end
+
+  test 'displays all images without a query parameter' do
+    @images = [@image] + create_list(:image, 2)
+    refresh_index Image
+
+    get :index
+    assert_equal @images.map(&:id).sort, assigns(:images).map(&:id).sort
+  end
+
+  test 'given a query, displays search results' do
+    @images = [@image] + create_list(:image, 2)
+    perform_enqueued_jobs { @images.first.update_attributes stars: 10 }
+    refresh_index Image
+
+    get :index, params: { q: 'stars: more than 9' }
+    assert_equal [@images.first], assigns(:images).to_a
   end
 end
