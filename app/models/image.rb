@@ -1,6 +1,4 @@
 class Image < ApplicationRecord
-  include Indexable
-
   belongs_to :suggested_by, class_name: 'User'
 
   mount_uploader :image, ImageUploader
