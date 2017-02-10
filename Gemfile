@@ -7,9 +7,7 @@ gem 'puma'
 gem 'pg'
 gem 'postgres_ext', github: 'little-bobby-tables/postgres_ext', branch: 'rails-5'
 # Elasticsearch
-gem 'elasticsearch'
-gem 'elasticsearch-rails'
-gem 'elasticsearch-model'
+gem 'elasticfusion', path: '../elasticfusion'
 # Image processing
 gem 'carrierwave'
 gem 'mini_magick'
