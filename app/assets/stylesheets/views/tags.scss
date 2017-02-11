@@ -7,14 +7,14 @@
   padding: 4px 6px;
   border-radius: 4px;
 
-  background: $meta_background;
-  color: $meta_color;
+  //background: $meta_background;
+  //color: $meta_color;
 
   @include bg-color-transition;
 
   &:hover {
-    background: $meta_hover_background;
-    color: $meta_hover_color;
+    //background: $meta_hover_background;
+    //color: $meta_hover_color;
     cursor: pointer;
   }
 }

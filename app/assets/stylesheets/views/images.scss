@@ -5,31 +5,34 @@
   margin: 10px;
 }
 
+.image__source {
+  display: inline-block;
+  color: $meta_color;
+  padding: 4px;
+  text-decoration: none;
+
+  @include color-transition;
+
+  &:hover {
+    color: $meta_hover_color;
+  }
+}
+
 .star {
   display: inline-block;
   padding: 4px;
   margin-bottom: 6px;
-  border-radius: 4px;
-  font-size: 14px;
 
-  background: $meta_background;
   color: $meta_color;
 
-  @include bg-color-transition;
+  @include color-transition;
 
   &:hover {
     cursor: pointer;
-
-    background: $meta_hover_background;
     color: $meta_hover_color;
   }
 }
 
 .star--active {
-  background: $meta_active_background;
-  color: $meta_active_color;
-
-  &:hover {
-    background: $meta_active_hover_background;
-  }
+  color: black;
 }

@@ -12,9 +12,10 @@
           span.star__count= image.stars
         br
         a href=image_path(image)
-          img src=image.image.url
-        - image.tag_names.each do |tag_name|
-          .tag = tag_name
+          img src=image.image.url title=image.tag_names.join(', ')
+        a.image__source href="https://tumblr.com"
+          i.fa.fa-retweet>
+          | someone.tumblr.com
 
 - if params[:q].present?
   = render partial: 'images/search_form'
