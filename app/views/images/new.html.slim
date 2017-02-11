@@ -1,6 +1,33 @@
-h1 New image
+h1 Suggest an image
 
 - if can? :create, Image
-  == render 'form'
+  p Have a Steven Universe picture you love? Share it with fellow fans!
+
+  = form_for @image do |f|
+    = render partial: 'layouts/errors', locals: { model: @image }
+
+    img.js-upload-image-preview.hidden style="width: 200px;"
+
+    .js-upload-image
+
+      h2 First things first
+
+      = f.file_field :image, class: 'input file-upload__input'
+      = f.label :image, class: 'button button--primary button--inline file-upload__label' do
+        i.fa.fa-upload>
+        | Choose a file…
+      = f.hidden_field :image_cache
+
+    .js-upload-second-step.hidden
+
+      h2 Tag the image
+      p Help people find images they like by describing this picture in tags.
+
+      = f.text_area :tags, class: 'input'
+
+      h2 Let's do it!
+
+      = f.submit class: 'button button--primary'
+
 - else
-  | Oops! You need to sign up or something.
+  | Oops! You need to sign in or something.
