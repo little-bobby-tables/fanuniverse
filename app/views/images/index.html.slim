@@ -1,4 +1,7 @@
-h1 Images
+- if params[:q].present?
+  h1 = "Searching for \"#{params[:q]}\""
+- else
+  h1 Images
 
 .image-grid data-masonry='{ "itemSelector": ".image-grid__item" }'
   - @images.each do |image|
@@ -12,3 +15,6 @@ h1 Images
           img src=image.image.url
         - image.tag_names.each do |tag_name|
           .tag = tag_name
+
+- if params[:q].present?
+  = render partial: 'images/search_form'

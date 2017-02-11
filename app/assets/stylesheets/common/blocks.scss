@@ -1,7 +1,9 @@
 @import "global";
 
 .block {
+  background: $grid_item_background;
   margin-bottom: $block_spacing;
+  border-radius: 4px;
 }
 
 .block__content, .block__tab {

@@ -12,11 +12,13 @@ $meta_color: #5d5d5d;
 $meta_active_color: #4f4952;
 $meta_hover_color: #000000;
 
+$input_border_color: #d6d6d6;
+
 /* Dimensions */
 
 $header_height: 36px;
 $header_spacing: 12px;
-$header_font_size: 16px;
+$header_font_size: 18px;
 
 $block_spacing: 6px;
 $block_header_height: 32px;
@@ -24,6 +26,10 @@ $block_header_height: 32px;
 $limited_layout_width: 980px;
 $medium_layout_width: 1330px;
 $layout_side_margin: 24px;
+
+/* Fonts */
+
+$font_family_header: 'Sansita', sans-serif;
 
 /* Mixins */
 

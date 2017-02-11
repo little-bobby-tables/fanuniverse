@@ -1,7 +1,9 @@
 @import "global";
 
 .header {
-  width: 100%;
+  padding: 8px;
+  border-bottom: 1px solid $input_border_color;
+  margin-bottom: 24px;
 }
 
 .header__link {
@@ -9,4 +11,16 @@
   padding: 0 $header_spacing;
   line-height: $header_height;
   font-size: $header_font_size;
+  font-family: $font_family_header;
+  text-decoration: none;
+
+  color: black;
+}
+
+.header__link:hover {
+  border-bottom: 3px solid black;
+}
+
+.header__link--spacing-right {
+  margin-right: 20px;
 }

@@ -1,5 +1,9 @@
 @import "global";
 
+body {
+  margin: 0;
+}
+
 .layout {
   margin-top: $header_spacing;
   margin-bottom: $header_spacing;
@@ -33,4 +37,13 @@
   width: 100%;
   padding-left: $layout_side_margin;
   padding-right: $layout_side_margin;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex__right {
+  flex: 1 1 auto;
+  text-align: right;
 }

@@ -1,16 +1,35 @@
 @import "global";
 
+.inline-form {
+  display: inline;
+}
+
+
 .input {
   display: block;
   box-sizing: border-box;
   padding: 4px 6px;
   margin-bottom: 6px;
-  //border: 1px solid $input_border;
   font-size: 16px;
+
   //font-family: $font_family_monospace;
   //color: $input_text_color;
   //background: $input_color;
+
   max-width: 100%; /* prevent resizable inputs from overflowing the container */
+
+  color: #343434;
+  border: 1px solid $input_border_color;
+}
+
+.input:focus {
+  color: black;
+  outline: none;
+  border: 1px solid #c3a1d2;
+}
+
+.input--inline {
+  display: inline-block;
 }
 
 .button {
@@ -18,4 +37,27 @@
   box-sizing: border-box;
   padding: 4px 6px;
   font-size: 16px;
+  cursor: pointer;
+  @include bg-color-transition;
+}
+
+.button--spacing-left {
+  margin-left: 4px;
+}
+
+.button--primary {
+  background: #7b518e;
+
+  color: white;
+  border: none;
+  border-radius: 2px;
+  line-height: 24px;
+}
+
+.button--primary:hover {
+  background: #703a88;
+}
+
+.button--inline {
+  display: inline-block;
 }
