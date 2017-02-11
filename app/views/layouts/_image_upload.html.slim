@@ -1,0 +1,7 @@
+/ accepts :form (form builder) and :field (mounted_as)
+
+= form.file_field field, class: 'input file-upload__input'
+= form.label field, class: 'button button--primary button--inline file-upload__label' do
+  i.fa.fa-upload>
+  | Choose a file…
+= form.hidden_field :"#{field}_cache"

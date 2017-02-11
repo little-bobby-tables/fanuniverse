@@ -1,1 +1,10 @@
-h2 = @user.name
+.flex
+  .avatar.avatar--large
+    - if @user.avatar?
+      img.avatar__image src=@user.avatar.url
+  .profile__info
+    h1 = @user.name
+    | Member for
+    =< time_ago_in_words(@user.created_at)
+    br
+    p = @user.bio

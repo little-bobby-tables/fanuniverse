@@ -3,40 +3,43 @@ h2
   = resource_name.to_s.humanize
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
+
+  h3 About me
+  = f.label :bio
+  = f.text_area :bio, class: 'input'
+
+  h3 Avatar
+  - if resource.avatar?
+    = f.label :remove_avatar
+    = f.check_box :remove_avatar
+  - else
+    p Your avatar must be safe-for-work and have a maximum size of 300kB.
+    = render partial: 'layouts/image_upload', locals: { form: f, field: :avatar }
+
+  h3 Email and password
+
+  = f.label :email
+  = f.email_field :email, class: 'input', autofocus: true
+
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     div
-      | Currently waiting confirmation for: 
+      | Currently waiting confirmation for:
       = resource.unconfirmed_email
-  .field
-    = f.label :password
-    i
-      | (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "off"
-    - if @minimum_password_length
-      br
-      em
-        = @minimum_password_length
-        |  characters minimum
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    i
-      | (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "off"
+
+  => f.label :password
+  em
+    | (leave blank if you don't want to change it)
+  br
+  = f.password_field :password, class: 'input', autocomplete: 'off'
+
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation, class: 'input', autocomplete: 'off'
+
+  h3 Save changes
+
+  => f.label :current_password
+  em
+    | (we need your current password to confirm your changes)
+  = f.password_field :current_password, class: 'input', autocomplete: 'off'
   .actions
-    = f.submit "Update"
-h3
-  | Cancel my account
-p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+    = f.submit 'Update', class: 'button button--primary'

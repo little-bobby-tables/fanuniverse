@@ -1,3 +1,5 @@
+- medium_layout
+
 - if params[:q].present?
   h1 = "Searching for \"#{params[:q]}\""
 - else
@@ -16,6 +18,3 @@
         a.image__source href="https://tumblr.com"
           i.fa.fa-retweet>
           | someone.tumblr.com
-
-- if params[:q].present?
-  = render partial: 'images/search_form'

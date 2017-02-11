@@ -12,11 +12,7 @@ h1 Suggest an image
 
       h2 First things first
 
-      = f.file_field :image, class: 'input file-upload__input'
-      = f.label :image, class: 'button button--primary button--inline file-upload__label' do
-        i.fa.fa-upload>
-        | Choose a file…
-      = f.hidden_field :image_cache
+      = render partial: 'layouts/image_upload', locals: { form: f, field: :image }
 
     .js-upload-second-step.hidden
 

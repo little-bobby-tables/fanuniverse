@@ -4,6 +4,14 @@ body {
   margin: 0;
 }
 
+body, button, input, optgroup, select, textarea {
+  font-family: $font_family_base;
+}
+
+header, h1, h2, h3 {
+  font-family: $font_family_header;
+}
+
 .layout {
   margin-top: $header_spacing;
   margin-bottom: $header_spacing;
@@ -47,3 +55,4 @@ body {
   flex: 1 1 auto;
   text-align: right;
 }
+

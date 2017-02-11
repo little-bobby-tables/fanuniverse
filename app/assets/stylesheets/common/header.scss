@@ -1,20 +1,22 @@
 @import "global";
 
 .header {
-  padding: 8px;
   border-bottom: 1px solid $input_border_color;
   margin-bottom: 24px;
 }
 
-.header__link {
-  display: inline-block;
+.header__link, .header__user {
   padding: 0 $header_spacing;
-  line-height: $header_height;
   font-size: $header_font_size;
-  font-family: $font_family_header;
   text-decoration: none;
 
   color: black;
+}
+
+.header__link {
+  display: inline-block;
+  line-height: $header_height;
+  border-bottom: 3px solid white;
 }
 
 .header__link:hover {
@@ -23,4 +25,35 @@
 
 .header__link--spacing-right {
   margin-right: 20px;
+}
+
+.header__search-input {
+  width: 30vw;
+}
+
+.header__user__avatar {
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.header__user {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: bottom;
+
+  /* Compensate for .header__link having border-bottom set to 3px */
+  line-height: $header_height + 3px;
+
+  background-size: 100% 200%;
+  background-image: linear-gradient(to bottom, white 50%, black 50%);
+  transition: background-position ease 0.2s, color ease 0.2s;
+}
+
+.header__user:hover {
+  background-position: 0 -100%; /* 0 100% */
+  color: white;
+  cursor: pointer;
 }

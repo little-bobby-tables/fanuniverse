@@ -47,6 +47,9 @@ const javascripts = {
 };
 
 const stylesheets = {
+  vendor: [
+                      './node_modules/normalize.css/normalize.css'
+  ],
   all:                `${railsRoot}/app/assets/stylesheets/**/*.scss`,
   application:        `${railsRoot}/app/assets/stylesheets/application.scss`,
   fontawesomeSass:    `./node_modules/font-awesome/scss`,
@@ -123,7 +126,9 @@ gulp.task('compile-font-awesome', () => {
 });
 
 gulp.task('compile-scss', () => {
-  return gulp.src(stylesheets.application)
+  return stream.merge(gulp.src(stylesheets.vendor),
+                      gulp.src(stylesheets.application))
+      .pipe(concat('application.css'))
       .pipe(development(sourcemaps.init()))
       .pipe(sass(sassConfig))
       .pipe(autoprefixer(autoprefixerConfig))
