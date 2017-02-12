@@ -5,7 +5,7 @@
   margin-bottom: 24px;
 }
 
-.header__link, .header__user {
+.header__link, .header__user-toggle {
   padding: 0 $header_spacing;
   font-size: $header_font_size;
   text-decoration: none;
@@ -31,14 +31,7 @@
   width: 30vw;
 }
 
-.header__user__avatar {
-  width: 34px;
-  height: 34px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-.header__user {
+.header__user-toggle {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -49,11 +42,52 @@
 
   background-size: 100% 200%;
   background-image: linear-gradient(to bottom, white 50%, black 50%);
-  transition: background-position ease 0.2s, color ease 0.2s;
+  transition: background-position ease 0.2s,
+              color ease 0.2s;
 }
 
-.header__user:hover {
-  background-position: 0 -100%; /* 0 100% */
+.header__user-toggle:hover, .header__user-toggle.active {
+  background-position: 0 -100%;
   color: white;
   cursor: pointer;
+}
+
+.header__user-toggle__avatar {
+  width: 34px;
+  height: 34px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.header__user {
+  position: absolute;
+  right: 8px;
+  margin-top: 8px;
+  padding: 0 12px;
+  line-height: 38px;
+  text-align: left;
+
+  background: black;
+  color: white;
+}
+
+.header__user__arrow {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 12px solid black;
+}
+
+.header__user__link {
+  display: block;
+  text-decoration: none;
+  color: white;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
