@@ -11,8 +11,7 @@ header.header.flex
       a.header__user-toggle.js-header-user-toggle href=user_path(current_user)
         = current_user.name
         .avatar.header__user-toggle__avatar
-          - if current_user.avatar?
-            img.avatar__image src=current_user.avatar.url
+          img.avatar__image src=current_user.avatar.url
       .header__user.js-header-user.hidden
         .header__user__arrow
         a.header__user__link href=user_path(current_user)
