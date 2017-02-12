@@ -8,8 +8,12 @@ export default function() {
     stars.forEach(resource => show(resource));
 
     document.addEventListener('click', (e) => {
-      const resourceId = e.target && e.target.closest('.star').getAttribute('data-resource-id');
-      resourceId && toggleStar(resourceId);
+      const star = e.target && e.target.closest('.star');
+
+      if (star) {
+        const resourceId = star.getAttribute('data-resource-id');
+        toggleStar(resourceId);
+      }
     });
   }
 }
