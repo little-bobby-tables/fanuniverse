@@ -8,12 +8,11 @@
 .image-grid data-masonry='{ "itemSelector": ".image-grid__item" }'
   - @images.each do |image|
     .image-grid__item.block
-      .block__content
-        a.star data-resource-id=image.id
-          i.fa.fa-star>
-          span.star__count= image.stars
-        a.image-grid__item__image-link href=image_path(image)
-          img src=image.image.url title=image.tag_names.join(', ')
-        a.image__source href="https://tumblr.com"
-          i.fa.fa-retweet>
-          | someone.tumblr.com
+      a.star data-resource-id=image.id
+        i.fa.fa-star>
+        span.star__count= image.stars
+      a.image-grid__item__image-link href=image_path(image)
+        img src=image.image.url title=image.tag_names.join(', ')
+      a.image__source href="https://tumblr.com"
+        i.fa.fa-retweet>
+        | someone.tumblr.com

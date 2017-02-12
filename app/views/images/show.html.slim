@@ -1,20 +1,17 @@
 .block
-  .block__content
-    a.star data-resource-id=@image.id
-      i.fa.fa-star>
-      span.star__count= @image.stars
-  .block__content
-    img src=@image.image.url
+  a.star data-resource-id=@image.id
+    i.fa.fa-star>
+    span.star__count= @image.stars
+  img src=@image.image.url
 .block
-  .block__content
-    | Tags:
-    br
-    - @image.tag_names.each do |tag_name|
-      .tag = tag_name
-    br
-    br
-    | Suggested by
-    =< link_to @image.suggested_by.name, user_path(@image.suggested_by)
+  | Tags:
+  br
+  - @image.tag_names.each do |tag_name|
+    .tag = tag_name
+  br
+  br
+  | Suggested by
+  =< link_to @image.suggested_by.name, user_path(@image.suggested_by)
 
 .block
   = render partial: 'comments/form', locals: { commentable: @image }

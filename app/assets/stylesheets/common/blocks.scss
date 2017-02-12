@@ -6,14 +6,12 @@
 
   margin-bottom: $block_spacing;
   border-radius: 4px;
-}
 
-.block__content, .block__tab {
   padding: $block_spacing;
-}
 
-.block__content img, .block__tab img {
-  max-width: 100%;
+  img {
+    max-width: 100%;
+  }
 }
 
 .block__header, .block__header--single-link,
@@ -68,10 +66,6 @@ a.block__header--single-link {
   }
 }
 
-.block__content, .block__tab {
-  //background: $background_color;
-}
-
 /* Fixed blocks do not have header and content */
 .block--fixed {
   padding: 6px $header_spacing;
@@ -85,12 +79,4 @@ a.block__header--single-link {
 
 .block--no-margin {
   margin: 0;
-}
-
-/* Somewhat dirty workaround for <h*> margins */
-
-.block__content, .block__tab, .block--fixed {
-  > h1, > h2, > h3, > h4, > h5, > h6 {
-    margin-top: 6px;
-  }
 }

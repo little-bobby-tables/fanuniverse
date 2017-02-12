@@ -2,15 +2,16 @@
 
 .comment__body {
   position: relative;
-
-  padding: 8px;
   margin-left: 20px;
 
   word-wrap: break-word;
+}
 
-  img {
-    max-width: 100%;
-  }
+.comment__author {
+  display: block;
+  font-family: $font_family_header;
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 
 .comment__body__arrow {
