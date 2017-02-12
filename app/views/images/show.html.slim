@@ -15,3 +15,6 @@
     br
     | Suggested by
     =< link_to @image.suggested_by.name, user_path(@image.suggested_by)
+
+.block
+  = render partial: 'comments/form', locals: { commentable: @image }

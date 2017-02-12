@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/deliciousblackink/Corral.git
-  revision: 1d9753f2469ab31419fcce1bd5a945414a14431f
+  revision: 5c8b1c9cc81812c5ee785c9506460b698fcb5130
+  branch: override-by-deny
   specs:
     corral_acl (1.0.1)
       rails (~> 5.0)
@@ -89,17 +90,17 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    elasticsearch (5.0.1)
-      elasticsearch-api (= 5.0.1)
-      elasticsearch-transport (= 5.0.1)
-    elasticsearch-api (5.0.1)
+    elasticsearch (5.0.3)
+      elasticsearch-api (= 5.0.3)
+      elasticsearch-transport (= 5.0.3)
+    elasticsearch-api (5.0.3)
       multi_json
     elasticsearch-model (0.1.9)
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
     elasticsearch-rails (0.1.9)
-    elasticsearch-transport (5.0.1)
+    elasticsearch-transport (5.0.3)
       faraday
       multi_json
     erubis (2.7.0)
@@ -108,27 +109,27 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faker (1.7.2)
+    faker (1.7.3)
       i18n (~> 0.5)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    hashie (3.5.1)
+    hashie (3.5.3)
     i18n (0.8.0)
-    kaminari (1.0.0)
+    kaminari (1.0.1)
       activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.0.0)
-      kaminari-activerecord (= 1.0.0)
-      kaminari-core (= 1.0.0)
-    kaminari-actionview (1.0.0)
+      kaminari-actionview (= 1.0.1)
+      kaminari-activerecord (= 1.0.1)
+      kaminari-core (= 1.0.1)
+    kaminari-actionview (1.0.1)
       actionview
-      kaminari-core (= 1.0.0)
-    kaminari-activerecord (1.0.0)
+      kaminari-core (= 1.0.1)
+    kaminari-activerecord (1.0.1)
       activerecord
-      kaminari-core (= 1.0.0)
-    kaminari-core (1.0.0)
+      kaminari-core (= 1.0.1)
+    kaminari-core (1.0.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -148,6 +149,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    openssl (2.0.3)
     orm_adapter (0.5.0)
     pg (0.19.0)
     pg_array_parser (0.0.9)
@@ -228,6 +230,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   mini_magick
+  openssl
   pg
   postgres_ext!
   puma

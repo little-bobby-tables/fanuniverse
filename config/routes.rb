@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :users, param: :name, except: [:new, :create, :destroy]
 
+  resources :comments, except: [:new]
+
   namespace :api do
     post 'stars/toggle'
   end

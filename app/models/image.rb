@@ -1,5 +1,6 @@
 class Image < ApplicationRecord
   belongs_to :suggested_by, class_name: 'User'
+  has_many :comments, as: :commentable, validate: false
 
   mount_uploader :image, ImageUploader
 

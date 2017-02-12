@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211124503) do
+ActiveRecord::Schema.define(version: 20170212063153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "author_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["commentable_type", "author_id"], name: "index_comments_on_commentable_type_and_author_id", using: :btree
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+  end
 
   create_table "images", force: :cascade do |t|
     t.string   "tag_names",       default: [],   null: false, array: true

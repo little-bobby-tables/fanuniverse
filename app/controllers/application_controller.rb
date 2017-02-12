@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_permitted_parameters_for_devise, if: :devise_controller?
 
+  rescue_from ActiveRecord::RecordNotFound, with: -> { render_404 }
+  rescue_from Corral::AccessDenied, with: -> { render_404 api_status: :forbidden }
+
   protected
 
   def paginate(resource)
@@ -17,5 +20,14 @@ class ApplicationController < ActionController::Base
   def set_permitted_parameters_for_devise
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: User::ALLOWED_PARAMETERS)
+  end
+
+  private
+
+  def render_404(api_status: :not_found)
+    respond_to do |format|
+      format.html { render file: 'public/404.html', layout: false, status: :not_found }
+      format.all { head api_status }
+    end
   end
 end

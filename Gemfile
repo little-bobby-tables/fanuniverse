@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# https://github.com/ruby/openssl/issues/103
+gem 'openssl'
 # Server
 gem 'rails', '~> 5.0.1'
 gem 'puma'
@@ -14,7 +16,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 # User management
 gem 'devise'
-gem 'corral_acl', require: 'corral', github: 'deliciousblackink/Corral'
+gem 'corral_acl', require: 'corral', github: 'deliciousblackink/Corral', branch: 'override-by-deny'
 # Front-end
 gem 'slim-rails', github: 'slim-template/slim-rails'
 
