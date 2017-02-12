@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_action :load_commentable, only: [:index, :create]
 
+  # TODO: paginate!
+
   def index
     authorize! :view, @commentable
 

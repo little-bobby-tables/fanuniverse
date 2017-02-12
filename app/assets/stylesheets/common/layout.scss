@@ -2,6 +2,7 @@
 
 body {
   margin: 0;
+  background: #fcfcfc;
 }
 
 body, button, input, optgroup, select, textarea {
@@ -56,3 +57,14 @@ header, h1, h2, h3 {
   text-align: right;
 }
 
+.flex__grow {
+  flex: 1 0 0;
+}
+
+.flex__shrink {
+  flex: 0 1 auto;
+}
+
+.flex__fixed {
+  flex: 0 0 auto;
+}

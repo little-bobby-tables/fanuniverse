@@ -5,10 +5,34 @@
   margin: 10px;
 }
 
+.image-grid__item__image-link {
+  display: inline-block;
+  position: relative;
+  font-size: 0;
+}
+
+.image-grid__item__image-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.image-grid__item__image-link:hover::after {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
 .image__source {
   display: inline-block;
   color: $meta_color;
   padding: 4px;
+  margin-top: 4px;
   text-decoration: none;
 
   @include color-transition;
@@ -21,7 +45,7 @@
 .star {
   display: inline-block;
   padding: 4px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 
   color: $meta_color;
 

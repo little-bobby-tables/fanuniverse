@@ -1,0 +1,26 @@
+@import "common/global";
+
+.comment__body {
+  position: relative;
+
+  padding: 8px;
+  margin-left: 20px;
+
+  word-wrap: break-word;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.comment__body__arrow {
+  position: absolute;
+  left: -12px;
+
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+
+  border-right: 12px solid $grid_item_background;
+}
