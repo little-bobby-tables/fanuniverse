@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   def create
     authorize! :comment_on, @commentable
 
-    comments = relation_for(resource)
+    comments = relation_for(@commentable)
     @comment = comments.new(comment_params)
 
     if @comment.save
@@ -29,8 +29,7 @@ class CommentsController < ApplicationController
     type = Comment::COMMENTABLE.detect { |type| params[:commentable_type] == type }
     head :bad_request and return unless type
 
-    @commentable = type.constantize.find_by(id: params[:commentable_id])
-    head :not_found unless @commentable
+    @commentable = type.constantize.find(params[:commentable_id])
   end
 
   def comment_listing(comments)
