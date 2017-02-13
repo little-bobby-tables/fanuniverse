@@ -4,5 +4,9 @@
     .flex__fixed.avatar.avatar--small
       img.avatar__image src=c.author.avatar.url
     .flex__grow.comment__body
-      span.comment__author = c.author.name
+      .comment__author = c.author.name
       = c.body
+      .comment__meta
+        | posted
+        =<> time_ago_in_words(c.created_at)
+        | ago
