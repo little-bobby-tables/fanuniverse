@@ -1,6 +1,7 @@
 / accepts :commentable (an instance of commentable model)
-= form_for(Comment.new) do |f|
+= form_for Comment.new, html: { class: 'comment-form' } do |f|
   = hidden_field_tag :commentable_type, commentable.model_name
   = hidden_field_tag :commentable_id, commentable.id
-  = f.text_area :body, class: 'input'
-  = f.submit 'Post comment', class: 'button button--primary'
+  = f.text_area :body, class: 'input input--no-margin input--wide'
+  = f.button 'Post comment', class: 'button button--primary comment-form__button'
+    i.fa.fa-paper-plane

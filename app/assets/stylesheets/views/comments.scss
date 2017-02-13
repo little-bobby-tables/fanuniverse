@@ -1,5 +1,18 @@
 @import "common/global";
 
+/* TODO: merge with inline-form? */
+.comment-form {
+  display: flex;
+  align-items: center;
+}
+
+.comment-form__button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
 .comment__body {
   position: relative;
   margin-left: 20px;
