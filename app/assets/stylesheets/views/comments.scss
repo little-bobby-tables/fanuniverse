@@ -31,15 +31,3 @@
   margin-top: 6px;
   text-align: right;
 }
-
-.comment__body__arrow {
-  position: absolute;
-  left: -12px;
-
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-
-  border-right: 12px solid $grid_item_background;
-}
