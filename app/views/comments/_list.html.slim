@@ -8,5 +8,5 @@
       = c.body
       .comment__meta
         | posted
-        =<> time_ago_in_words(c.created_at)
-        | ago
+        =<> time_tag(c.created_at)
+

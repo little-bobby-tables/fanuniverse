@@ -1,10 +1,12 @@
 import stars from './stars';
 import upload from './upload';
+import timeago from './timeago';
 import header from './header';
 
 function load() {
   stars();
   upload();
+  timeago();
   header();
 }
 

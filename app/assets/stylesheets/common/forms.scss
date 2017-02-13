@@ -4,7 +4,6 @@
   display: inline;
 }
 
-
 .input {
   display: block;
   box-sizing: border-box;
@@ -38,6 +37,10 @@
 
 .input--no-margin {
   margin: 0;
+}
+
+textarea {
+  height: 4em;
 }
 
 .button {
