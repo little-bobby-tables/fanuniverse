@@ -16,5 +16,4 @@
 .block
   = render partial: 'comments/form', locals: { commentable: @image }
 
-
-= render partial: 'comments/list', locals: { comments: @image.comments }
+div data-commentable="Image" data-commentable-id=@image.id

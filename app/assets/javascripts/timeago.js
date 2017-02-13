@@ -1,13 +1,13 @@
 /* Based on jQuery.timeago, see http://timeago.yarp.com/ */
 
-export default function timeago() {
-  const dates = document.querySelectorAll('time');
+export default function refreshTimeago() {
+  timeago(document);
+  window.setTimeout(refreshTimeago, 60000);
+}
 
-  if (dates.length) {
-    [].slice.call(dates).forEach(date => format(date));
-
-    window.setTimeout(timeago, 60000);
-  }
+export function timeago(target) {
+  const dates = target.querySelectorAll('time');
+  [].slice.call(dates).forEach(date => format(date));
 }
 
 const locale = {
