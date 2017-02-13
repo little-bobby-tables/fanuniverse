@@ -39,19 +39,19 @@ function format(element) {
         years   = days / 365;
 
   const timeago =
-      seconds < 45     && localize(locale.seconds, seconds)      ||
-      seconds < 90     && localize(locale.minute, 1)             ||
-      minutes < 45     && localize(locale.minutes, minutes)      ||
-      minutes < 90     && localize(locale.hour, 1)               ||
-      minutes < 1440   && localize(locale.hours, (minutes / 60)) ||
-      minutes < 2520   && localize(locale.day, 1)              ||
-      days < 6         && localize(locale.days, days)          ||
-      days < 12        && localize(locale.week, 1)             ||
-      days < 24        && localize(locale.weeks, (days / 7))   ||
-      days < 45        && localize(locale.month, 1)            ||
-      days < 365       && localize(locale.months, (days / 30)) ||
-      years < 1.5      && localize(locale.year, 1)             ||
-                          localize(locale.years, years);
+      seconds < 45   && localize(locale.seconds, seconds)      ||
+      seconds < 90   && localize(locale.minute, 1)             ||
+      minutes < 45   && localize(locale.minutes, minutes)      ||
+      minutes < 90   && localize(locale.hour, 1)               ||
+      minutes < 1440 && localize(locale.hours, (minutes / 60)) ||
+      minutes < 2520 && localize(locale.day, 1)                ||
+      days < 6       && localize(locale.days, days)            ||
+      days < 12      && localize(locale.week, 1)               ||
+      days < 24      && localize(locale.weeks, (days / 7))     ||
+      days < 45      && localize(locale.month, 1)              ||
+      days < 365     && localize(locale.months, (days / 30))   ||
+      years < 1.5    && localize(locale.year, 1)               ||
+                        localize(locale.years, years);
 
   if (!element.getAttribute('title')) element.setAttribute('title', element.textContent);
   element.textContent = timeago;
