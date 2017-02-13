@@ -36,11 +36,11 @@ const assets = {
 
 const javascripts = {
   vendor: [
+               `./node_modules/rails-ujs/dist/rails-ujs.js`,
                './node_modules/whatwg-fetch/fetch.js',
                './node_modules/promise-polyfill/promise.js',
                './node_modules/element-closest/element-closest.js',
-               './node_modules/masonry-layout/dist/masonry.pkgd.js',
-               `${railsRoot}/app/assets/javascripts/vendor/**/*.js`
+               './node_modules/masonry-layout/dist/masonry.pkgd.js'
   ],
   all:         `${railsRoot}/app/assets/**/*.js`,
   application: `${railsRoot}/app/assets/javascripts/application.js`,
