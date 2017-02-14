@@ -25,7 +25,7 @@ function displayComments(container, comments) {
 }
 
 function setupAjaxPosting(container) {
-  /* Form submission is handled by rails.js, we only need to display the new comments. */
+  /* Form submission is handled by rails-ujs, we just need to display the comments we get as a response. */
   document.addEventListener('ajax:success', (e) => {
     if (e.target.id === 'js-commentable-form') commentPosted(container, e.detail);
   });
