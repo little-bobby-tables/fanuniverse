@@ -1,5 +1,5 @@
 / accepts :commentable (an instance of commentable model)
-= form_for Comment.new, html: { class: 'comment-form' } do |f|
+= form_for Comment.new, remote: true, html: { id: 'js-commentable-form', class: 'comment-form', 'data-type': :html } do |f|
   = hidden_field_tag :commentable_type, commentable.model_name
   = hidden_field_tag :commentable_id, commentable.id
   = f.text_area :body, class: 'input input--no-margin input--wide'
