@@ -16,4 +16,4 @@
 .block
   = render partial: 'comments/form', locals: { commentable: @image }
 
-div data-commentable="Image" data-commentable-id=@image.id
+div data-commentable-url=comments_path(commentable_id: @image.id, commentable_type: 'Image')

@@ -1,30 +1,36 @@
 import { timeago } from './timeago';
 
 export default function() {
-  const commentable = document.querySelector('[data-commentable]');
+  const commentable = document.querySelector('[data-commentable-url]');
 
   if (commentable) {
-    loadCommentable(commentable);
-    setupAjaxPosting(commentable);
+    load(commentable, commentable.getAttribute('data-commentable-url'));
+    pagination(commentable);
+    ajaxPosting(commentable);
   }
 }
 
-const endpoint = (type, id) => `/comments?commentable_type=${type}&commentable_id=${id}`;
-
-function loadCommentable(container) {
-  const { commentable, commentableId } = container.dataset;
-
-  fetch(endpoint(commentable, commentableId), { credentials: 'same-origin' })
+function load(container, endpoint) {
+  fetch(endpoint, { credentials: 'same-origin' })
       .then(response => response.text())
-      .then(comments => displayComments(container, comments));
+      .then(comments => display(container, comments));
 }
 
-function displayComments(container, comments) {
+function display(container, comments) {
   container.innerHTML = comments;
   timeago(container);
 }
 
-function setupAjaxPosting(container) {
+function pagination(container) {
+  container.addEventListener('click', (e) => {
+    if (e.target && e.target.closest('.page')) {
+      e.preventDefault();
+      load(container, e.target.getAttribute('href'));
+    }
+  });
+}
+
+function ajaxPosting(container) {
   /* Form submission is handled by rails-ujs, we just need to display the comments we get as a response. */
   document.addEventListener('ajax:success', (e) => {
     if (e.target.id === 'js-commentable-form') commentPosted(container, e.detail);
@@ -39,7 +45,7 @@ function commentPosted(container, response) {
   commentEditArea.value = '';
 
   if (ajaxRequestOk) {
-    displayComments(container, responseBody);
+    display(container, responseBody);
   }
   else {
     /* Error message will be displayed on reload at the top of the page (flash). */

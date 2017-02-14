@@ -1,8 +1,6 @@
 class CommentsController < ApplicationController
   before_action :load_commentable, only: [:index, :create]
 
-  # TODO: paginate!
-
   def index
     authorize! :view, @commentable
 
@@ -35,6 +33,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_listing(comments)
+    comments = paginate(comments)
     respond_to do |format|
       format.html { render partial: 'comments/list', layout: false, locals: { comments: comments } }
       format.json { render json: comments  }
