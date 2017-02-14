@@ -15,16 +15,16 @@ Elasticfusion.define Image do
   def as_indexed_json(*)
     {
       id: id,
-      stars: stars,
+      stars: star_count,
       tag_names: tag_names,
       suggested_by: suggested_by.name.downcase,
-      starred_by_ids: Star.user_ids_for_resource(self),
+      starred_by_ids: Star.starred_by_ids(self),
       created_at: created_at
     }
   end
 
   elasticfusion do
-    reindex_when_updated [:stars]
+    reindex_when_updated [:star_count]
 
     keyword_field :tag_names
 

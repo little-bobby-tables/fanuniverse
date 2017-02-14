@@ -36,7 +36,7 @@ class ImagesControllerTest < ActionController::TestCase
 
   test 'given a query, displays search results' do
     @images = [@image] + create_list(:image, 2)
-    perform_enqueued_jobs { @images.first.update_attributes stars: 10 }
+    perform_enqueued_jobs { @images.first.update_attributes star_count: 10 }
     refresh_index Image
 
     get :index, params: { q: 'stars: more than 9' }

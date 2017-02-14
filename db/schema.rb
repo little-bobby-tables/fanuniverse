@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212063153) do
+ActiveRecord::Schema.define(version: 20170214130534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,17 +33,16 @@ ActiveRecord::Schema.define(version: 20170212063153) do
     t.datetime "updated_at",                     null: false
     t.string   "image"
     t.integer  "suggested_by_id"
-    t.integer  "stars",           default: 0,    null: false
+    t.integer  "star_count",      default: 0
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
   end
 
   create_table "stars", force: :cascade do |t|
-    t.integer  "resource_id"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["user_id", "resource_id"], name: "index_stars_on_user_id_and_resource_id", using: :btree
-    t.index ["user_id"], name: "index_stars_on_user_id", using: :btree
+    t.integer "starrable_id"
+    t.string  "starrable_type"
+    t.integer "user_id"
+    t.index ["starrable_type", "starrable_id", "user_id"], name: "index_stars_on_starrable_type_and_starrable_id_and_user_id", using: :btree
+    t.index ["starrable_type", "starrable_id"], name: "index_stars_on_starrable_type_and_starrable_id", using: :btree
   end
 
   create_table "tags", primary_key: "name", id: :string, force: :cascade do |t|

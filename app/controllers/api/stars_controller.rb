@@ -1,11 +1,16 @@
 class Api::StarsController < ApplicationController
   def toggle
-    head(:forbidden) and return unless user_signed_in?
-    head(:not_found) and return unless Image.exists? id: params[:resource_id]
+    type, id = params.values_at(:starrable_type, :starrable_id)
 
-    status = Star.toggle(user_id: current_user.id, resource_id: params[:resource_id])
-    new_star_count = Image.where(id: params[:resource_id]).pluck(:stars).first
+    head :forbidden and return unless user_signed_in?
+    head :bad_request and return if type.blank? || id.blank?
 
-    render json: { stars: new_star_count, status: status }
+    status = Star.toggle(type: type, id: id, user_id: current_user.id)
+    if status
+      new_star_count = type.constantize.where(id: id).pluck(:star_count).first
+      render json: { stars: new_star_count, status: status }
+    else
+      head :bad_request
+    end
   end
 end
