@@ -1,7 +1,12 @@
 / accepts :comments
-.block = paginate comments
+- if comments.any?
+  = render partial: 'layouts/pagination', locals: { resources: comments }
 
-- comments.each do |comment|
-  include _comment.html.slim
+  - comments.each do |comment|
+    include _comment.html.slim
 
-= stars_for comments
+  = stars_for comments
+
+- else
+  | No comments posted yet.
+

@@ -6,6 +6,10 @@
   - else
     h1 Images
 
+  - if @images.any?
+    = render partial: 'layouts/pagination', locals: { resources: @images }
+  - else
+    | No images found.
 
 .grid.grid--loading.js-masonry-grid
   - @images.each do |image|

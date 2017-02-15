@@ -1,0 +1,17 @@
+/ partial, accepts :resources
+/ You _must_ check if there are #any? resources before rendering this.
+- pagination = paginate resources
+.block.flex
+  - if pagination.present?
+    .flex__main= pagination
+  .flex__right
+    - type = resources.first.model_name.name.pluralize.downcase
+    - first_item = 1 + ((resources.current_page - 1) * @per_page)
+    - last_item = [first_item + @per_page - 1, resources.total_count].min
+    | Showing
+    =< type
+    =< first_item
+    | -
+    => last_item
+    | of
+    =< resources.total_count
