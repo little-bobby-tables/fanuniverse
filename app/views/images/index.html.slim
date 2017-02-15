@@ -1,15 +1,17 @@
-- medium_layout
+- wide_layout
 
-- if params[:q].present?
-  h1 = "Searching for \"#{params[:q]}\""
-- else
-  h1 Images
+.grid-header.grid--loading.js-masonry-grid-header
+  - if params[:q].present?
+    h1 = "Searching for \"#{params[:q]}\""
+  - else
+    h1 Images
 
-.image-grid data-masonry='{ "itemSelector": ".image-grid__item" }'
+
+.grid.grid--loading.js-masonry-grid
   - @images.each do |image|
-    .image-grid__item.block
+    .grid__item.block
       include _meta.html.slim
-      a.image-grid__item__image-link href=image_path(image)
+      a.image__link href=image_path(image)
         img src=image.image.url title=image.tag_names.join(', ')
       a.image__source href="https://tumblr.com"
         i.fa.fa-retweet>

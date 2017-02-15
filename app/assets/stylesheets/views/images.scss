@@ -1,17 +1,31 @@
 @import "common/global";
 
-.image-grid__item {
-  width: 300px;
-  margin: 10px;
+.grid-header {
+  box-sizing: border-box;
 }
 
-.image-grid__item__image-link {
+.grid-header, .grid {
+  margin: 0 auto;
+}
+
+/* A class dynamically removed by JavaScript
+ * to prevent layout "jumps" caused by Masonry. */
+.grid--loading {
+  visibility: hidden;
+}
+
+.grid__item {
+  width: 300px;
+  margin: 8px 8px 0 0;
+}
+
+.image__link {
   display: inline-block;
   position: relative;
   font-size: 0;
 }
 
-.image-grid__item__image-link::after {
+.image__link::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -23,7 +37,7 @@
   transition: opacity 0.2s;
 }
 
-.image-grid__item__image-link:hover::after {
+.image__link:hover::after {
   opacity: 0.3;
   cursor: pointer;
 }

@@ -21,6 +21,7 @@
   "dependencies": {
     "element-closest": "^2.0.2",
     "font-awesome": "^4.7.0",
+    "imagesloaded": "^4.1.1",
     "masonry-layout": "^4.1.1",
     "normalize.css": "^5.0.0",
     "promise-polyfill": "^6.0.2",
