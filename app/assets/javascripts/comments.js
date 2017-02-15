@@ -1,4 +1,5 @@
 import { timeago } from './timeago';
+import { loadStarrable } from './stars';
 
 export default function() {
   const commentable = document.querySelector('[data-commentable-url]');
@@ -19,6 +20,7 @@ function load(container, endpoint) {
 function display(container, comments) {
   container.innerHTML = comments;
   timeago(container);
+  loadStarrable(container);
 }
 
 function pagination(container) {

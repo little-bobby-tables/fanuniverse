@@ -1,0 +1,13 @@
+article.comment.block.flex
+  .flex__fixed.avatar.avatar--small
+    img.avatar__image src=comment.author.avatar.url
+  .flex__grow.comment__body
+    .comment__author = comment.author.name
+    = comment.body
+    .comment__meta
+      | posted
+      =<> time_tag(comment.created_at)
+      a.meta.meta--inline.meta--star data-starrable="Comment" data-starrable-id=comment.id
+        i.fa.fa-star>
+        span.meta__count
+          = comment.star_count if comment.star_count > 0

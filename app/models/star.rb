@@ -1,5 +1,5 @@
 class Star < ApplicationRecord
-  STARRABLE = %w(Image).freeze
+  STARRABLE = %w(Image Comment).freeze
 
   belongs_to :starrable, polymorphic: true, counter_cache: 'star_count'
   belongs_to :user

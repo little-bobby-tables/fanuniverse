@@ -8,6 +8,10 @@
   color: $meta_color;
 }
 
+.meta--inline {
+  margin: 0;
+}
+
 .meta--star {
   @include color-transition;
 

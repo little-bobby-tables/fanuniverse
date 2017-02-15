@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215093831) do
+ActiveRecord::Schema.define(version: 20170215095750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20170215093831) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "author_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "star_count",       default: 0
     t.index ["commentable_type", "author_id"], name: "index_comments_on_commentable_type_and_author_id", using: :btree
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   end

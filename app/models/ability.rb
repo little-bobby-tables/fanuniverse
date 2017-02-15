@@ -14,5 +14,6 @@ class Ability
     can :create, Image
     can :comment_on, Image
     can :star, Image
+    can :star, Comment
   end
 end
