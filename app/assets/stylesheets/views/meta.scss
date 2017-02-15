@@ -8,6 +8,10 @@
   color: $meta_color;
 }
 
+.meta + .meta {
+  margin-left: 8px;
+}
+
 .meta--inline {
   margin: 0;
 }
