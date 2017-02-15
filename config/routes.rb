@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   resources :images, constraints: { id: /\d+/ }
 
-  resources :users, param: :name, except: [:new, :create, :destroy]
+  resources :profiles, param: :name, only: [:show]
+
+  authenticated :user do
+    resource :profile, only: [:edit, :update]
+  end
 
   resources :comments, except: [:new]
 

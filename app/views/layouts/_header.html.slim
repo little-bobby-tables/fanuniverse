@@ -8,13 +8,13 @@ header.header.flex
       button.hidden type="submit"
   .flex__right
     - if user_signed_in?
-      a.header__user-toggle.js-header-user-toggle href=user_path(current_user)
+      a.header__user-toggle.js-header-user-toggle href=profile_path(current_user)
         = current_user.name
         .avatar.header__user-toggle__avatar
           img.avatar__image src=current_user.avatar.url
       .header__user.js-header-user.hidden
         .header__user__arrow
-        a.header__user__link href=user_path(current_user)
+        a.header__user__link href=profile_path(current_user)
           i.fa.fa-fw.fa-user>
           | Profile
         a.header__user__link href=edit_user_registration_path

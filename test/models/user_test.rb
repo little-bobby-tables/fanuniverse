@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'gets a profile on creation' do
+    user = User.create name: 'Peridot'
+    assert Profile.exists? user_id: user.id
+  end
 end

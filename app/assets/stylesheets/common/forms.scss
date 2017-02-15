@@ -49,6 +49,7 @@ textarea {
   padding: 4px 6px;
   font-size: 16px;
   cursor: pointer;
+  text-decoration: none;
   @include bg-color-transition;
 }
 

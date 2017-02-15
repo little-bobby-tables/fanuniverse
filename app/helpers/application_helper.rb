@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def stars_for(resources)
-    if user_signed_in?
+    if user_signed_in? && resources.any?
       type = resources.first.model_name.name
       stars = Star.where(user: current_user,
                          starrable_type: type,

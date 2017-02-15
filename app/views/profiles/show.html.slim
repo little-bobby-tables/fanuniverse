@@ -1,0 +1,13 @@
+.flex
+  .avatar.avatar--large
+    img.avatar__image src=@user.avatar.url
+  .profile__info
+    h1.profile__info__name = @user.name
+    - if @user == current_user
+      a.button.button--primary.button--inline.profile__info__button--edit href=edit_profile_path
+        i.fa.fa-pencil
+    br
+    | Member for
+    =< time_ago_in_words(@user.created_at)
+    br
+    p = @user.profile.bio
