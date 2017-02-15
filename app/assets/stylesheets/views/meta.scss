@@ -1,0 +1,22 @@
+@import "common/global";
+
+.meta {
+  display: inline-block;
+  padding: 4px;
+  margin-bottom: 8px;
+
+  color: $meta_color;
+}
+
+.meta--star {
+  @include color-transition;
+
+  &:hover {
+    cursor: pointer;
+    color: $meta_hover_color;
+  }
+}
+
+.meta--star--active {
+  color: black;
+}

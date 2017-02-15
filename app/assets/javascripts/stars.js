@@ -39,8 +39,8 @@ function starElement(type, id) {
   return document.querySelector(`[data-starrable="${type}"][data-starrable-id="${id}"]`);
 }
 
-function show(star) { star.classList.add('star--active'); }
+function show(star) { star.classList.add('meta--star--active'); }
 
-function remove(star) { star.classList.remove('star--active'); }
+function remove(star) { star.classList.remove('meta--star--active'); }
 
-function setStarCount(star, count) { star.querySelector('.star__count').textContent = count; }
+function setStarCount(star, count) { star.querySelector('.meta__count').textContent = count; }

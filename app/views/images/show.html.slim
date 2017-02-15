@@ -1,7 +1,5 @@
 .block
-  a.star data-starrable="Image" data-starrable-id=@image.id
-    i.fa.fa-star>
-    span.star__count= @image.star_count
+  = render partial: 'meta', locals: { image: @image }
   img src=@image.image.url
 .block
   | Tags:
@@ -11,7 +9,7 @@
   br
   br
   | Suggested by
-  =< link_to @image.suggested_by.name, user_path(@image.suggested_by)
+  =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)
 
 .block
   = render partial: 'comments/form', locals: { commentable: @image }
