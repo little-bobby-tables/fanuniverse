@@ -1,7 +1,7 @@
 import { post } from './utils/requests'
 
 export default function() {
-  showStars(document);
+  loadStarrable(document);
 
   document.addEventListener('click', (e) => {
     const star = e.target && e.target.closest('[data-starrable]');
@@ -10,15 +10,14 @@ export default function() {
   });
 }
 
-export function showStars(container) {
-  const datasets = container.querySelectorAll('[data-starrable-dataset]');
+export function loadStarrable(container) {
+  const datasets = container.querySelectorAll('[data-starrable-ids]');
 
   [].slice.call(datasets).forEach(dataset => {
-    const interactions = JSON.parse(dataset.getAttribute('data-starrable-dataset'));
+    const starrable = dataset.getAttribute('data-starrable-type'),
+          ids = JSON.parse(dataset.getAttribute('data-starrable-ids'));
 
-    Object.keys(interactions).forEach(starrable => {
-      interactions[starrable].forEach(starrableId => show(starElement(starrable, starrableId)));
-    });
+    ids.forEach(starrableId => show(starElement(starrable, starrableId)));
   })
 }
 

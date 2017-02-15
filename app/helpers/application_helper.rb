@@ -15,9 +15,14 @@ module ApplicationHelper
 
   def stars_for(resources)
     if user_signed_in?
-      stars = Star.starred_hash(user: current_user, resources_of_single_type: resources)
-      # Don't use #tag, it closes the element with />, which messes up Slim.
-      content_tag 'div', '', 'data-starrable-dataset': stars.to_json
+      type = resources.first.model_name.name
+      stars = Star.where(user: current_user,
+                         starrable_type: type,
+                         starrable_id: resources.map(&:id)).pluck(:starrable_id)
+      if stars.any?
+        # Don't use #tag, it closes the element with />, which messes up Slim.
+        content_tag 'div', '', 'data-starrable-type': type, 'data-starrable-ids': stars.to_json
+      end
     end
   end
 

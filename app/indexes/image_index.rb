@@ -18,13 +18,14 @@ Elasticfusion.define Image do
       stars: star_count,
       tag_names: tag_names,
       suggested_by: suggested_by.name.downcase,
-      starred_by_ids: Star.starred_by_ids(self),
+      starred_by_ids: stars.pluck(:user_id),
       created_at: created_at
     }
   end
 
   elasticfusion do
-    reindex_when_updated [:star_count]
+    # +starred_by_ids+ and +stars+ are updated in StarsController
+    reindex_when_updated [:tag_names]
 
     keyword_field :tag_names
 

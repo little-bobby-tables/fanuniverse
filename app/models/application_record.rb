@@ -4,6 +4,11 @@ module ActiveRecordInstanceExtensions
   def reload(*)
     run_callbacks(:reload) { super }
   end
+
+  def instance_pluck(*column_names)
+    model = self.class
+    model.where(model.primary_key => send(model.primary_key)).pluck(*column_names)
+  end
 end
 
 module ActiveRecordClassExtensions

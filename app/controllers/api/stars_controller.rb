@@ -1,16 +1,23 @@
 class Api::StarsController < ApplicationController
+  before_action :load_starrable
+
   def toggle
-    type, id = params.values_at(:starrable_type, :starrable_id)
+    authorize! :star, @starrable
 
-    head :forbidden and return unless user_signed_in?
-    head :bad_request and return if type.blank? || id.blank?
+    status = @starrable.stars.toggle(current_user.id)
+    new_star_count = @starrable.instance_pluck(:star_count).first
 
-    status = Star.toggle(type: type, id: id, user_id: current_user.id)
-    if status
-      new_star_count = type.constantize.where(id: id).pluck(:star_count).first
-      render json: { stars: new_star_count, status: status }
-    else
-      head :bad_request
-    end
+    @starrable.reindex_later if @starrable.respond_to?(:reindex_later)
+
+    render json: { stars: new_star_count, status: status }
+  end
+
+  private
+
+  def load_starrable
+    type = Star::STARRABLE.detect { |type| params[:starrable_type] == type }
+    head :bad_request and return unless type
+
+    @starrable = type.constantize.find(params[:starrable_id])
   end
 end
