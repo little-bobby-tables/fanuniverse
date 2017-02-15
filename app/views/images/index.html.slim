@@ -8,7 +8,7 @@
 .image-grid data-masonry='{ "itemSelector": ".image-grid__item" }'
   - @images.each do |image|
     .image-grid__item.block
-      a.star data-resource-id=image.id
+      a.star data-starrable="Image" data-starrable-id=image.id
         i.fa.fa-star>
         span.star__count= image.star_count
       a.image-grid__item__image-link href=image_path(image)
@@ -16,3 +16,5 @@
       a.image__source href="https://tumblr.com"
         i.fa.fa-retweet>
         | someone.tumblr.com
+
+= stars_for @images

@@ -27,11 +27,16 @@ class StarTest < ActiveSupport::TestCase
     assert_difference(->{ @starrable.reload.star_count }, -1) { toggle_star }
   end
 
-  test 'returns resource ids with stars for given user and resource array' do
+  test 'returns stars hash for given user and resources' do
     resources = [@starrable] + create_list(:image, 2)
     resources.each { |res| toggle_star(type: res.model_name.name, id: res.id) }
 
-    assert_equal resources.map(&:id), Star.starred_ids(user: @user, resources_of_single_type: resources)
+    assert_equal({ starrable_type => resources.map(&:id)},
+                 Star.starred_hash(user: @user, resources_of_single_type: resources))
+
+    toggle_star
+    assert_equal({},
+                 Star.starred_hash(user: @user, resources_of_single_type: [@starrable]))
   end
 
   test 'returns user ids for given resource' do
@@ -41,11 +46,15 @@ class StarTest < ActiveSupport::TestCase
     assert_equal @users.map(&:id), Star.starred_by_ids(@starrable)
   end
 
-  def toggle_star(type: @starrable.model_name.name, id: @starrable.id, user: @user)
+  def toggle_star(type: starrable_type, id: @starrable.id, user: @user)
     Star.toggle type: type, id: id, user_id: user.id
   end
 
   def star_exists?
-    Star.exists? starrable_type: @starrable.model_name.name, starrable_id: @starrable.id, user_id: @user.id
+    Star.exists? starrable_type: starrable_type, starrable_id: @starrable.id, user_id: @user.id
+  end
+
+  def starrable_type
+    @starrable.model_name.name
   end
 end

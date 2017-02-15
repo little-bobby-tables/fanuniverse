@@ -1,8 +1,7 @@
 class Star < ApplicationRecord
-  # This model doesn't use Rails associations because it's updated
-  # through a single controller that needs a single method: #toggle.
+  # Rails associations don't offer enough flexibility in this case.
 
-  # Starrable models are defined below.
+  # Define starrable models below.
   # They _must_ have a "star_count" column with default set to 0.
   STARRABLE = %w(Image).freeze
 
@@ -21,11 +20,16 @@ class Star < ApplicationRecord
     end
   end
 
-  def self.starred_ids(user:, resources_of_single_type:)
+  def self.starred_hash(user:, resources_of_single_type:)
     type = resources_of_single_type.first.model_name.name
-    where(starrable_type: type,
-          starrable_id: resources_of_single_type.map(&:id),
-          user_id: user.id).pluck(:starrable_id)
+    starred_ids = where(starrable_type: type,
+                        starrable_id: resources_of_single_type.map(&:id),
+                        user_id: user.id).pluck(:starrable_id)
+    if starred_ids.any?
+      { type => starred_ids }
+    else
+      {}
+    end
   end
 
   def self.starred_by_ids(resource)

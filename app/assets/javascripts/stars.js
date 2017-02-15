@@ -1,41 +1,47 @@
-import { data } from './utils/datastore';
 import { post } from './utils/requests'
 
 export default function() {
-  const stars = data('stars');
+  showStars(document);
 
-  if (stars) {
-    stars.forEach(resource => show(resource));
+  document.addEventListener('click', (e) => {
+    const star = e.target && e.target.closest('[data-starrable]');
 
-    document.addEventListener('click', (e) => {
-      const star = e.target && e.target.closest('.star');
-
-      if (star) {
-        const resourceId = star.getAttribute('data-resource-id');
-        toggleStar(resourceId);
-      }
-    });
-  }
+    star && toggleStar(star);
+  });
 }
 
-function toggleStar(resourceId) {
-  post('/api/stars/toggle', { resource_id: resourceId })
-      .then(data => {
-        if (data['status'] === 'added') show(resourceId);
-        else remove(resourceId);
+export function showStars(container) {
+  const datasets = container.querySelectorAll('[data-starrable-dataset]');
 
-        setStarCount(resourceId, data['stars']);
+  [].slice.call(datasets).forEach(dataset => {
+    const interactions = JSON.parse(dataset.getAttribute('data-starrable-dataset'));
+
+    Object.keys(interactions).forEach(starrable => {
+      interactions[starrable].forEach(starrableId => show(starElement(starrable, starrableId)));
+    });
+  })
+}
+
+function toggleStar(star) {
+  const { starrable, starrableId } = star.dataset;
+
+  post('/api/stars/toggle', { starrable_type: starrable, starrable_id: starrableId })
+      .then(data => {
+        const star = starElement(starrable, starrableId);
+
+        if (data['status'] === 'added') show(star);
+        else remove(star);
+
+        setStarCount(star, data['stars']);
       });
 }
 
-function show(id) {
-  document.querySelector(`.star[data-resource-id="${id}"]`).classList.add('star--active');
+function starElement(type, id) {
+  return document.querySelector(`[data-starrable="${type}"][data-starrable-id="${id}"]`);
 }
 
-function remove(id) {
-  document.querySelector(`.star[data-resource-id="${id}"]`).classList.remove('star--active');
-}
+function show(star) { star.classList.add('star--active'); }
 
-function setStarCount(id, count) {
-  document.querySelector(`.star[data-resource-id="${id}"] .star__count`).textContent = count;
-}
+function remove(star) { star.classList.remove('star--active'); }
+
+function setStarCount(star, count) { star.querySelector('.star__count').textContent = count; }

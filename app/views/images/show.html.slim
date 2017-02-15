@@ -1,5 +1,5 @@
 .block
-  a.star data-resource-id=@image.id
+  a.star data-starrable="Image" data-starrable-id=@image.id
     i.fa.fa-star>
     span.star__count= @image.star_count
   img src=@image.image.url
@@ -16,4 +16,6 @@
 .block
   = render partial: 'comments/form', locals: { commentable: @image }
 
-div data-commentable-url=comments_path(commentable_id: @image.id, commentable_type: 'Image')
+= comments_for @image
+
+= stars_for [@image]

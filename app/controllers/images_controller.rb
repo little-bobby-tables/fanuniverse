@@ -1,15 +1,11 @@
 class ImagesController < ApplicationController
-  include StarrableResource
-
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   def index
     @images = search_images
-    load_stars @images
   end
 
   def show
-    load_stars [@image]
   end
 
   def new
