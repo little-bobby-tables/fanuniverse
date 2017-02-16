@@ -8,20 +8,21 @@ header.header.flex
       button.hidden type="submit"
   .flex__right
     - if user_signed_in?
-      a.header__user-toggle.js-header-user-toggle href=profile_path(current_user)
-        = current_user.name
-        .avatar.header__user-toggle__avatar
-          img.avatar__image src=current_user.avatar.url
-      .header__user.js-header-user.hidden
-        .header__user__arrow
-        a.header__user__link href=profile_path(current_user)
-          i.fa.fa-fw.fa-user>
-          | Profile
-        a.header__user__link href=edit_user_registration_path
-          i.fa.fa-fw.fa-cogs>
-          | Account
-        a.header__user__link href=destroy_user_session_path data-method="delete"
-          i.fa.fa-fw.fa-sign-out>
-          | Log out
+      .js-dropdown
+        a.js-dropdown__toggle.header__user-toggle href=profile_path(current_user)
+          = current_user.name
+          .avatar.header__user-toggle__avatar
+            img.avatar__image src=current_user.avatar.url
+        .js-dropdown__content.header__user.hidden
+          .header__user__arrow
+          a href=profile_path(current_user)
+            i.fa.fa-fw.fa-user>
+            | Profile
+          a href=edit_user_registration_path
+            i.fa.fa-fw.fa-cogs>
+            | Account
+          a href=destroy_user_session_path data-method="delete"
+            i.fa.fa-fw.fa-sign-out>
+            | Log out
     - else
       a.header__link href=new_user_session_path Log in

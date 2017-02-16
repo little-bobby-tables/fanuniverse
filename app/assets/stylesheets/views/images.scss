@@ -55,3 +55,14 @@
     color: $meta_hover_color;
   }
 }
+
+.dropdown--image-sort {
+  font-family: $font_family_header;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+}
+
+.dropdown--image-sort:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

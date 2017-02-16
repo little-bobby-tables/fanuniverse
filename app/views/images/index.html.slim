@@ -6,6 +6,18 @@
   - else
     h1 Images
 
+  .js-dropdown.dropdown--image-sort
+    - sorts = { 'stars' => 'stars', 'created_at' => 'date created', 'whatever' => 'whatever' }
+    - current_sort = sorts.keys.detect { |f| params[:sf] == f } || 'created_at'
+    a.js-dropdown__toggle
+      = "Sort by #{sorts.delete current_sort}"
+      span
+        i.fa.fa-caret-down<
+    .js-dropdown__content.hidden
+      - sorts.each do |field, text|
+        a href=url_for(params.permit(:q, :sd).merge(sf: field))
+          = "Sort by #{text}"
+
   - if @images.any?
     = render partial: 'layouts/pagination', locals: { resources: @images }
   - else

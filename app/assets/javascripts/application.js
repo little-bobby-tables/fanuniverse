@@ -1,18 +1,18 @@
 import stars from './stars';
 import upload from './upload';
 import timeago from './timeago';
-import header from './header';
 import comments from './comments';
 
+import dropdowns from './dropdowns';
 import masonry from './masonry';
 
 function load() {
   stars();
   upload();
   timeago();
-  header();
   comments();
 
+  dropdowns();
   masonry();
 }
 
