@@ -1,7 +1,7 @@
 export default function() {
   const userMenuToggle = document.querySelector('.js-header-user-toggle');
 
-  userMenuToggle.addEventListener('click', (e) => {
+  userMenuToggle && userMenuToggle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
 
