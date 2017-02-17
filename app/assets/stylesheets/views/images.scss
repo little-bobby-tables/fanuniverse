@@ -2,6 +2,9 @@
 
 .grid-header {
   box-sizing: border-box;
+
+  /* Compensate for .grid__item side margin. */
+  padding-right: 8px;
 }
 
 .grid-header, .grid {

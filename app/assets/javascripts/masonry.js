@@ -17,8 +17,7 @@ export default function() {
      * This way we can center the grid in page without having its header dangling off the side. */
 
     masonry.on('layoutComplete', () => {
-      /* Subtract 8px to compensate for grid items' side margin. */
-      const gridWidth = (masonry.cols * masonry.columnWidth) - 8;
+      const gridWidth = (masonry.cols * masonry.columnWidth);
 
       header.style.width = `${gridWidth}px`;
 
