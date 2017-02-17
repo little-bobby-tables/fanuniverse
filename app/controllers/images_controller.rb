@@ -2,7 +2,12 @@ class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   def index
-    @images = search_images
+    sort_field = params.fetch :sf, :created_at
+    sort_direction = params.fetch :sd, :desc
+    @images = search_images do |s|
+      s.sort_by sort_field, sort_direction
+    end
+  rescue Elasticfusion::Search::SearchError => @search_error
   end
 
   def show
@@ -40,12 +45,12 @@ class ImagesController < ApplicationController
 
   private
 
-  def search_images
+  def search_images(&block)
     query = params[:q].presence
     search = if query
-      Image.search_by_query(query)
+      Image.search_by_query(query, &block)
     else
-      Image.custom_search
+      Image.custom_search(&block)
     end
     paginate(search).records
   end

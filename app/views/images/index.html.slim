@@ -1,36 +1,42 @@
-- wide_layout
+- if @search_error.blank?
+  - wide_layout
 
-.grid-header.grid--loading.js-masonry-grid-header
-  - if params[:q].present?
-    h1 = "Searching for \"#{params[:q]}\""
-  - else
-    h1 Images
+  .grid-header.grid--loading.js-masonry-grid-header
+    - if params[:q].present?
+      h1 = "Searching for \"#{params[:q]}\""
+    - else
+      h1 Images
 
-  .js-dropdown.dropdown--image-sort
-    - sorts = { 'stars' => 'stars', 'created_at' => 'date created', 'whatever' => 'whatever' }
-    - current_sort = sorts.keys.detect { |f| params[:sf] == f } || 'created_at'
-    a.js-dropdown__toggle
-      = "Sort by #{sorts.delete current_sort}"
-      span
-        i.fa.fa-caret-down<
-    .js-dropdown__content.hidden
-      - sorts.each do |field, text|
-        a href=url_for(params.permit(:q, :sd).merge(sf: field))
-          = "Sort by #{text}"
+    .js-dropdown.dropdown--image-sort
+      - image_sort do |current, all|
+        a.js-dropdown__toggle
+          = current
+          span
+            i.fa.fa-caret-down<
+        .js-dropdown__content.hidden
+          - all.each do |(sf, sd), text|
+            a href=url_for(params.permit(:q).merge(sf: sf, sd: sd))
+              = text
 
-  - if @images.any?
-    = render partial: 'layouts/pagination', locals: { resources: @images }
-  - else
-    | No images found.
+    - if @images.any?
+      = render partial: 'layouts/pagination', locals: { resources: @images }
+    - else
+      | No images found.
 
-.grid.grid--loading.js-masonry-grid
-  - @images.each do |image|
-    .grid__item.block
-      include _meta.html.slim
-      a.image__link href=image_path(image)
-        img src=image.image.url title=image.tag_names.join(', ')
-      a.image__source href="https://tumblr.com"
-        i.fa.fa-retweet>
-        | someone.tumblr.com
+  .grid.grid--loading.js-masonry-grid
+    - @images.each do |image|
+      .grid__item.block
+        include _meta.html.slim
+        a.image__link href=image_path(image)
+          img src=image.image.url title=image.tag_names.join(', ')
+        a.image__source href="https://tumblr.com"
+          i.fa.fa-retweet>
+          | someone.tumblr.com
 
-= stars_for @images
+  = stars_for @images
+
+- else
+  h1 Oops
+  p
+    | There was a tiny problem with your search:
+    strong=<> @search_error.message

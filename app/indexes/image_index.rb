@@ -31,6 +31,8 @@ Elasticfusion.define Image do
 
     allowed_search_fields [:stars, :suggested_by, :created_at]
 
+    allowed_sort_fields [:stars, :created_at]
+
     default_sort created_at: :desc
   end
 end
