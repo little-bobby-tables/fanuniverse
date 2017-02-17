@@ -3,26 +3,33 @@ h1 Suggest an image
 - if can? :create, Image
   p Have a Steven Universe picture you love? Share it with fellow fans!
 
-  = form_for @image do |f|
+  = form_for @image, html: { class: 'js-upload' } do |f|
     = render partial: 'layouts/errors', locals: { model: @image }
 
     img.js-upload-image-preview.hidden style="width: 200px;"
 
     .js-upload-image
-
       h2 First things first
-
       = render partial: 'layouts/image_upload', locals: { form: f, field: :image }
 
     .js-upload-second-step.hidden
-
       h2 Tag the image
       p Help people find images they like by describing this picture in tags.
 
-      = f.text_area :tags, class: 'input'
+      p#content-safety
+        ' Start off with content rating:
+        em is this image safe for minors?
+        a< data-tag="safe" data-click-hide="#content-safety" href="#" Yes
+        a< data-tag="nsfw" data-click-hide="#content-safety" data-click-show="#nsfw-content" href="#" No
+      p#nsfw-content.hidden
+        strong
+          ' Please note that the site administration retains the right to remove any adult content deemed obscene.
+          ' This includes, but is not limited to, depictions of underage or non-consensual sexual themes,
+          | gruesome or disgusting imagery, promotion of intolerance and hatred.
 
-      h2 Let's do it!
+      = f.text_area :tags, class: 'input input--wide'
 
+      br
       = f.submit class: 'button button--primary'
 
 - else

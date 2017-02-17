@@ -1,0 +1,40 @@
+@import "global";
+
+.button {
+  display: block;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  @include bg-color-transition;
+}
+
+.button--spacing-left {
+  margin-left: 4px;
+}
+
+.button--inline {
+  display: inline-block;
+}
+
+.button--primary {
+  background: #7b518e;
+
+  color: white;
+  border: none;
+  border-radius: 2px;
+  line-height: 24px;
+}
+
+.button--primary:hover {
+  background: #703a88;
+}
+
+.button--round {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin-left: 8px;
+}
