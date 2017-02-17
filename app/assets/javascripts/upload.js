@@ -23,14 +23,14 @@ function imageUpload(form) {
 }
 
 function showImage(data) {
-  const image = document.querySelector('.js-upload-image-preview');
+  const image = document.querySelector('.js-upload__preview');
   image.classList.remove('hidden');
   image.src = data;
 }
 
 function proceedToSecondStep() {
-  document.querySelector('.js-upload-image').classList.add('hidden');
-  document.querySelector('.js-upload-second-step').classList.remove('hidden');
+  document.querySelector('.js-upload__file').classList.add('hidden');
+  document.querySelector('.js-upload__meta').classList.remove('hidden');
 }
 
 function tagHelpers(form) {

@@ -6,13 +6,13 @@ h1 Suggest an image
   = form_for @image, html: { class: 'js-upload' } do |f|
     = render partial: 'layouts/errors', locals: { model: @image }
 
-    img.js-upload-image-preview.hidden style="width: 200px;"
+    img.js-upload__preview.hidden style="width: 200px;"
 
-    .js-upload-image
+    .js-upload__file
       h2 First things first
       = render partial: 'layouts/image_upload', locals: { form: f, field: :image }
 
-    .js-upload-second-step.hidden
+    .js-upload__meta.hidden
       h2 Tag the image
       p Help people find images they like by describing this picture in tags.
 
