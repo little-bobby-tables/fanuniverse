@@ -8,13 +8,13 @@
       h1 Images
 
     .js-dropdown.dropdown--image-sort
-      - image_sort do |current, all|
+      - image_sort do |current, other_sorts|
         a.js-dropdown__toggle
           = current
           span
             i.fa.fa-caret-down<
         .js-dropdown__content.hidden
-          - all.each do |(sf, sd), text|
+          - other_sorts.each do |(sf, sd), text|
             a href=url_for(params.permit(:q).merge(sf: sf, sd: sd))
               = text
 
@@ -38,5 +38,5 @@
 - else
   h1 Oops
   p
-    | There was a tiny problem with your search:
+    | There is a tiny problem with your search:
     strong=<> @search_error.message
