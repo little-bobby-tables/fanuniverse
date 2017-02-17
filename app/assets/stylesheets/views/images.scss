@@ -38,7 +38,7 @@
 }
 
 .image__link:hover::after {
-  opacity: 0.3;
+  opacity: 0.2;
   cursor: pointer;
 }
 
@@ -65,4 +65,21 @@
 .dropdown--image-sort:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.image-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: -25px;
+  background: #121212;
+  padding: 8px 16px 16px;
+}
+
+.image-display__content {
+  display: inline-block;
+
+  > img {
+    max-width: 100%;
+  }
 }

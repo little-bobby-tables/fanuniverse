@@ -4,8 +4,21 @@
   display: inline-block;
   padding: 4px;
   margin-bottom: 8px;
+  text-decoration: none;
 
   color: $meta_color;
+
+  @include color-transition;
+
+  &:hover {
+    cursor: pointer;
+    color: $meta_hover_color;
+  }
+
+  &.active {
+    font-weight: bold;
+    color: black;
+  }
 }
 
 .meta + .meta {
@@ -16,15 +29,15 @@
   margin: 0;
 }
 
-.meta--star {
-  @include color-transition;
+.meta--image-display {
+  font-size: 18px;
+  color: #b8b8b8;
+
+  &.active {
+    color: white;
+  }
 
   &:hover {
-    cursor: pointer;
-    color: $meta_hover_color;
+    color: #e0e0e0;
   }
-}
-
-.meta--star--active {
-  color: black;
 }

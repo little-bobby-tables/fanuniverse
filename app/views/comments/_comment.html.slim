@@ -7,7 +7,7 @@ article.comment.block.flex
     .comment__meta
       | posted
       =<> time_tag(comment.created_at)
-      a.meta.meta--inline.meta--star data-starrable="Comment" data-starrable-id=comment.id
+      a.meta.meta--inline data-starrable="Comment" data-starrable-id=comment.id
         i.fa.fa-star>
         span.meta__count
           = comment.star_count if comment.star_count > 0

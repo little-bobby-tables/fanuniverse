@@ -2,11 +2,15 @@ module ApplicationHelper
   $assets ||= Assets.new
 
   def wide_layout
-    content_for(:layout_class) { 'layout--wide' }
+    content_for :layout_class, 'layout--wide'
   end
 
   def medium_layout
-    content_for(:layout_class) { 'layout--medium' }
+    content_for :layout_class, 'layout--medium'
+  end
+
+  def custom_layout
+    content_for :custom_layout, true
   end
 
   def asset_path(name)
@@ -26,8 +30,10 @@ module ApplicationHelper
     end
   end
 
-  def comments_for(resource)
+  def comments_for(resource, id: nil)
     commentable = { commentable_id: resource.id, commentable_type: resource.model_name.name }
-    content_tag 'div', '', 'data-commentable-url': comments_path(commentable)
+    attributes = { 'data-commentable-url': comments_path(commentable) }
+    attributes.merge! id: id if id
+    content_tag 'div', '', attributes
   end
 end

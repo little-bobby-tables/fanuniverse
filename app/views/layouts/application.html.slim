@@ -17,6 +17,7 @@ html
       .flash.flash--warning = flash[:error]
     - if flash[:warning]
       .flash.flash--warning = flash[:warning]
-    main.layout class=(content_for(:layout_class) || 'layout--narrow')
+    - layout = content_for(:layout_class) || 'layout--narrow' unless content_for(:custom_layout)
+    main.layout class=layout
       = yield
     .js-datastore data=js_data

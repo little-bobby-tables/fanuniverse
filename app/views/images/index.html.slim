@@ -26,7 +26,12 @@
   .grid.grid--loading.js-masonry-grid
     - @images.each do |image|
       .grid__item.block
-        include _meta.html.slim
+        a.meta data-starrable="Image" data-starrable-id=image.id
+          i.fa.fa-star>
+          span.meta__count= image.star_count
+        a.meta href=image_path(image, anchor: 'comments')
+          i.fa.fa-comments>
+          span.meta__count= image.comment_count
         a.image__link href=image_path(image)
           img src=image.image.url title=image.tag_names.join(', ')
         a.image__source href="https://tumblr.com"

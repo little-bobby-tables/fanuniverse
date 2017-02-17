@@ -1,19 +1,26 @@
-.block
-  = render partial: 'meta', locals: { image: @image }
-  img src=@image.image.url
-.block
-  | Tags:
-  br
-  - @image.tag_names.each do |tag_name|
-    .tag = tag_name
-  br
-  br
-  | Suggested by
-  =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)
+= custom_layout
+.image-display
+  .image-display__content
+    section
+      a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id
+        i.fa.fa-star>
+        span.meta__count= @image.star_count
+      a.meta.meta--image-display href="#comments"
+        i.fa.fa-comments>
+        span.meta__count= @image.comment_count
+    img src=@image.image.url
+.layout.layout--narrow
+  .block
+    - @image.tag_names.each do |tag_name|
+      .tag = tag_name
+    br
+    br
+    | Suggested by
+    =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)
 
-.block
-  = render partial: 'comments/form', locals: { commentable: @image }
+  .block
+    = render partial: 'comments/form', locals: { commentable: @image }
 
-= comments_for @image
+  = comments_for @image, id: 'comments'
 
-= stars_for [@image]
+  = stars_for [@image]

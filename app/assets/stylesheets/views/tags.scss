@@ -4,17 +4,20 @@
   display: inline-block;
   font-size: 14px;
   margin: 0 6px 2px 0;
-  padding: 4px 6px;
+  padding: 4px 8px;
   border-radius: 4px;
 
-  //background: $meta_background;
-  //color: $meta_color;
+  color: #7b518e;
+  border: 1px solid #7b518e;
+  font-weight: bold;
 
   @include bg-color-transition;
 
   &:hover {
-    //background: $meta_hover_background;
-    //color: $meta_hover_color;
+    background: #ece7ef;
+    color: #703a88;
+    border-color: #703a88;
+
     cursor: pointer;
   }
 }
