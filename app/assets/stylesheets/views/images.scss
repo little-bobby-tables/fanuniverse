@@ -42,20 +42,6 @@
   cursor: pointer;
 }
 
-.image__source {
-  display: inline-block;
-  color: $meta_color;
-  padding: 4px;
-  margin-top: 4px;
-  text-decoration: none;
-
-  @include color-transition;
-
-  &:hover {
-    color: $meta_hover_color;
-  }
-}
-
 .dropdown--image-sort {
   font-family: $font_family_header;
   margin-bottom: 8px;
@@ -81,5 +67,51 @@
 
   > img {
     max-width: 100%;
+  }
+}
+
+.meta {
+  display: inline-block;
+  padding: 4px;
+  margin-bottom: 8px;
+  text-decoration: none;
+
+  color: $meta_color;
+
+  @include color-transition;
+
+  &:hover {
+    cursor: pointer;
+    color: $meta_hover_color;
+  }
+
+  &.active {
+    font-weight: bold;
+    color: black;
+  }
+}
+
+.meta + .meta {
+  margin-left: 8px;
+}
+
+.meta--inline {
+  margin: 0;
+}
+
+.meta--bottom {
+  margin: 4px 0 0;
+}
+
+.meta--image-display {
+  font-size: 18px;
+  color: #b8b8b8;
+
+  &.active {
+    color: white;
+  }
+
+  &:hover {
+    color: #e0e0e0;
   }
 }
