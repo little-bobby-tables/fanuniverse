@@ -12,7 +12,8 @@
 .layout.layout--narrow
   .block
     - @image.tag_names.each do |tag_name|
-      .tag = tag_name
+      a.tag href=images_path(q: tag_name)
+        = tag_name
     br
     br
     | Suggested by
