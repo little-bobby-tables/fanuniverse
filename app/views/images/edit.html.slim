@@ -1,8 +1,20 @@
-h1 Editing image
+h1 Updating image metadata
 
-== render 'form'
+img.image-preview src=@image.image.url
 
-= link_to 'Show', @image
-'|
-= link_to 'Back', images_path
+= form_for @image do |f|
+  h2 Tags
+
+  p Tags reflect the most important aspects of the image - think characters and themes it depicts, its creator, and so on.
+  p They are separated by commas.
+  = f.text_area :tags, class: 'input input--wide'
+
+  h2 Source
+
+  = f.text_field :source, class: 'input input--wide'
+
+  br
+
+  = f.submit class: 'button button--primary button--inline'
+  a.button.button--inline.button--secondary.button--spacing-left href=image_path(@image) Cancel
 

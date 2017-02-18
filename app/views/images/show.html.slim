@@ -1,4 +1,5 @@
 = custom_layout
+
 .image-display
   .image-display__content
     section
@@ -9,15 +10,27 @@
         i.fa.fa-comments>
         span.meta__count= @image.comment_count
     img src=@image.image.url
+    section
+      a.meta.meta--image-display.meta--bottom href=@image.source
+        i.fa.fa-retweet>
+        = @image.short_source
+
 .layout.layout--narrow
-  .block
-    - @image.tag_names.each do |tag_name|
-      a.tag href=images_path(q: tag_name)
-        = tag_name
-    br
-    br
-    | Suggested by
-    =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)
+  .block.flex
+    .flex__grow
+      section
+        - @image.tag_names.each do |tag_name|
+          a.tag href=images_path(q: tag_name)
+            = tag_name
+      br
+      section
+        | K
+      br
+      | Suggested by
+      =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)
+    .flex__fixed.flex__right
+      a.button.button--primary.button--round href=edit_image_path(@image)
+        i.fa.fa-pencil
 
   .block
     = render partial: 'comments/form', locals: { commentable: @image }

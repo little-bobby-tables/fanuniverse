@@ -6,7 +6,7 @@ h1 Suggest an image
   = form_for @image, html: { class: 'js-upload' } do |f|
     = render partial: 'layouts/errors', locals: { model: @image }
 
-    img.js-upload__preview.hidden style="width: 200px;"
+    img.js-upload__preview.image-preview.hidden
 
     .js-upload__file
       h2 First things first

@@ -45,6 +45,11 @@
   cursor: pointer;
 }
 
+.image-preview {
+  display: inline-block;
+  width: 200px;
+}
+
 .dropdown--image-sort {
   font-family: $font_family_header;
   margin-bottom: 8px;
@@ -62,7 +67,7 @@
   justify-content: center;
   margin-top: -25px;
   background: #121212;
-  padding: 8px 16px 16px;
+  padding: 8px 16px;
 }
 
 .image-display__content {

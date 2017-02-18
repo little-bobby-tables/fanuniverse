@@ -7,7 +7,23 @@
   font-size: 16px;
   cursor: pointer;
   text-decoration: none;
+
+  border: 1px solid;
+
+  border-radius: 4px;
+  line-height: 24px;
+
   @include bg-color-transition;
+}
+
+.button--secondary {
+  background: white;
+  color: #7b518e;
+
+  &:hover {
+    background: #ece7ef;
+    color: #703a88;
+  }
 }
 
 .button--spacing-left {
@@ -22,13 +38,12 @@
   background: #7b518e;
 
   color: white;
-  border: none;
-  border-radius: 2px;
-  line-height: 24px;
+  border: 1px solid #7b518e;
 }
 
 .button--primary:hover {
   background: #703a88;
+  border: 1px solid #703a88;
 }
 
 .button--round {

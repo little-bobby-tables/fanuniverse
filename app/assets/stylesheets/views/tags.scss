@@ -10,7 +10,7 @@
   text-decoration: none;
 
   color: #7b518e;
-  border: 1px solid #7b518e;
+  border: 1px solid;
   font-weight: bold;
 
   @include bg-color-transition;
@@ -18,7 +18,6 @@
   &:hover {
     background: #ece7ef;
     color: #703a88;
-    border-color: #703a88;
 
     cursor: pointer;
   }
