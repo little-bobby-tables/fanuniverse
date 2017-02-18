@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :history]
 
   def index
     sort_field = params.fetch :sf, :created_at
@@ -48,6 +48,9 @@ class ImagesController < ApplicationController
   def destroy
     @image.destroy
     redirect_to images_url, notice: 'Image was successfully destroyed.'
+  end
+
+  def history
   end
 
   private

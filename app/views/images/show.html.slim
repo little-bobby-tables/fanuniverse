@@ -29,8 +29,12 @@
       | Suggested by
       =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)
     .flex__fixed.flex__right
-      a.button.button--primary.button--round href=edit_image_path(@image)
+      a.button.button--primary.button--round title="Edit tags and source" href=edit_image_path(@image)
         i.fa.fa-pencil
+      - if @image.versions.any?
+        br
+        a.button.button--primary.button--round title="Image update history" href=history_image_path(@image)
+          i.fa.fa-history
 
   .block
     = render partial: 'comments/form', locals: { commentable: @image }

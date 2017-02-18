@@ -1,0 +1,6 @@
+h2 Image update history
+
+img.image-preview src=@image.image.url
+
+- versions = @image.versions.reorder(created_at: :desc).to_a
+= render partial: 'images/history_item', collection: versions, as: :version

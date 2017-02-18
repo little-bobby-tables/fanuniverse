@@ -62,4 +62,13 @@ class ImagesControllerTest < ActionController::TestCase
     post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2, tag3, tag4, tag5' } }
     assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
   end
+
+  test 'tag changes are recorded, including the user who performed them' do
+    sign_in @user
+
+    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2', tag_cache: @image.tags } }
+    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+
+    assert_equal @user.id, @image.versions.last.whodunnit.to_i
+  end
 end

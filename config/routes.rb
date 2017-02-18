@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: 'feed#index'
 
-  resources :images, constraints: { id: /\d+/ }
+  resources :images, constraints: { id: /\d+/ } do
+    member do
+      get 'history'
+    end
+  end
 
   resources :profiles, param: :name, only: [:show]
-
   authenticated :user do
     resource :profile, only: [:edit, :update]
   end

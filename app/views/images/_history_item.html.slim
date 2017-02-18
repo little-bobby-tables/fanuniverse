@@ -1,0 +1,35 @@
+= cache version do
+  - old = version.reify
+  - new = old.paper_trail.next_version
+  .block.history
+    .history__user = User.where(id: version.whodunnit).pluck(:name).first
+    - if old.tag_names != new.tag_names
+      - removed = old.tag_names - new.tag_names
+      - added = new.tag_names - old.tag_names
+      - if removed.any?
+        .history__label
+          underline> Removed
+          = pluralize removed.size, 'tag'
+        section
+          - removed.each do |tag_name|
+            a.tag href=images_path(q: tag_name)
+              = tag_name
+      - if added.any?
+        .history__label
+          em> Added
+          = pluralize added.size, 'tag'
+        section
+          - added.each do |tag_name|
+            a.tag href=images_path(q: tag_name)
+              = tag_name
+    - if old.source != new.source
+      .history__label
+        p
+          ' Changed image source
+          - if old.source.present?
+            ' from
+            em=> old.source.presence
+          ' to
+          em= new.source
+    .history__time
+      = time_tag version.created_at
