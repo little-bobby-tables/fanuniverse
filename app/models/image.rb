@@ -17,4 +17,8 @@ class Image < ApplicationRecord
   after_reload do
     @tags = nil
   end
+
+  def short_source
+    URI(source).host rescue nil
+  end
 end

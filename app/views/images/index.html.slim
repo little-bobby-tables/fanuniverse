@@ -34,9 +34,9 @@
           span.meta__count= image.comment_count
         a.image__link href=image_path(image)
           img src=image.image.url title=image.tag_names.join(', ')
-        a.meta.meta--bottom href="https://tumblr.com"
+        a.meta.meta--bottom href=image.source
           i.fa.fa-retweet>
-          | someone.tumblr.com
+          = image.short_source
 
   = stars_for @images
 

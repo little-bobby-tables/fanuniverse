@@ -27,7 +27,12 @@ h1 Suggest an image
           ' This includes, but is not limited to, depictions of underage or non-consensual sexual themes,
           | gruesome or disgusting imagery, promotion of intolerance and hatred.
 
-      = f.text_area :tags, class: 'input input--wide'
+      = f.text_area :tags, class: 'input input--wide', placeholder: 'safe, pearl, smiling'
+
+      h2 Credit the artist
+      p Something something this is important because
+
+      = f.text_field :source, class: 'input input--wide', placeholder: 'blog.tumblr.com/post/1'
 
       br
       = f.submit class: 'button button--primary'
