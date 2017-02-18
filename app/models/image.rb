@@ -4,6 +4,9 @@ class Image < ApplicationRecord
   has_many :stars, as: :starrable, validate: false
   has_many :comments, as: :commentable, validate: false
 
+  has_paper_trail only: [:tag_names, :source],
+                  skip: attribute_names.map(&:to_sym).without(:tag_names, :source)
+
   mount_uploader :image, ImageUploader
 
   before_save :apply_tag_change, if: :tag_names_changed?

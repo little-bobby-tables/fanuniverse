@@ -8,6 +8,7 @@ img.image-preview src=@image.image.url
   p Tags reflect the most important aspects of the image - think characters and themes it depicts, its creator, and so on.
   p They are separated by commas.
   = f.text_area :tags, class: 'input input--wide'
+  = hidden_field_tag :'image[tag_cache]', @image.tags
 
   h2 Source
 

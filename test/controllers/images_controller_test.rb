@@ -42,4 +42,24 @@ class ImagesControllerTest < ActionController::TestCase
     get :index, params: { q: 'stars: more than 9' }
     assert_equal [@images.first], assigns(:images).to_a
   end
+
+  test 'updates image tags' do
+    sign_in @user
+
+    # Tags are compared against tag_cache,
+    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2', tag_cache: @image.tags } }
+    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+
+    # ...which controls what tags are added
+    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2, tag3, tag4', tag_cache: 'safe, tag1, tag2, tag3' } }
+    assert_equal %w(safe tag1 tag2 tag4), @image.reload.tag_names.sort
+
+    # ...and removed
+    post :update, params: { id: @image.id, image: { tags: 'safe, tag1', tag_cache: 'safe, tag1, tag4' } }
+    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+
+    # ...and which is required
+    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2, tag3, tag4, tag5' } }
+    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+  end
 end

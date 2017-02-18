@@ -8,6 +8,8 @@ gem 'puma'
 # Database
 gem 'pg'
 gem 'postgres_ext', github: 'little-bobby-tables/postgres_ext', branch: 'rails-5'
+# Record versioning
+gem 'paper_trail'
 # Search
 gem 'kaminari' # Needs to be included before elasticfusion
 gem 'elasticfusion', path: '../elasticfusion'

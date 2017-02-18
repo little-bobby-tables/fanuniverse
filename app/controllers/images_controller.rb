@@ -31,7 +31,14 @@ class ImagesController < ApplicationController
   end
 
   def update
-    if @image.update(image_params)
+    # tag_cache is a workaround for concurrency issues like
+    # two users editing tags at the same time leading to the last user to submit removing tags added by the first one.
+    tags, tag_cache = params.require(:image).values_at(:tags, :tag_cache)
+    @image.tags.update(tags, compare_against: tag_cache) if tags.present? && tag_cache.present?
+
+    @image.assign_attributes(params.require(:image).permit(:source))
+
+    if @image.save
       redirect_to @image, notice: 'Image was successfully updated.'
     else
       render :edit
@@ -60,6 +67,6 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:image, :tags)
+    params.require(:image).permit(:image, :tags, :source)
   end
 end
