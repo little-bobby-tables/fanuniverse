@@ -10,6 +10,7 @@ module StevenOnRails
     config.assets.enabled = false
 
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('app', 'models', 'validators')
 
     config.generators do |g|
       g.assets false
