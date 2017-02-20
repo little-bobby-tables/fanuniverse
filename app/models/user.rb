@@ -12,6 +12,12 @@ class User < ApplicationRecord
 
   delegate :can?, :cannot?, to: :ability
 
+  validates :name, presence: true, length: { maximum: 40 }, uniqueness: { case_sensitive: false, on: :create },
+            format: {
+              with: /\A(?!-)(?!.+--)[a-zA-Z0-9-]+(?<!-)\z/,
+              message: 'may contain alphanumeric characters or hyphens only, and cannot begin or end with a hyphen.'
+            }
+
   def ability
     @ability ||= Ability.new(self)
   end
