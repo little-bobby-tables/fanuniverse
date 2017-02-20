@@ -9,11 +9,9 @@ h1 Suggest an image
     img.js-upload__preview.image-preview.hidden
 
     .js-upload__file
-      h2 First things first
-      h3 Link to the image page or blog post
-      = text_field_tag :fetch_image, '', class: 'input input--wide js-upload__url', placeholder: 'Image URL'
+      h3 Link an image page or a blog post
+      = text_field_tag :fetch_image, '', class: 'input input--wide js-upload__url', placeholder: 'http://artist.tumblr.com/post/1'
       a.button.button--primary.button--inline.js-upload__fetch data-disable-with="Loading…" Fetch
-      br
       h3 Alternatively, upload a file from your computer
       p You'll need to specify some things manually.
       = render partial: 'layouts/image_upload', locals: { form: f, field: :image }
