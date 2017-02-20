@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :comments, except: [:new]
 
   namespace :api do
+    get 'image_scraping/scrape'
     post 'stars/toggle'
   end
 end

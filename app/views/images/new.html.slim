@@ -10,6 +10,12 @@ h1 Suggest an image
 
     .js-upload__file
       h2 First things first
+      h3 Link to the image page or blog post
+      = text_field_tag :fetch_image, '', class: 'input input--wide js-upload__url', placeholder: 'Image URL'
+      a.button.button--primary.button--inline.js-upload__fetch data-disable-with="Loading…" Fetch
+      br
+      h3 Alternatively, upload a file from your computer
+      p You'll need to specify some things manually.
       = render partial: 'layouts/image_upload', locals: { form: f, field: :image }
 
     .js-upload__meta.hidden
@@ -19,8 +25,8 @@ h1 Suggest an image
       p#content-safety
         ' Start off with content rating:
         em is this image safe for minors?
-        a< data-tag="safe" data-click-hide="#content-safety" href="#" Yes
-        a< data-tag="nsfw" data-click-hide="#content-safety" data-click-show="#nsfw-content" href="#" No
+        a.button.button--inline.button--secondary< data-tag="safe" data-click-hide="#content-safety" Yes
+        a.button.button--inline.button--secondary< data-tag="nsfw" data-click-hide="#content-safety" data-click-show="#nsfw-content" No
       p#nsfw-content.hidden
         strong
           ' Please note that the site administration retains the right to remove any adult content deemed obscene.

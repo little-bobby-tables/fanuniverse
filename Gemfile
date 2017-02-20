@@ -13,7 +13,8 @@ gem 'paper_trail'
 # Search
 gem 'kaminari' # Needs to be included before elasticfusion
 gem 'elasticfusion', path: '../elasticfusion'
-# Image processing
+# Image handling
+gem 'image_metadata_scraper', path: '../image_metadata_scraper'
 gem 'carrierwave'
 gem 'mini_magick'
 # User management

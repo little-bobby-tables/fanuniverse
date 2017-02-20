@@ -35,6 +35,13 @@ PATH
       elasticsearch-rails
       rails (>= 5.0)
 
+PATH
+  remote: ../image_metadata_scraper
+  specs:
+    image_metadata_scraper (0.1.0)
+      activesupport
+      nokogiri
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -231,6 +238,7 @@ DEPENDENCIES
   elasticfusion!
   factory_girl_rails
   faker
+  image_metadata_scraper!
   kaminari
   listen (~> 3.0.5)
   mini_magick

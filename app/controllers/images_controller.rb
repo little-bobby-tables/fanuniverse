@@ -70,6 +70,6 @@ class ImagesController < ApplicationController
   end
 
   def image_params
-    params.require(:image).permit(:image, :tags, :source)
+    params.require(:image).permit(:image, :remote_image_url, :tags, :source)
   end
 end
