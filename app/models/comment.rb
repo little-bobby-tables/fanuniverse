@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  COMMENTABLE = %w(Image User).freeze
+  COMMENTABLE = %w(Image Profile).freeze
 
   default_scope { order(created_at: :desc) }
 

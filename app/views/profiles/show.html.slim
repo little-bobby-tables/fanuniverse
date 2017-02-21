@@ -1,7 +1,7 @@
-.flex
+.profile.flex
   .avatar.avatar--large
     img.avatar__image src=@user.avatar.url
-  .profile__info
+  .profile__info.profile
     h1.profile__info__name = @user.name
     - if @user == current_user
       a.button.button--primary.button--round.button--inline.profile__info__button--edit href=edit_profile_path
@@ -11,5 +11,15 @@
     br
     | Member for
     =< time_ago_in_words(@user.created_at)
-    br
-    p = @user.profile.bio
+
+- if @user.profile.bio.present?
+
+  h1 About me
+  p = @user.profile.bio
+  br
+
+h1 Discussion
+
+.block = render partial: 'comments/form', locals: { commentable: @user.profile }
+
+= comments_for @user.profile

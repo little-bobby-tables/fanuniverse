@@ -43,9 +43,13 @@
   font-size: 14px;
 }
 
+.profile {
+  margin: 0 0 40px;
+}
+
 .profile__info {
   flex: 1 1 0;
-  margin-left: 30px;
+  margin: 0 40px;
 }
 
 .profile__info__name {

@@ -36,8 +36,7 @@
         a.button.button--primary.button--round title="Image update history" href=history_image_path(@image)
           i.fa.fa-history
 
-  .block
-    = render partial: 'comments/form', locals: { commentable: @image }
+  .block = render partial: 'comments/form', locals: { commentable: @image }
 
   = comments_for @image, id: 'comments'
 

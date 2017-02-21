@@ -4,15 +4,13 @@ class CommentsController < ApplicationController
   def index
     authorize! :view, @commentable
 
-    comments = relation_for(@commentable)
-    comment_listing comments
+    comment_listing @commentable.comments
   end
 
   def create
     authorize! :comment_on, @commentable
 
-    comments = relation_for(@commentable)
-    @comment = comments.new(comment_params)
+    @comment = @commentable.comments.new(comment_params)
 
     if @comment.save
       params[:comment_id] = @comment.id
@@ -20,7 +18,7 @@ class CommentsController < ApplicationController
       flash[:error] = 'Your comment could not be posted.'
     end
 
-    comment_listing comments
+    comment_listing @commentable.comments
   end
 
   private
@@ -38,12 +36,6 @@ class CommentsController < ApplicationController
       format.html { render partial: 'comments/list', layout: false, locals: { comments: comments } }
       format.json { render json: comments  }
     end
-  end
-
-  def relation_for(commentable)
-    association_name = commentable.class.reflect_on_all_associations(:has_many)
-      .detect { |a| a.options[:as] == :commentable }.name
-    commentable.send(association_name)
   end
 
   def comment_params
