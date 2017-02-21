@@ -20,4 +20,3 @@ html
     - layout = content_for(:layout_class) || 'layout--narrow' unless content_for(:custom_layout)
     main.layout class=layout
       = yield
-    .js-datastore data=js_data

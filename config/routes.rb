@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: 'feed#index'
+  root to: 'images#index'
 
   resources :images, constraints: { id: /\d+/ } do
     member do

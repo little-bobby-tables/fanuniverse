@@ -12,7 +12,7 @@ class ImagesControllerTest < ActionController::TestCase
     sign_in @user
 
     assert_difference('Image.count') do
-      post :create, params: { image: { tags: 'tag' } }
+      post :create, params: { image: { tags: 'safe, tag' } }
     end
     @created_image = Image.last
 
