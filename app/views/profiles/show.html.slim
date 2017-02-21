@@ -6,6 +6,8 @@
     - if @user == current_user
       a.button.button--primary.button--round.button--inline.profile__info__button--edit href=edit_profile_path
         i.fa.fa-pencil
+    - if @user.role == 'admin'
+      .role.role--block Site Administrator
     br
     | Member for
     =< time_ago_in_words(@user.created_at)

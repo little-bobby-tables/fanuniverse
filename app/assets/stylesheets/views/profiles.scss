@@ -26,6 +26,23 @@
   height: 60px;
 }
 
+.role {
+  margin: 0 6px;
+
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: "Sansita", sans-serif;
+
+  color: #7f518e;
+}
+
+.role--block {
+  display: block;
+  margin: 0 0 0.2em;
+
+  font-size: 14px;
+}
+
 .profile__info {
   flex: 1 1 0;
   margin-left: 30px;
@@ -33,6 +50,7 @@
 
 .profile__info__name {
   display: inline-block;
+  margin: 0.4em 0;
 }
 
 .profile__info__button--edit {
