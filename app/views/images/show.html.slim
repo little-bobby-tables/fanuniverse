@@ -4,14 +4,17 @@
   .image-display__content
     - if @image.processed?
       section
-        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id
+        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id title="Star this image!"
           i.fa.fa-star>
           span.meta__count= @image.star_count
-        a.meta.meta--image-display href="#comments"
+        a.meta.meta--image-display href="#comments" title="View comments"
           i.fa.fa-comments>
           span.meta__count= @image.comment_count
-        a.meta.meta--image-display href=@image.image.url
+        a.meta.meta--image-display href=@image.image.url title="View full-sized image"
           i.fa.fa-eye>
+          = @image.width
+          | x
+          = @image.height
       img src=@image.image.preview_url
       section
         a.meta.meta--image-display.meta--bottom href=@image.source
