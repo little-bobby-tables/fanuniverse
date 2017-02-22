@@ -27,8 +27,14 @@ class ImagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'displays all images without a query parameter' do
+  test 'only displays images that are processed' do
     @images = [@image] + create_list(:image_small_file, 2)
+    refresh_index Image
+
+    get :index
+    assert_equal [], assigns(:images).to_a
+
+    perform_enqueued_jobs!
     refresh_index Image
 
     get :index
@@ -37,7 +43,9 @@ class ImagesControllerTest < ActionController::TestCase
 
   test 'given a query, displays search results' do
     @images = [@image] + create_list(:image_small_file, 2)
-    perform_enqueued_jobs { @images.first.update_columns star_count: 10 and @images.first.reindex_now }
+    @images.first.update_columns star_count: 10
+
+    perform_enqueued_jobs!
     refresh_index Image
 
     get :index, params: { q: 'stars: more than 9' }

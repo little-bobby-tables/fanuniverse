@@ -2,21 +2,27 @@
 
 .image-display
   .image-display__content
-    section
-      a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id
-        i.fa.fa-star>
-        span.meta__count= @image.star_count
-      a.meta.meta--image-display href="#comments"
-        i.fa.fa-comments>
-        span.meta__count= @image.comment_count
-      a.meta.meta--image-display href=@image.image.url
-        i.fa.fa-eye>
-
-    img src=@image.image.preview_url
-    section
-      a.meta.meta--image-display.meta--bottom href=@image.source
-        i.fa.fa-retweet>
-        = @image.short_source
+    - if @image.processed?
+      section
+        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id
+          i.fa.fa-star>
+          span.meta__count= @image.star_count
+        a.meta.meta--image-display href="#comments"
+          i.fa.fa-comments>
+          span.meta__count= @image.comment_count
+        a.meta.meta--image-display href=@image.image.url
+          i.fa.fa-eye>
+      img src=@image.image.preview_url
+      section
+        a.meta.meta--image-display.meta--bottom href=@image.source
+          i.fa.fa-retweet>
+          = @image.short_source
+    - else
+      .image-display__processing
+        h1
+          i.fa.fa-cogs>
+          | Hold on…
+        p We need a few more seconds to process the image. Refresh the page to see if we're done!
 
 .layout.layout--narrow
   .block.flex

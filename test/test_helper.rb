@@ -21,9 +21,7 @@ def prepare
 
   indexed_models.each do |m|
     m.index_name "test_#{m.model_name.plural}"
-    m.__elasticsearch__.tap do |es|
-      es.create_index! force: true
-    end
+    m.__elasticsearch__.create_index! force: true
   end
 end
 
@@ -32,3 +30,14 @@ def refresh_index(model)
 end
 
 prepare
+
+module ActiveJob::TestHelper
+  def perform_enqueued_jobs!
+    jobs = enqueued_jobs
+    self.enqueued_jobs = []
+
+    jobs.map(&method(:instantiate_job)).each(&:perform_now)
+
+    perform_enqueued_jobs! if enqueued_jobs.any?
+  end
+end
