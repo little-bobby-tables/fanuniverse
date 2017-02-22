@@ -28,6 +28,7 @@ node_modules/
 /public/assets/
 /public/fonts/
 /public/uploads/
+/public/test/
 
 ###
 ### Poor man's .gitignore_global

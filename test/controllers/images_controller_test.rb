@@ -4,7 +4,7 @@ class ImagesControllerTest < ActionController::TestCase
   include ActiveJob::TestHelper
 
   setup do
-    @image = create(:image)
+    @image = create(:image_small_file)
     @user = create(:user)
   end
 
@@ -12,7 +12,8 @@ class ImagesControllerTest < ActionController::TestCase
     sign_in @user
 
     assert_difference('Image.count') do
-      post :create, params: { image: { tags: 'safe, tag' } }
+      post :create, params: { image: { tags: 'safe, tag',
+                                       image: File.open(Rails.root.join('test', 'fixtures', 'images', 'small.jpg')) } }
     end
     @created_image = Image.last
 
@@ -27,7 +28,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'displays all images without a query parameter' do
-    @images = [@image] + create_list(:image, 2)
+    @images = [@image] + create_list(:image_small_file, 2)
     refresh_index Image
 
     get :index
@@ -35,7 +36,7 @@ class ImagesControllerTest < ActionController::TestCase
   end
 
   test 'given a query, displays search results' do
-    @images = [@image] + create_list(:image, 2)
+    @images = [@image] + create_list(:image_small_file, 2)
     perform_enqueued_jobs { @images.first.update_columns star_count: 10 and @images.first.reindex_now }
     refresh_index Image
 
