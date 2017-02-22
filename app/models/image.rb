@@ -14,6 +14,8 @@ class Image < ApplicationRecord
 
   before_save :apply_tag_change, if: :tag_names_changed?
 
+  after_commit(on: :create) { |m| ImageProcessingJob.perform_later(m.id) }
+
   delegate :tags=, :apply_tag_change, to: :tags
 
   def tags

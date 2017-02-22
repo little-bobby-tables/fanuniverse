@@ -9,7 +9,10 @@
       a.meta.meta--image-display href="#comments"
         i.fa.fa-comments>
         span.meta__count= @image.comment_count
-    img src=@image.image.url
+      a.meta.meta--image-display href=@image.image.url
+        i.fa.fa-eye>
+
+    img src=@image.image.preview_url
     section
       a.meta.meta--image-display.meta--bottom href=@image.source
         i.fa.fa-retweet>
@@ -23,8 +26,6 @@
           a.tag href=images_path(q: tag_name)
             = tag_name
       br
-      section
-        | K
       br
       | Suggested by
       =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)

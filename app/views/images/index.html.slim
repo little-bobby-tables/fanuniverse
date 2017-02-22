@@ -21,7 +21,7 @@
     - if @images.any?
       = render partial: 'layouts/pagination', locals: { resources: @images }
     - else
-      | No images found.
+      p No images found.
 
   .grid.grid--loading.js-masonry-grid
     - @images.each do |image|
@@ -33,7 +33,7 @@
           i.fa.fa-comments>
           span.meta__count= image.comment_count
         a.image__link href=image_path(image)
-          img src=image.image.url title=image.tag_names.join(', ')
+          img src=image.image.thumbnail_url title=image.tag_names.join(', ')
         a.meta.meta--bottom href=image.source
           i.fa.fa-retweet>
           = image.short_source

@@ -18,4 +18,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   def filename
     "source.#{file.extension}" if original_filename
   end
+
+  def url
+    "#{Settings[:image_root]}/#{model.id}/source.#{file.extension}"
+  end
+
+  ImageProcessor::VERSIONS.each do |version, _|
+    define_method "#{version}_url" do
+      "#{Settings[:image_root]}/#{model.id}/#{version}.#{file.extension}"
+    end
+  end
 end
