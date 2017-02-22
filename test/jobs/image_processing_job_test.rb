@@ -1,6 +1,16 @@
 require 'test_helper'
 
-class ImageProcessorTest < ActiveSupport::TestCase
+class ImageProcessingJobTest < ActiveJob::TestCase
+  test 'processes images' do
+    @image = create(:image_small_file)
+
+    refute @image.processed?
+
+    ImageProcessingJob.perform_now(@image.id)
+
+    assert @image.reload.processed?
+  end
+
   test 'identifies image attributes' do
     process! :image_small_file
 
@@ -32,8 +42,6 @@ class ImageProcessorTest < ActiveSupport::TestCase
 
   def process!(factory)
     @image = create(factory)
-
-    @processor = ImageProcessor.new(@image)
-    @processor.process!
+    ImageProcessingJob.perform_now(@image.id)
   end
 end

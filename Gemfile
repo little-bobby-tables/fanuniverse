@@ -8,6 +8,7 @@ gem 'puma'
 # Database
 gem 'pg'
 gem 'postgres_ext', github: 'little-bobby-tables/postgres_ext', branch: 'rails-5'
+gem 'redis'
 # Record versioning
 gem 'paper_trail'
 # Search
@@ -17,14 +18,13 @@ gem 'elasticfusion', path: '../elasticfusion'
 gem 'image_metadata_scraper', path: '../image_metadata_scraper'
 gem 'carrierwave'
 gem 'mini_magick'
+# Background processing
+gem 'sidekiq', '5.0.0.beta2'
 # User management
 gem 'devise'
 gem 'corral_acl', require: 'corral', github: 'deliciousblackink/Corral', branch: 'override-by-deny'
 # Front-end
 gem 'slim-rails', github: 'slim-template/slim-rails'
-
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

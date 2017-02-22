@@ -28,17 +28,17 @@ ActiveRecord::Schema.define(version: 20170222084738) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.string   "tag_names",       default: [], null: false, array: true
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "tag_names",       default: [],    null: false, array: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "image"
     t.integer  "suggested_by_id"
     t.integer  "star_count",      default: 0
     t.integer  "comment_count",   default: 0
-    t.string   "source",          default: "", null: false
+    t.string   "source",          default: "",    null: false
     t.integer  "width"
     t.integer  "height"
-    t.boolean  "processed"
+    t.boolean  "processed",       default: false
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
   end
 

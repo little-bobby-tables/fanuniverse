@@ -7,10 +7,14 @@ Bundler.require(*Rails.groups)
 
 module StevenOnRails
   class Application < Rails::Application
-    config.assets.enabled = false
+    config.active_job.queue_adapter = :sidekiq
 
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('app', 'models', 'validators')
+
+    config.assets.enabled = false
+
+    Slim::Engine.set_options format: :html
 
     config.generators do |g|
       g.assets false
@@ -20,7 +24,5 @@ module StevenOnRails
       g.fixture_replacement :factory_girl
       g.javascript_engine :js
     end
-
-    Slim::Engine.set_options format: :html
   end
 end
