@@ -14,4 +14,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/images/#{model.id}"
   end
+
+  def filename
+    "source.#{file.extension}" if original_filename
+  end
 end

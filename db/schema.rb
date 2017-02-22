@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220135334) do
+ActiveRecord::Schema.define(version: 20170222084738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20170220135334) do
     t.integer  "star_count",      default: 0
     t.integer  "comment_count",   default: 0
     t.string   "source",          default: "", null: false
+    t.integer  "width"
+    t.integer  "height"
+    t.boolean  "processed"
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
   end
 
