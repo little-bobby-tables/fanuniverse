@@ -4,7 +4,6 @@
 
 .checkbox {
   margin-bottom: 6px;
-  display: inline-block;
 }
 
 .checkbox__default-input {
@@ -34,27 +33,23 @@
   left: 0;
   width: 16px;
   height: 16px;
-  //background-color: $input_color;
-  //border: 1px solid $input_border;
-  //@include bg-border-transition;
+  border: 1px solid $input_border_color;
 }
 
 .checkbox__text::after {
   content: '\f00c';
   font-family: 'FontAwesome';
-  left: 2px;
-  top: 2px;
+  left: 1px;
+  top: 1px;
   color: transparent;
-  //@include color-transition;
 }
 
 .checkbox__text:hover::before {
-  //border: 1px solid $input_border_active;
-  //background: $input_color_active;
+  border: 1px solid #c3a1d2;
 }
 
 .checkbox__default-input:checked + .checkbox__label > .checkbox__text::after {
-  //color: $foreground_color;
+  color: black;
 }
 
 /* File upload */
