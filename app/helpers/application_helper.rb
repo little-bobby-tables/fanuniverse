@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def custom_layout
-    content_for :custom_layout, true
+    content_for :layout_class, 'layout--custom'
   end
 
   def asset_path(name)

@@ -14,14 +14,18 @@ header, h1, h2, h3 {
 }
 
 .layout {
-  margin-top: $header_spacing;
-  margin-bottom: $header_spacing;
+  margin-top: 24px;
+  margin-bottom: 24px;
   flex: 1 0 auto;
   clear: both;
 
   > h1 {
     margin: 0 0 12px;
   }
+}
+
+.layout--custom {
+  margin-top: 0;
 }
 
 .layout--wide, .layout--medium, .layout--narrow {

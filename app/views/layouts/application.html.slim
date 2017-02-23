@@ -10,13 +10,12 @@ html
   body
     = render partial: 'layouts/header'
     - if flash[:notice]
-      .flash.flash--success = flash[:notice]
+      .flash = flash[:notice]
     - if flash[:alert]
-      .flash.flash--warning = flash[:alert]
+      .flash = flash[:alert]
     - if flash[:error]
-      .flash.flash--warning = flash[:error]
+      .flash = flash[:error]
     - if flash[:warning]
-      .flash.flash--warning = flash[:warning]
-    - layout = content_for(:layout_class) || 'layout--narrow' unless content_for(:custom_layout)
-    main.layout class=layout
+      .flash = flash[:warning]
+    main.layout class=(content_for(:layout_class) || 'layout--narrow')
       = yield

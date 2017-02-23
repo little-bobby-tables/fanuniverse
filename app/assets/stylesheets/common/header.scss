@@ -2,7 +2,6 @@
 
 .header {
   border-bottom: 1px solid $input_border_color;
-  margin-bottom: 24px;
   background: white;
 }
 
@@ -79,4 +78,10 @@
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 12px solid black;
+}
+
+.flash {
+  padding: 8px 12px;
+  background: white;
+  border-bottom: 1px solid #d6d6d6;
 }
