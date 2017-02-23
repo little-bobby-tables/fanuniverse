@@ -26,7 +26,7 @@
   .grid.grid--loading.js-masonry-grid
     - @images.each do |image|
       .grid__item.block
-        a.meta data-starrable="Image" data-starrable-id=image.id
+        a.meta data-starrable="Image" data-starrable-id=image.id title="Star this image!" href=(new_user_registration_path unless user_signed_in?)
           i.fa.fa-star>
           span.meta__count= image.star_count
         a.meta href=image_path(image, anchor: 'comments')

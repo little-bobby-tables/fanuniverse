@@ -1,7 +1,12 @@
 / accepts :commentable (an instance of commentable model)
-= form_for Comment.new, remote: true, html: { id: 'js-commentable-form', class: 'comment-form', 'data-type': :html } do |f|
-  = hidden_field_tag :commentable_type, commentable.model_name
-  = hidden_field_tag :commentable_id, commentable.id
-  = f.text_area :body, class: 'input input--no-margin input--wide', placeholder: 'Leave a comment…'
-  = f.button 'Post comment', class: 'button button--round'
-    i.fa.fa-paper-plane
+- if can? :comment_on, commentable
+  = form_for Comment.new, remote: true, html: { id: 'js-commentable-form', class: 'comment-form', 'data-type': :html } do |f|
+    = hidden_field_tag :commentable_type, commentable.model_name
+    = hidden_field_tag :commentable_id, commentable.id
+    = f.text_area :body, class: 'input input--no-margin input--wide', placeholder: 'Leave a comment…'
+    = f.button 'Post comment', class: 'button button--round'
+      i.fa.fa-paper-plane
+- else
+  ' You need an account to leave comments — you can create one
+  a href=new_user_registration_path here
+  | .

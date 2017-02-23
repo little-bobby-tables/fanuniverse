@@ -13,6 +13,7 @@ class Ability
 
   def allow_logged_in_user_actions(user)
     can :create, Image
+    can :edit, Image
     can :comment_on, Image
     can :comment_on, Profile
     can :star, Image

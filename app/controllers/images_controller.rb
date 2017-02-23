@@ -19,6 +19,7 @@ class ImagesController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @image
   end
 
   def create
@@ -32,6 +33,7 @@ class ImagesController < ApplicationController
   end
 
   def update
+    authorize! :edit, @image
     # tag_cache is a workaround for concurrency issues like
     # two users editing tags at the same time leading to the last user to submit removing tags added by the first one.
     tags, tag_cache = params.require(:image).values_at(:tags, :tag_cache)

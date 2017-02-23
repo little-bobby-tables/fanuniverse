@@ -4,7 +4,7 @@
   .image-display__content
     - if @image.processed?
       section
-        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id title="Star this image!"
+        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(new_user_registration_path unless user_signed_in?)
           i.fa.fa-star>
           span.meta__count= @image.star_count
         a.meta.meta--image-display href="#comments" title="View comments"
@@ -39,8 +39,9 @@
       | Suggested by
       =< link_to @image.suggested_by.name, profile_path(@image.suggested_by)
     .flex__fixed.flex__right
-      a.button.button--round title="Edit tags and source" href=edit_image_path(@image)
-        i.fa.fa-pencil
+      - if can? :edit, Image
+        a.button.button--round title="Edit tags and source" href=edit_image_path(@image)
+          i.fa.fa-pencil
       - if @image.versions.any?
         br
         a.button.button--round title="Image update history" href=history_image_path(@image)
