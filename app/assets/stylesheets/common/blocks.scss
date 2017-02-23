@@ -80,3 +80,15 @@ a.block__header--single-link {
 .block--no-margin {
   margin: 0;
 }
+
+/* Somewhat dirty workaround for default element margins */
+
+.block {
+  > h1, > h2, > h3 {
+    margin-top: 6px;
+  }
+
+  > ul {
+    margin-bottom: 6px;
+  }
+}

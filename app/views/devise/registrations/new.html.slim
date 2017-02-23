@@ -6,7 +6,7 @@ p
   | .
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
+  = render partial: 'layouts/errors', locals: { model: resource }
 
   = f.label :name, 'Username'
   = f.text_field :name, class: 'input', autofocus: true

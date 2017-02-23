@@ -1,9 +1,13 @@
 / Accepts :model
 - if model.errors.any?
-  #error_explanation
+  .block#errors
     h2
-      => pluralize model.errors.count, 'error'
-      | prevented this from being updated:
+      ' Oops!
+      - if model.errors.count == 1
+        ' There is an issue
+      - else
+        ' There are a couple of issues
+      | with your submission:
     ul
       - model.errors.full_messages.each do |msg|
         li
