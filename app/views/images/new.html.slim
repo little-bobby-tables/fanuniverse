@@ -11,7 +11,7 @@ h1 Suggest an image
     .js-upload__file
       h3 Link an image page or a blog post
       = text_field_tag :fetch_image, '', class: 'input input--wide js-upload__url', placeholder: 'http://artist.tumblr.com/post/1'
-      a.button.button--primary.button--inline.js-upload__fetch data-disable-with="Loading…" Fetch
+      a.button.button--inline.js-upload__fetch data-disable-with="Loading…" Fetch
       h3 Alternatively, upload a file from your computer
       p You'll need to specify some things manually.
       = render partial: 'layouts/image_upload', locals: { form: f, field: :image }
@@ -39,7 +39,7 @@ h1 Suggest an image
       = f.text_field :source, class: 'input input--wide', placeholder: 'blog.tumblr.com/post/1'
 
       br
-      = f.submit class: 'button button--primary'
+      = f.submit class: 'button'
 
 - else
   | Oops! You need to sign in or something.

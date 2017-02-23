@@ -4,7 +4,7 @@
   .profile__info.profile
     h1.profile__info__name = @user.name
     - if @user == current_user
-      a.button.button--primary.button--round.button--inline.profile__info__button--edit href=edit_profile_path
+      a.button.button--round.button--inline.profile__info__button--edit href=edit_profile_path
         i.fa.fa-pencil
     - if @user.role == 'admin'
       .role.role--block Site Administrator

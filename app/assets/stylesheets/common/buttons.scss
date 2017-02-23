@@ -8,17 +8,25 @@
   cursor: pointer;
   text-decoration: none;
 
-  border: 1px solid;
-
   border-radius: 4px;
   line-height: 24px;
 
   @include bg-color-transition;
+
+  background: #7b518e;
+  color: white;
+  border: 1px solid #7b518e;
+
+  &:hover {
+    background: #703a88;
+    border: 1px solid #703a88;
+  }
 }
 
 .button--secondary {
   background: white;
   color: #7b518e;
+  border: 1px solid;
 
   &:hover {
     background: #ece7ef;
@@ -32,18 +40,6 @@
 
 .button--inline {
   display: inline-block;
-}
-
-.button--primary {
-  background: #7b518e;
-
-  color: white;
-  border: 1px solid #7b518e;
-}
-
-.button--primary:hover {
-  background: #703a88;
-  border: 1px solid #703a88;
 }
 
 .button--round {
