@@ -1,8 +1,7 @@
 header.header.flex
   .flex__main
     a.header__link.header__link--spacing-right href="/" Fan Universe
-    a.header__link href="/images/new" Upload
-    a.header__link.header__link--spacing-right href="/images" Browse
+    a.header__link.header__link--spacing-right href="/images/new" Suggest an image
     = form_tag images_path, method: :get, class: 'inline-form' do
       = text_field_tag :q, params[:q], class: 'input input--inline header__search-input', placeholder: 'peridot, lapis lazuli'
       button.hidden type="submit"

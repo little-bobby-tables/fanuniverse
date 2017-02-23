@@ -23,23 +23,32 @@ h1 Suggest an image
       p#content-safety
         ' Start off with content rating:
         em is this image safe for minors?
-        a.button.button--inline.button--secondary< data-tag="safe" data-click-hide="#content-safety" Yes
-        a.button.button--inline.button--secondary< data-tag="nsfw" data-click-hide="#content-safety" data-click-show="#nsfw-content" No
+        a.button.button--inline.button--secondary< data-tag="safe" data-click-hide="#content-safety" data-click-show="#artist-tag" Yes
+        a.button.button--inline.button--secondary< data-tag="nsfw" data-click-hide="#content-safety" data-click-show="#artist-tag" data-click-toggle="#nsfw-content" No
       p#nsfw-content.hidden
         strong
           ' Please note that the site administration retains the right to remove any adult content deemed obscene.
           ' This includes, but is not limited to, depictions of underage or non-consensual sexual themes,
           | gruesome or disgusting imagery, promotion of intolerance and hatred.
+      p#artist-tag.hidden
+        ' Ensure that you include the name of the artist using an
+        em> artist:artist name here
+        ' tag.
 
       = f.text_area :tags, class: 'input input--wide', placeholder: 'safe, pearl, smiling'
 
       h2 Credit the artist
-      p Something something this is important because
+      p
+        ' Provide a link to the page you've found this image on.
+        | We show it alongside images to give artists credit for their hard work.
 
-      = f.text_field :source, class: 'input input--wide', placeholder: 'blog.tumblr.com/post/1'
+      = f.text_field :source, class: 'input input--wide', placeholder: 'http://blog.tumblr.com/post/1'
 
       br
       = f.submit class: 'button'
 
 - else
-  | Oops! You need to sign in or something.
+  p
+    ' You need an account to suggest images — you can create one
+    a href=new_user_registration_path here
+    | .
