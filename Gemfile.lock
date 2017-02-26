@@ -18,15 +18,16 @@ GIT
 
 GIT
   remote: git://github.com/slim-template/slim-rails.git
-  revision: 607b52605c34a4e78a54040105f3b06b65088f17
+  revision: 8dbc1fbf859ebfa95b0884a0196a6ad9f0ca9cd5
   specs:
     slim-rails (3.1.2)
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
 
-PATH
-  remote: ../elasticfusion
+GIT
+  remote: git@github.com:little-bobby-tables/elasticfusion
+  revision: 30e04946e5058bca76b53945324589a9c5b7e9fd
   specs:
     elasticfusion (0.1.0)
       chronic
@@ -35,8 +36,9 @@ PATH
       elasticsearch-rails
       rails (>= 5.0)
 
-PATH
-  remote: ../image_metadata_scraper
+GIT
+  remote: git@github.com:little-bobby-tables/image_metadata_scraper
+  revision: ba34981c3384d0e1c45c61e956e2c1b14dc9b7ca
   specs:
     image_metadata_scraper (0.1.0)
       activesupport
@@ -124,8 +126,8 @@ GEM
     ffi (1.9.17)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    hashie (3.5.3)
-    i18n (0.8.0)
+    hashie (3.5.5)
+    i18n (0.8.1)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -149,7 +151,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_magick (4.6.0)
+    mini_magick (4.6.1)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
@@ -164,7 +166,7 @@ GEM
       request_store (~> 1.1)
     pg (0.19.0)
     pg_array_parser (0.0.9)
-    puma (3.7.0)
+    puma (3.7.1)
     rack (2.0.1)
     rack-protection (1.5.3)
       rack
@@ -227,7 +229,7 @@ GEM
       sprockets (>= 3.0.0)
     temple (0.7.7)
     thor (0.19.4)
-    thread_safe (0.3.5)
+    thread_safe (0.3.6)
     tilt (2.0.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)

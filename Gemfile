@@ -13,9 +13,9 @@ gem 'redis'
 gem 'paper_trail'
 # Search
 gem 'kaminari' # Needs to be included before elasticfusion
-gem 'elasticfusion', path: '../elasticfusion'
+gem 'elasticfusion', git: 'git@github.com:little-bobby-tables/elasticfusion'
 # Image handling
-gem 'image_metadata_scraper', path: '../image_metadata_scraper'
+gem 'image_metadata_scraper', git: 'git@github.com:little-bobby-tables/image_metadata_scraper'
 gem 'carrierwave'
 gem 'mini_magick'
 # Background processing
