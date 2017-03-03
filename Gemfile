@@ -9,6 +9,7 @@ gem 'puma'
 gem 'pg'
 gem 'postgres_ext', github: 'little-bobby-tables/postgres_ext', branch: 'rails-5'
 gem 'redis'
+gem 'redis-rails'
 # Record versioning
 gem 'paper_trail'
 # Search

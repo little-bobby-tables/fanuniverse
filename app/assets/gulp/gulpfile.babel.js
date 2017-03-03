@@ -31,7 +31,21 @@ const railsRoot = '../../..';
 const assets = {
   dest:               `${railsRoot}/public/assets`,
   fontDest:           `${railsRoot}/public/fonts`,
-  productionManifest: `${railsRoot}/public/assets/manifest.json`
+  manifest: [
+                      `${railsRoot}/public/assets/manifest.json`,
+                      {
+                        base: `${railsRoot}/public/assets`,
+                        merge: true
+                      }
+  ],
+  /* https://github.com/sindresorhus/gulp-rev/issues/205#issuecomment-277540433 */
+  tmpManifest: [
+                      `${railsRoot}/public/assets/tmp/manifest.json`,
+                      {
+                        base: `${railsRoot}/public/tmp/assets`,
+                        merge: true
+                      }
+  ]
 };
 
 const javascripts = {
@@ -63,13 +77,6 @@ gulp.task('default', ['compile-javascripts', 'compile-stylesheets']);
 
 gulp.task('watch', ['watch-javascripts', 'watch-stylesheets']);
 
-/* Manifests */
-
-const revManifest = {
-  base: assets.dest,
-  merge: true
-};
-
 /* Javascripts */
 
 const rollupConfig = {
@@ -98,7 +105,7 @@ gulp.task('compile-javascripts', () => {
       .pipe(production(rev()))
       .pipe(gulp.dest(assets.dest))
 
-      .pipe(production(rev.manifest(assets.productionManifest, revManifest)))
+      .pipe(production(rev.manifest(...assets.manifest)))
       .pipe(production(gulp.dest(assets.dest)));
 });
 
@@ -137,7 +144,7 @@ gulp.task('compile-scss', () => {
       .pipe(production(rev()))
       .pipe(gulp.dest(assets.dest))
 
-      .pipe(production(rev.manifest(assets.productionManifest, revManifest)))
+      .pipe(production(rev.manifest(...assets.tmpManifest)))
       .pipe(production(gulp.dest(assets.dest)));
 });
 
