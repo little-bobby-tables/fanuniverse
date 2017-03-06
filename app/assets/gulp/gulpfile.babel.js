@@ -1,153 +1,32 @@
 'use strict';
 
-/* Dependencies */
+/* Why Gulp?
+ *
+ * Sprockets asset pipeline is very outdated. It lacks such essential features
+ * as source maps, and even though there is a new major version in development (4.0.0),
+ * I doubt it is going to see a wide adoption due to the recent DHH's decision
+ * to bring Webpack to Rails.
+ *
+ * The reason I chose not to use Webpack lies in the way it treats modules —
+ * see https://github.com/webpack/webpack/issues/2873. Otherwise, it looks like a
+ * solid bundler that can totally replace these hand-written tasks.
+ */
 
 import gulp from 'gulp';
 
-import rev from 'gulp-rev';
-import environments from 'gulp-environments';
-import sourcemaps from 'gulp-sourcemaps';
-import stream from 'event-stream';
-import concat from 'gulp-concat';
+import js from './gulp_javascripts.babel';
+import css from './gulp_stylesheets.babel';
 
-import rollup from 'rollup-stream';
-import buble from 'rollup-plugin-buble';
-import source from 'vinyl-source-stream';
-import buffer from 'vinyl-buffer';
-import uglify from 'gulp-uglify';
+import { javascripts, stylesheets, productionRev } from './gulp_manifest.babel';
 
-import sass from 'gulp-sass';
-import autoprefixer from 'gulp-autoprefixer';
-
-/* Environments */
-
-const development = environments.development,
-      production = environments.production;
-
-/* Paths */
-
-const railsRoot = '../../..';
-
-const assets = {
-  dest:               `${railsRoot}/public/assets`,
-  fontDest:           `${railsRoot}/public/fonts`,
-  manifest: [
-                      `${railsRoot}/public/assets/manifest.json`,
-                      {
-                        base: `${railsRoot}/public/assets`,
-                        merge: true
-                      }
-  ],
-  /* https://github.com/sindresorhus/gulp-rev/issues/205#issuecomment-277540433 */
-  tmpManifest: [
-                      `${railsRoot}/public/assets/tmp/manifest.json`,
-                      {
-                        base: `${railsRoot}/public/tmp/assets`,
-                        merge: true
-                      }
-  ]
-};
-
-const javascripts = {
-  vendor: [
-               `./node_modules/rails-ujs/dist/rails-ujs.js`,
-               './node_modules/whatwg-fetch/fetch.js',
-               './node_modules/promise-polyfill/promise.js',
-               './node_modules/element-closest/element-closest.js',
-               './node_modules/masonry-layout/dist/masonry.pkgd.js',
-               './node_modules/imagesloaded/imagesloaded.pkgd.js'
-  ],
-  all:         `${railsRoot}/app/assets/**/*.js`,
-  application: `${railsRoot}/app/assets/javascripts/application.js`,
-};
-
-const stylesheets = {
-  vendor: [
-                      './node_modules/normalize.css/normalize.css'
-  ],
-  all:                `${railsRoot}/app/assets/stylesheets/**/*.scss`,
-  application:        `${railsRoot}/app/assets/stylesheets/application.scss`,
-  fontawesomeSass:    `./node_modules/font-awesome/scss`,
-  fontawesomeWebfont: `./node_modules/font-awesome/fonts/**.*`,
-};
-
-/* Tasks */
-
-gulp.task('default', ['compile-javascripts', 'compile-stylesheets']);
+gulp.task('default', ['compile-javascripts', 'compile-stylesheets'], productionRev);
 
 gulp.task('watch', ['watch-javascripts', 'watch-stylesheets']);
 
-/* Javascripts */
+gulp.task('compile-javascripts', js);
 
-const rollupConfig = {
-  plugins: [buble()],
-  entry: javascripts.application,
-  format: 'iife',
-  sourceMap: development()
-};
+gulp.task('watch-javascripts', () => gulp.watch(javascripts.all, ['compile-javascripts']));
 
-function applicationJavascripts() {
-  return rollup(rollupConfig)
-      .pipe(source('application.js'))
-      .pipe(buffer())
-      .pipe(development(sourcemaps.init({ loadMaps: true })))
-      .pipe(development(sourcemaps.write()));
-}
+gulp.task('compile-stylesheets', css);
 
-function vendorJavascripts() {
-  return gulp.src(javascripts.vendor);
-}
-
-gulp.task('compile-javascripts', () => {
-  return stream.merge(vendorJavascripts(), applicationJavascripts())
-      .pipe(concat('application.js'))
-      .pipe(production(uglify()))
-      .pipe(production(rev()))
-      .pipe(gulp.dest(assets.dest))
-
-      .pipe(production(rev.manifest(...assets.manifest)))
-      .pipe(production(gulp.dest(assets.dest)));
-});
-
-gulp.task('watch-javascripts', () => {
-  gulp.watch(javascripts.all, ['compile-javascripts']);
-});
-
-/* Stylesheets */
-
-const autoprefixerConfig = {
-  browsers: ['last 2 versions'],
-  cascade: false
-};
-
-const sassConfig = {
-  indentedSyntax: false,
-  errLogToConsole: true,
-  includePaths: [stylesheets.fontawesomeSass]
-};
-
-gulp.task('compile-stylesheets', ['compile-font-awesome', 'compile-scss']);
-
-gulp.task('compile-font-awesome', () => {
-  return gulp.src(stylesheets.fontawesomeWebfont)
-      .pipe(gulp.dest(assets.fontDest));
-});
-
-gulp.task('compile-scss', () => {
-  return stream.merge(gulp.src(stylesheets.vendor),
-                      gulp.src(stylesheets.application))
-      .pipe(concat('application.css'))
-      .pipe(development(sourcemaps.init()))
-      .pipe(sass(sassConfig))
-      .pipe(autoprefixer(autoprefixerConfig))
-      .pipe(development(sourcemaps.write()))
-      .pipe(production(rev()))
-      .pipe(gulp.dest(assets.dest))
-
-      .pipe(production(rev.manifest(...assets.tmpManifest)))
-      .pipe(production(gulp.dest(assets.dest)));
-});
-
-gulp.task('watch-stylesheets', () => {
-  gulp.watch(stylesheets.all, ['compile-stylesheets']);
-});
+gulp.task('watch-stylesheets', () => gulp.watch(stylesheets.all, ['compile-stylesheets']));
