@@ -8,7 +8,7 @@ class Assets
     if Rails.env.development? || Rails.env.test?
       "/assets/#{name}"
     else
-      "/assets/#{manifest[name]}"
+      "#{Settings[:asset_root]}/assets/#{manifest[name]}"
     end
   end
 

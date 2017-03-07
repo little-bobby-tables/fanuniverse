@@ -13,10 +13,8 @@ import cleancss from 'gulp-clean-css';
 import { production, development, dest, stylesheets } from './gulp_manifest.babel';
 
 export default function() {
-  const css   = compile(),
-        fonts = fontawesome();
-
-  return stream.merge(css, fonts);
+  return stream.merge(application(),
+                      fontawesome());
 }
 
 function fontawesome() {
@@ -24,7 +22,7 @@ function fontawesome() {
       .pipe(gulp.dest(dest.fonts));
 }
 
-function compile() {
+function application() {
   return stream.merge(gulp.src(stylesheets.vendor),
                       gulp.src(stylesheets.application))
       .pipe(concat('application.css'))

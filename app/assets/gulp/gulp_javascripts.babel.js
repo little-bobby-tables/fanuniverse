@@ -17,7 +17,7 @@ import { production, development, dest, javascripts } from './gulp_manifest.babe
 
 export default function() {
   return stream.merge(vendor(),
-      application())
+                      application())
       .pipe(concat('application.js'))
       .pipe(production(uglify()))
       .pipe(gulp.dest(dest.assets));
