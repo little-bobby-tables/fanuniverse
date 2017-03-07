@@ -8,8 +8,9 @@ import concat from 'gulp-concat';
 
 import sass from 'gulp-sass';
 import autoprefixer from 'gulp-autoprefixer';
+import cleancss from 'gulp-clean-css';
 
-import { development, dest, stylesheets } from './gulp_manifest.babel';
+import { production, development, dest, stylesheets } from './gulp_manifest.babel';
 
 export default function() {
   const css   = compile(),
@@ -37,6 +38,17 @@ function compile() {
           browsers: ['last 2 versions'],
           cascade: false
         }))
+      .pipe(production(cleancss({
+          level: {
+            1: {
+              tidySelectors: false,
+              tidyBlockScopes: false
+            },
+            2: {
+              all: false
+            }
+          }
+        })))
       .pipe(development(sourcemaps.write()))
       .pipe(gulp.dest(dest.assets));
 }
