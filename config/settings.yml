@@ -4,7 +4,8 @@ default:
 
 development:
   image_root: /uploads/images
+  asset_root: /assets
 
 production:
   image_root: //cookielessdomain.com/images
-  asset_root: //cookielessdomain.com/
+  asset_root: //cookielessdomain.com/assets

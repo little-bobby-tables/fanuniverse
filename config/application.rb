@@ -13,6 +13,7 @@ module StevenOnRails
     config.autoload_paths << Rails.root.join('app', 'models', 'validators')
 
     config.assets.enabled = false
+    config.assets.compile = false
 
     Slim::Engine.set_options format: :html
 
