@@ -2,6 +2,7 @@
 
 import gulp from 'gulp';
 import rev from 'gulp-rev';
+import gzip from 'gulp-gzip';
 
 import environments from 'gulp-environments';
 
@@ -39,13 +40,25 @@ export const stylesheets = {
   fontawesomeWebfont: `./node_modules/font-awesome/fonts/**.*`,
 };
 
-/* Unfortunately, there is no way to skip temporary files —
- * see https://github.com/sindresorhus/gulp-rev/issues/205 and similar issues. */
-export function productionRev() {
-  return gulp.src([`${dest.assets}/application.js`,
-                   `${dest.assets}/application.css`])
-      .pipe(production(rev()))
-      .pipe(production(gulp.dest(dest.assets)))
-      .pipe(production(rev.manifest(dest.manifest, { base: dest.assets })))
+/* Adds digests to asset files and Gzips them when running in production environment. */
+export function pack() {
+  const revStream =
+      gulp.src([`${dest.assets}/application.js`,
+                `${dest.assets}/application.css`])
+        .pipe(production(rev()))
+        .pipe(production(gulp.dest(dest.assets)));
+
+  revStream
+      .pipe(production(gzip({
+          gzipOptions: {
+            level: 9,
+            memLevel: 9
+          }
+        })))
       .pipe(production(gulp.dest(dest.assets)));
+
+  return revStream
+      .pipe(production(rev.manifest(dest.manifest, { base: dest.assets })))
+      .pipe(production(gulp.dest(dest.assets)))
+
 }

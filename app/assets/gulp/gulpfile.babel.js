@@ -17,9 +17,9 @@ import gulp from 'gulp';
 import js from './gulp_javascripts.babel';
 import css from './gulp_stylesheets.babel';
 
-import { javascripts, stylesheets, productionRev } from './gulp_manifest.babel';
+import { javascripts, stylesheets, pack } from './gulp_manifest.babel';
 
-gulp.task('default', ['compile-javascripts', 'compile-stylesheets'], productionRev);
+gulp.task('default', ['compile-javascripts', 'compile-stylesheets'], pack);
 
 gulp.task('watch', ['watch-javascripts', 'watch-stylesheets']);
 
