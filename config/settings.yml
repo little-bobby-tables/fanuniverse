@@ -1,0 +1,10 @@
+default:
+  image_root: /
+  asset_root: /
+
+development:
+  image_root: /uploads/images
+
+production:
+  image_root: //cookielessdomain.com/images
+  asset_root: //cookielessdomain.com/

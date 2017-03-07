@@ -4,12 +4,9 @@ require 'yaml'
 # It supports environment-specific configuration (e.g. production.yml) —
 # think config gem, only inherently smaller.
 
-def settings_path(level = 'application')
-  Rails.root.join('config', 'settings', "#{level}.yml")
-end
+settings_file = YAML.load_file Rails.root.join('config', 'settings.yml')
 
-Settings = YAML.load_file(settings_path).tap do |settings|
-  if File.exists? settings_path(Rails.env)
-    settings.merge! YAML.load_file(settings_path(Rails.env))
-  end
-end
+default       = settings_file['default'] || {}
+env_overrides = settings_file[Rails.env] || {}
+
+Settings = default.merge(env_overrides).symbolize_keys
