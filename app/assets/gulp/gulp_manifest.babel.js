@@ -44,8 +44,8 @@ export const stylesheets = {
 export function productionRev() {
   return gulp.src([`${dest.assets}/application.js`,
                    `${dest.assets}/application.css`])
-      .pipe(rev())
-      .pipe(gulp.dest(dest.assets))
-      .pipe(rev.manifest())
-      .pipe(gulp.dest(dest.assets));
+      .pipe(production(rev()))
+      .pipe(production(gulp.dest(dest.assets)))
+      .pipe(production(rev.manifest(dest.manifest, { base: dest.assets })))
+      .pipe(production(gulp.dest(dest.assets)));
 }

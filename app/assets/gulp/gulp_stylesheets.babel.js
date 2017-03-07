@@ -42,7 +42,8 @@ function compile() {
           level: {
             1: {
               tidySelectors: false,
-              tidyBlockScopes: false
+              tidyBlockScopes: false,
+              specialComments: 0
             },
             2: {
               all: false
