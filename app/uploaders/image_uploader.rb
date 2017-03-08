@@ -13,9 +13,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def store_dir
     if Rails.env.test?
-      "test/uploads/images/#{model.id}"
+      "test/images/#{model.id}"
     else
-      "uploads/images/#{model.id}"
+      "system/images/#{model.id}"
     end
   end
 

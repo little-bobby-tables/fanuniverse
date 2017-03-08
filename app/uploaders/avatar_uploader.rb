@@ -4,7 +4,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # TODO: validate width & height
 
   def store_dir
-    'uploads/avatars'
+    'system/avatars'
   end
 
   def filename

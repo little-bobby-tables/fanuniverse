@@ -3,7 +3,7 @@ default:
   asset_root: /
 
 development:
-  image_root: /uploads/images
+  image_root: /system/images
   asset_root: /assets
 
 production:
