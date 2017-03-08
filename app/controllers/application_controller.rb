@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: -> { render_40x(:not_found) }
   rescue_from Corral::AccessDenied, with: -> { render_40x(:forbidden) }
 
+  def render_40x(status = :not_found)
+    use_content_security_policy_named_append :error_page
+
+    respond_to do |format|
+      format.html { render file: 'public/404.html', layout: false, status: status }
+      format.all { head status }
+    end
+  end
+
   protected
 
   def paginate(resource)
@@ -19,16 +28,5 @@ class ApplicationController < ActionController::Base
   def set_permitted_parameters_for_devise
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: User::ALLOWED_PARAMETERS)
-  end
-
-  private
-
-  def render_40x(status)
-    use_content_security_policy_named_append :error_page
-
-    respond_to do |format|
-      format.html { render file: 'public/404.html', layout: false, status: status }
-      format.all { head status }
-    end
   end
 end

@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     get 'image_scraping/scrape'
     post 'stars/toggle'
   end
+
+  match '*catch_404', to: 'application#render_40x', via: :all
 end
