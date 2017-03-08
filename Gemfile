@@ -5,6 +5,7 @@ gem 'openssl'
 # Server
 gem 'rails', '~> 5.0.1'
 gem 'puma'
+gem 'secure_headers'
 # Database
 gem 'pg'
 gem 'postgres_ext', github: 'little-bobby-tables/postgres_ext', branch: 'rails-5'

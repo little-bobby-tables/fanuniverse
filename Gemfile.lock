@@ -224,6 +224,8 @@ GEM
     request_store (1.3.2)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    secure_headers (3.6.1)
+      useragent
     sidekiq (5.0.0.beta2)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -250,6 +252,7 @@ GEM
     tilt (2.0.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    useragent (0.16.8)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -280,6 +283,7 @@ DEPENDENCIES
   rails-controller-testing
   redis
   redis-rails
+  secure_headers
   sidekiq (= 5.0.0.beta2)
   slim-rails!
   spring
