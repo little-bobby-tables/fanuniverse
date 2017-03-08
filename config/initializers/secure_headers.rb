@@ -9,6 +9,7 @@ SecureHeaders::Configuration.default do |config|
 
     frame_ancestors: %w('none'),
 
+    preserve_schemes: true,
     block_all_mixed_content: true
   }
 
