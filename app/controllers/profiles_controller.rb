@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
   private
 
   def load_user_and_profile
-    @user = User.where(name: params[:name]).eager_load(:profile).first or render_404
+    @user = User.where(name: params[:name]).eager_load(:profile).first or render_40x(:not_found)
   end
 
   def load_profile

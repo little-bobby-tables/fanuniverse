@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
   before_action :set_permitted_parameters_for_devise, if: :devise_controller?
 
-  rescue_from ActiveRecord::RecordNotFound, with: -> { render_404 }
-  rescue_from Corral::AccessDenied, with: -> { render_404 api_status: :forbidden }
+  rescue_from ActiveRecord::RecordNotFound, with: -> { render_40x(:not_found) }
+  rescue_from Corral::AccessDenied, with: -> { render_40x(:forbidden) }
 
   protected
 
@@ -23,10 +23,12 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def render_404(api_status: :not_found)
+  def render_40x(status)
+    use_content_security_policy_named_append :error_page
+
     respond_to do |format|
-      format.html { render file: 'public/404.html', layout: false, status: :not_found }
-      format.all { head api_status }
+      format.html { render file: 'public/404.html', layout: false, status: status }
+      format.all { head status }
     end
   end
 end
