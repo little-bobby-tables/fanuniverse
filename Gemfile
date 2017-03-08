@@ -25,6 +25,7 @@ gem 'sidekiq', '5.0.0.beta2'
 gem 'devise'
 gem 'corral_acl', require: 'corral', github: 'deliciousblackink/Corral', branch: 'override-by-deny'
 # Front-end
+gem 'camo'
 gem 'slim-rails', github: 'slim-template/slim-rails'
 
 # Use Capistrano for deployment
