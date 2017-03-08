@@ -9,8 +9,8 @@ module StevenOnRails
   class Application < Rails::Application
     config.active_job.queue_adapter = :sidekiq
 
-    config.autoload_paths << Rails.root.join('lib')
-    config.autoload_paths << Rails.root.join('app', 'models', 'validators')
+    config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('app', 'models', 'validators')
 
     config.assets.enabled = false
     config.assets.compile = false
