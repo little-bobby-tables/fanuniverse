@@ -10,7 +10,9 @@ class Image < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  validates :image, presence: { message: 'file should be present.' }
   validates :source, format: { with: URI.regexp(%w(http https)), message: 'should be a valid URL.' }
+
   validates_with ImageTagValidator, if: proc { |m| m.new_record? || m.tag_names_changed? }
 
   before_save :apply_tag_change, if: :tag_names_changed?
