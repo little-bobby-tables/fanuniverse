@@ -14,11 +14,11 @@ class CommentsController < ApplicationController
 
     if @comment.save
       params[:comment_id] = @comment.id
-    else
-      flash[:error] = 'Your comment could not be posted.'
-    end
 
-    comment_listing @commentable.comments
+      comment_listing @commentable.comments
+    else
+      render partial: 'layouts/errors', locals: { model: @comment }, layout: false, status: :unprocessable_entity
+    end
   end
 
   private
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     comments = paginate(comments)
     respond_to do |format|
       format.html { render partial: 'comments/list', layout: false, locals: { comments: comments } }
-      format.json { render json: comments  }
+      format.json { render json: comments }
     end
   end
 

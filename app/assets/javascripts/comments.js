@@ -7,7 +7,7 @@ export default function() {
   if (commentable) {
     load(commentable, commentable.getAttribute('data-commentable-url'));
     pagination(commentable);
-    ajaxPosting(commentable);
+    setupAjax(commentable);
   }
 }
 
@@ -32,26 +32,33 @@ function pagination(container) {
   });
 }
 
-function ajaxPosting(container) {
+function setupAjax(container) {
   /* Form submission is handled by rails-ujs, we just need to display the comments we get as a response. */
   document.addEventListener('ajax:success', (e) => {
-    if (e.target.id === 'js-commentable-form') commentPosted(container, e.detail);
+    if (e.target.id === 'js-commentable-form') showPosted(container, e.detail);
+  });
+  document.addEventListener('ajax:error', (e) => {
+    if (e.target.id === 'js-commentable-form') showError(e.detail);
   });
 }
 
-function commentPosted(container, response) {
-  const commentEditArea = document.querySelector('#js-commentable-form textarea'),
-        ajaxRequestOk   = response[2].status === 200,
-        responseBody    = response[2].responseText;
+function showPosted(container, response) {
+  const comments      = response[2].responseText,
+        editArea      = document.querySelector('#js-commentable-form textarea'),
+        previousError = document.querySelector('.js-model-errors');
 
-  commentEditArea.value = '';
+  editArea.value = '';
+  previousError && previousError.remove();
 
-  if (ajaxRequestOk) {
-    display(container, responseBody);
-  }
-  else {
-    /* Error message will be displayed on reload at the top of the page (flash). */
-    window.location.reload();
-    window.scrollTo(0, 0);
-  }
+  display(container, comments);
+}
+
+function showError(response) {
+  const errorHtml     = response[2].status === 422 && response[2].responseText,
+        container     = document.getElementById('js-commentable-form').parentNode,
+        previousError = container.querySelector('.js-model-errors');
+
+  previousError && previousError.remove();
+
+  errorHtml && container.insertAdjacentHTML('afterbegin', errorHtml);
 }

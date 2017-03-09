@@ -1,6 +1,6 @@
 / Accepts :model
 - if model.errors.any?
-  .block#errors
+  .block.js-model-errors
     h2
       ' Oops!
       - if model.errors.count == 1

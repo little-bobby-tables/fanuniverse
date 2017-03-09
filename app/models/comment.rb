@@ -8,5 +8,5 @@ class Comment < ApplicationRecord
 
   has_many :stars, as: :starrable, validate: false
 
-  validates :commentable_type, inclusion: { in: COMMENTABLE }
+  validates :body, presence: { message: 'should not be blank.' }
 end
