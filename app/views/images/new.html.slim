@@ -10,7 +10,7 @@ h1 Suggest an image
 
     .js-upload__file
       h3 Link an image page or a blog post
-      = text_field_tag :fetch_image, '', class: 'input input--wide js-upload__url', placeholder: 'http://artist.tumblr.com/post/1'
+      = text_field_tag :fetch_image, '', class: 'input input--wide js-upload__url', placeholder: 'http://artist.tumblr.com/post/1', autofocus: true
       a.button.button--inline.js-upload__fetch data-disable-with="Loading…" Fetch
       h3 Alternatively, upload a file from your computer
       p You'll need to specify some things manually.
