@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :image do
-    tags 'safe, test, test image'
+    tags 'artist:somebody, test, test image'
     association :suggested_by, factory: :user
 
     factory :image_small_file do

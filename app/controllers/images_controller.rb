@@ -16,6 +16,8 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
+
+    use_content_security_policy_named_append :base64_image_preview
   end
 
   def edit

@@ -9,7 +9,7 @@ h2
     = f.label :remove_avatar
     = f.check_box :remove_avatar
   - else
-    p Your avatar must be safe-for-work and have a maximum size of 300kB.
+    p Your avatar must <strong>not</strong> contain mature content and should have a maximum size of 300kB.
     = render partial: 'layouts/image_upload', locals: { form: f, field: :avatar }
 
   h3 Email and password

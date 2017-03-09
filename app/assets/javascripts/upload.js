@@ -1,9 +1,9 @@
 export default function() {
   const form = document.querySelector('.js-upload');
-  form && fileUpload(form) && tagHelpers(form);
+  form && setup(form);
 }
 
-function fileUpload(form) {
+function setup(form) {
   const reader = new FileReader();
 
   form.querySelector('.js-upload__fetch').addEventListener('click', scrapeUrl);
@@ -17,15 +17,7 @@ function fileUpload(form) {
   return true;
 }
 
-function tagHelpers(form) {
-  form.addEventListener('click', (e) => {
-    const tagLink = e.target && e.target.closest('[data-tag]');
-
-    tagLink && appendTag(tagLink.dataset.tag);
-  });
-}
-
-function scrapeUrl() {
+function scrapeUrl(e) {
   const url = document.querySelector('.js-upload__url').value;
 
   if (url) {
@@ -35,6 +27,7 @@ function scrapeUrl() {
         .then(response => response.json())
         .then(data => { insertScraped(data); proceedToSecondStep() });
   }
+  else e.stopPropagation();
 }
 
 function showImage(src) {
@@ -46,20 +39,13 @@ function showImage(src) {
 function insertScraped(data) {
   data.image_url     && (document.getElementById('image_remote_image_url').value = data.image_url);
   data.url           && (document.getElementById('image_source').value = data.url);
-  data.artist        && appendTag(`artist:${data.artist.toLowerCase()}`);
+  data.artist        && (document.getElementById('image_tags').value = `artist:${data.artist.toLowerCase()}, `);
   data.thumbnail_url && showImage(data.thumbnail_url);
 }
 
 function proceedToSecondStep() {
   document.querySelector('.js-upload__file').classList.add('hidden');
   document.querySelector('.js-upload__meta').classList.remove('hidden');
-}
 
-function appendTag(tag) {
-  const tagInput = document.getElementById('image_tags');
-
-  if (!tagInput.value || tagInput.value.endsWith(', ')) tagInput.value += `${tag}, `;
-  else tagInput.value += `, ${tag}, `;
-
-  tagInput.focus();
+  document.querySelector('#image_tags').focus();
 }

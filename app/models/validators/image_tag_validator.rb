@@ -1,16 +1,10 @@
 class ImageTagValidator < ActiveModel::Validator
   def validate(record)
-    if record.tag_names.size < 2
-      record.errors[:base] <<
-        'Please enter at least two tags.'
+    if record.tag_names.size < 3
+      record.errors[:base] << 'Please enter at least three tags.'
     end
-    if (record.tag_names & %w(safe nsfw)).none?
-      record.errors[:base] <<
-        'Please specify image rating (safe or nsfw).'
-    end
-    if (record.tag_names & %w(safe nsfw)).size > 1
-      record.errors[:base] <<
-        'An image cannot have safe and nsfw tags simultaneously.'
+    if record.tag_names.none? { |tag| tag.start_with? 'artist:' }
+      record.errors[:base] << 'Please include the artist name in tags (e.g. artist:somebody).'
     end
   end
 end

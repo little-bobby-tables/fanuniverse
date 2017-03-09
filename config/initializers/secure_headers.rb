@@ -32,3 +32,7 @@ end
 SecureHeaders::Configuration.named_append :error_page do
   { style_src:  %w('unsafe-inline') }
 end
+
+SecureHeaders::Configuration.named_append :base64_image_preview do
+  { img_src:  %w(data:) }
+end

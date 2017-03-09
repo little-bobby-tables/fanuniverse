@@ -12,7 +12,7 @@ class ImagesControllerTest < ActionController::TestCase
     sign_in @user
 
     assert_difference('Image.count') do
-      post :create, params: { image: { tags: 'safe, tag',
+      post :create, params: { image: { tags: 'artist:a, tag1, tag2',
                                        image: File.open(Rails.root.join('test', 'fixtures', 'images', 'small.jpg')) } }
     end
     @created_image = Image.last
@@ -56,27 +56,27 @@ class ImagesControllerTest < ActionController::TestCase
     sign_in @user
 
     # Tags are compared against tag_cache,
-    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2', tag_cache: @image.tags } }
-    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+    post :update, params: { id: @image.id, image: { tags: 'artist:a, tag1, tag2', tag_cache: @image.tags } }
+    assert_equal %w(artist:a tag1 tag2), @image.reload.tag_names.sort
 
     # ...which controls what tags are added
-    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2, tag3, tag4', tag_cache: 'safe, tag1, tag2, tag3' } }
-    assert_equal %w(safe tag1 tag2 tag4), @image.reload.tag_names.sort
+    post :update, params: { id: @image.id, image: { tags: 'artist:a, tag1, tag2, tag3, tag4', tag_cache: 'artist:a, tag1, tag2, tag3' } }
+    assert_equal %w(artist:a tag1 tag2 tag4), @image.reload.tag_names.sort
 
     # ...and removed
-    post :update, params: { id: @image.id, image: { tags: 'safe, tag1', tag_cache: 'safe, tag1, tag4' } }
-    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+    post :update, params: { id: @image.id, image: { tags: 'artist:a, tag1', tag_cache: 'artist:a, tag1, tag4' } }
+    assert_equal %w(artist:a tag1 tag2), @image.reload.tag_names.sort
 
     # ...and which is required
-    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2, tag3, tag4, tag5' } }
-    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+    post :update, params: { id: @image.id, image: { tags: 'artist:a, tag1, tag2, tag3, tag4, tag5' } }
+    assert_equal %w(artist:a tag1 tag2), @image.reload.tag_names.sort
   end
 
   test 'tag changes are recorded, including the user who performed them' do
     sign_in @user
 
-    post :update, params: { id: @image.id, image: { tags: 'safe, tag1, tag2', tag_cache: @image.tags } }
-    assert_equal %w(safe tag1 tag2), @image.reload.tag_names.sort
+    post :update, params: { id: @image.id, image: { tags: 'artist:a, tag1, tag2', tag_cache: @image.tags } }
+    assert_equal %w(artist:a tag1 tag2), @image.reload.tag_names.sort
 
     assert_equal @user.id, @image.versions.last.whodunnit.to_i
   end
