@@ -23,3 +23,5 @@ class ApplicationRecord < ActiveRecord::Base
 
   self.abstract_class = true
 end
+
+Elasticfusion.load_index_definitions
