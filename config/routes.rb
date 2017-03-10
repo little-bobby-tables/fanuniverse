@@ -21,5 +21,9 @@ Rails.application.routes.draw do
     post 'stars/toggle'
   end
 
+  PagesController::PAGES.each do |page|
+    get page => 'pages#show', page: page
+  end
+
   match '*catch_404', to: 'application#render_40x', via: :all
 end

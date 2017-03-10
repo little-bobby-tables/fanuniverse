@@ -1,0 +1,35 @@
+@import "common/global";
+
+.intro {
+  text-align: center;
+}
+
+.intro__title {
+  display: inline-block;
+  margin: 24px;
+  font-size: 48px;
+
+  font-family: $font_family_header;
+}
+
+.intro__splash {
+  padding: 32px;
+  font-size: 22px;
+
+  background: #121212;
+  color: white;
+}
+
+.intro__section {
+  margin: 0 auto;
+  max-width: 800px;
+  font-size: 18px;
+}
+
+.intro__text {
+  line-height: 28px;
+}
+
+.intro__tag-row {
+  margin-bottom: 4px;
+}
