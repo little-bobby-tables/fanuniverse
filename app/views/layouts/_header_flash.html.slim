@@ -1,0 +1,18 @@
+- if current_user.nil? && session[:splash_displays].to_i < 4
+  - if @page == 'intro'
+    - session[:splash_displays] = 4
+  - else
+    - session[:splash_displays] ||= 0
+    - session[:splash_displays] += 1
+    header.flashy-splash
+      ' Hey, this looks like your first visit to Fan Universe. Would you like a quick introduction?
+      a.flashy-splash__link href='/intro' Yup
+
+- if flash[:notice]
+  .flash = flash[:notice]
+- if flash[:alert]
+  .flash = flash[:alert]
+- if flash[:error]
+  .flash = flash[:error]
+- if flash[:warning]
+  .flash = flash[:warning]
