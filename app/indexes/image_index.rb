@@ -40,5 +40,11 @@ Elasticfusion.define Image do
     allowed_sort_fields [:stars, :created_at]
 
     default_sort created_at: :desc
+
+    scopes do
+      {
+        processed: -> { { term: { processed: true } } }
+      }
+    end
   end
 end

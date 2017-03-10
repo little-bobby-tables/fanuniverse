@@ -27,9 +27,9 @@ GIT
 
 GIT
   remote: git@github.com:little-bobby-tables/elasticfusion
-  revision: af4c726039583d1e56276e968cd9abc7f9ab3528
+  revision: b1460cbeb92e0fae92a024db5d0b2b495c3fa394
   specs:
-    elasticfusion (0.1.0)
+    elasticfusion (0.2.0)
       chronic
       elasticsearch
       elasticsearch-model
@@ -167,7 +167,7 @@ GEM
       request_store (~> 1.1)
     pg (0.19.0)
     pg_array_parser (0.0.9)
-    puma (3.7.1)
+    puma (3.8.0)
     rack (2.0.1)
     rack-protection (1.5.3)
       rack

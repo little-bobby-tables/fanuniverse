@@ -5,8 +5,8 @@ class ImagesController < ApplicationController
     sort_field = params.fetch :sf, :created_at
     sort_direction = params.fetch :sd, :desc
     @images = search_images do |s|
-      s.filter term: { processed: true }
       s.sort_by sort_field, sort_direction
+      s.scope :processed
     end
   rescue Elasticfusion::Search::SearchError => @search_error
   end
