@@ -3,7 +3,7 @@ article.comment.block.flex
     img.avatar__image src=comment.author.avatar.url
   .flex__grow.comment__body
     .comment__author
-      = comment.author.name
+      a.comment__author-link href=profile_path(comment.author.name) =comment.author.name
       - if comment.author.role == 'admin'
         span.role Site Administrator
     = comment.body
