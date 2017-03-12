@@ -8,10 +8,10 @@ SecureHeaders::Configuration.default do |config|
   config.csp = {
     default_src: %w('self'),
 
-    img_src: %w('self' https://fanuniversecontent.net https://camo.fanuniversecontent.net),
-    font_src: %w('self' https://fanuniversecontent.net https://fonts.gstatic.com),
-    style_src: %w('self' https://fanuniversecontent.net https://fonts.googleapis.com),
-    script_src: %w('self' https://fanuniversecontent.net),
+    img_src: %w('self' https://static.fanuniverse.org https://camo.fanuniverse.org),
+    font_src: %w('self' https://static.fanuniverse.org https://fonts.gstatic.com),
+    style_src: %w('self' https://static.fanuniverse.org https://fonts.googleapis.com),
+    script_src: %w('self' https://static.fanuniverse.org),
 
     frame_ancestors: %w('none'),
 
