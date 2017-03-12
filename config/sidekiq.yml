@@ -1,0 +1,3 @@
+:queues:
+  - indexing
+  - image_processing
