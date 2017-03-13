@@ -10,7 +10,7 @@
   font-size: $header_font_size;
   text-decoration: none;
 
-  color: black;
+  color: $black;
 }
 
 .header__link {
@@ -20,7 +20,7 @@
 }
 
 .header__link:hover {
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid $black;
 }
 
 .header__link--spacing-right {
@@ -41,7 +41,7 @@
   line-height: $header_height + 3px;
 
   background-size: 100% 200%;
-  background-image: linear-gradient(to bottom, white 50%, black 50%);
+  background-image: linear-gradient(to bottom, white 50%, $black 50%);
   transition: background-position ease 0.2s,
               color ease 0.2s;
 }
@@ -65,7 +65,7 @@
   line-height: 28px;
   text-align: left;
 
-  background: black;
+  background: $black;
   color: white;
 }
 
@@ -77,7 +77,7 @@
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 12px solid black;
+  border-bottom: 12px solid $black;
 }
 
 .flash {
@@ -89,7 +89,7 @@
 .flashy-splash {
   padding: 18px 12px;
   font-size: 24px;
-  background: black;
+  background: $black;
   color: white;
 }
 

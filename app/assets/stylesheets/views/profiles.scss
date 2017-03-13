@@ -5,7 +5,8 @@
   overflow: hidden;
   display: inline-flex;
   border-radius: 50%;
-  border: 1px solid black;
+  background: $black;
+  border: 1px solid $black;
 }
 
 .avatar__image {

@@ -1,3 +1,5 @@
+@import "global";
+
 .js-dropdown {
   position: relative;
   display: inline-block;
@@ -8,7 +10,7 @@
   box-sizing: border-box;
   z-index: 999;
 
-  background: black;
+  background: $black;
   color: white;
 }
 

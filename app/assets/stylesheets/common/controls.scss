@@ -49,7 +49,7 @@
 }
 
 .checkbox__default-input:checked + .checkbox__label > .checkbox__text::after {
-  color: black;
+  color: $black;
 }
 
 /* File upload */
