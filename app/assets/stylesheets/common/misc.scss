@@ -19,13 +19,13 @@
   @include bg-color-transition;
 
   &:hover {
-    background: #eaeaea;
+    background: $pagination_hover_color;
     color: $meta_hover_color;
   }
 }
 
 .current-page {
-  background: #7b518e;
+  background: $accent_color;
   color: white;
 }
 

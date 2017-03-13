@@ -118,14 +118,14 @@
 
 .meta--image-display {
   font-size: 18px;
-  color: #b8b8b8;
+  color: $meta_inverted_color;
 
   &.active {
     color: white;
   }
 
   &:hover {
-    color: #e0e0e0;
+    color: $meta_inverted_hover_color;
   }
 }
 

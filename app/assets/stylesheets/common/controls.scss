@@ -45,7 +45,7 @@
 }
 
 .checkbox__text:hover::before {
-  border: 1px solid #c3a1d2;
+  border: 1px solid $accent_focus_color;
 }
 
 .checkbox__default-input:checked + .checkbox__label > .checkbox__text::after {

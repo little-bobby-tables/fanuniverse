@@ -13,24 +13,24 @@
 
   @include bg-color-transition;
 
-  background: #7b518e;
+  background: $accent_color;
   color: white;
-  border: 1px solid #7b518e;
+  border: 1px solid $accent_color;
 
   &:hover {
-    background: #703a88;
-    border: 1px solid #703a88;
+    background: $accent_hover_color;
+    border: 1px solid $accent_hover_color;
   }
 }
 
 .button--secondary {
   background: white;
-  color: #7b518e;
+  color: $accent_color;
   border: 1px solid;
 
   &:hover {
-    background: #ece7ef;
-    color: #703a88;
+    background: $accent_light_hover_color;
+    color: $accent_hover_color;
   }
 }
 

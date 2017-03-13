@@ -9,15 +9,15 @@
 
   text-decoration: none;
 
-  color: #7b518e;
+  color: $accent_color;
   border: 1px solid;
   font-weight: bold;
 
   @include bg-color-transition;
 
   &:hover {
-    background: #ece7ef;
-    color: #703a88;
+    background: $accent_light_hover_color;
+    color: $accent_hover_color;
 
     cursor: pointer;
   }
