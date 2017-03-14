@@ -2,6 +2,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+Minitest.after_run do
+  FileUtils.rm_r Rails.root.join('public', 'test', 'images')
+end
+
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
 end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ImageProcessingJobTest < ActiveJob::TestCase
   test 'processes images' do
-    @image = create(:image_small_file)
+    @image = create(:image)
 
     refute @image.processed?
 
@@ -12,10 +12,10 @@ class ImageProcessingJobTest < ActiveJob::TestCase
   end
 
   test 'identifies image attributes' do
-    process! :image_small_file
+    process! :image
 
-    assert_equal 241, @image.reload.width
-    assert_equal 239, @image.height
+    assert_equal 200, @image.reload.width
+    assert_equal 198, @image.height
   end
 
   test 'generates image versions' do
@@ -28,7 +28,7 @@ class ImageProcessingJobTest < ActiveJob::TestCase
   end
 
   test 'creates symbolic links for versions larger than source' do
-    process! :image_small_file
+    process! :image
 
     path, ext = @image.image.file.try { |f| [File.dirname(f.path), f.extension] }
 
