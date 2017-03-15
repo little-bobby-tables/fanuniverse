@@ -1,7 +1,8 @@
 doctype html
 html
   head
-    title Steven Universe
+    title = [content_for(:page_title), 'Fan Universe, a Steven Universe fan site'].compact.join(' ∙ ')
+
     = csrf_meta_tags
 
     link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700|Sansita" rel="stylesheet"

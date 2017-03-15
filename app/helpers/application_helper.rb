@@ -1,6 +1,10 @@
 module ApplicationHelper
   $assets ||= Assets.new
 
+  def title(title)
+    content_for :page_title, title
+  end
+
   def wide_layout
     content_for :layout_class, 'layout--wide'
   end
