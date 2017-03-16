@@ -3,42 +3,44 @@
 - if @search_error.blank?
   - wide_layout
 
-  .grid-header.grid--loading.js-masonry-grid-header
-    - if params[:q].present?
-      h1 = "Searching for \"#{params[:q]}\""
-    - else
-      h1 Images
+  .js-grid-loading
 
-    .js-dropdown.dropdown--image-sort
-      - image_sort do |current, other_sorts|
-        a.js-dropdown__toggle
-          = current
-          span
-            i.fa.fa-caret-down<
-        .js-dropdown__content.hidden
-          - other_sorts.each do |(sf, sd), text|
-            a href=url_for(params.permit(:q).merge(sf: sf, sd: sd))
-              = text
+    .grid-header.js-masonry-grid-header
+      - if params[:q].present?
+        h1 = "Searching for \"#{params[:q]}\""
+      - else
+        h1 Images
 
-    - if @images.any?
-      = render partial: 'layouts/pagination', locals: { resources: @images }
-    - else
-      p No images found.
+      .js-dropdown.dropdown--image-sort
+        - image_sort do |current, other_sorts|
+          a.js-dropdown__toggle
+            = current
+            span
+              i.fa.fa-caret-down<
+          .js-dropdown__content.hidden
+            - other_sorts.each do |(sf, sd), text|
+              a href=url_for(params.permit(:q).merge(sf: sf, sd: sd))
+                = text
 
-  .grid.grid--loading.js-masonry-grid
-    - @images.each do |image|
-      .grid__item.block
-        a.meta data-starrable="Image" data-starrable-id=image.id title="Star this image!" href=(new_user_registration_path unless user_signed_in?)
-          i.fa.fa-star>
-          span.meta__count= image.star_count
-        a.meta href=image_path(image, anchor: 'comments')
-          i.fa.fa-comments>
-          span.meta__count= image.comment_count
-        a.image__link href=image_path(image)
-          img src=image.image.thumbnail_url title=image.tag_names.join(', ')
-        a.meta.meta--bottom href=image.source
-          i.fa.fa-retweet>
-          = image.short_source
+      - if @images.any?
+        = render partial: 'layouts/pagination', locals: { resources: @images }
+      - else
+        p No images found.
+
+    .grid.js-masonry-grid
+      - @images.each do |image|
+        .grid__item.block
+          a.meta data-starrable="Image" data-starrable-id=image.id title="Star this image!" href=(new_user_registration_path unless user_signed_in?)
+            i.fa.fa-star>
+            span.meta__count= image.star_count
+          a.meta href=image_path(image, anchor: 'comments')
+            i.fa.fa-comments>
+            span.meta__count= image.comment_count
+          a.image__link href=image_path(image) title=image.tag_names.join(', ')
+            img src=image.image.thumbnail_url
+          a.meta.meta--bottom href=image.source
+            i.fa.fa-retweet>
+            = image.short_source
 
   = stars_for @images
 
