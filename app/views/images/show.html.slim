@@ -16,11 +16,10 @@
           = @image.width
           | x
           = @image.height
-      img src=@image.image.preview_url
-      section
-        a.meta.meta--image-display.meta--bottom href=@image.source
+        a.meta.meta--image-display href=@image.source
           i.fa.fa-retweet>
           = @image.short_source
+      img src=@image.image.preview_url
     - else
       .image-display__processing
         h1
