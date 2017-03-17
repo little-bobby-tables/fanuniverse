@@ -11,7 +11,7 @@ SecureHeaders::Configuration.default do |config|
     img_src: %w('self' https://static.fanuniverse.org https://camo.fanuniverse.org),
     font_src: %w('self' https://static.fanuniverse.org https://fonts.gstatic.com),
     style_src: %w('self' https://static.fanuniverse.org https://fonts.googleapis.com),
-    script_src: %w('self' https://static.fanuniverse.org),
+    script_src: %w('self' https://static.fanuniverse.org https://www.google-analytics.com),
 
     frame_ancestors: %w('none'),
 

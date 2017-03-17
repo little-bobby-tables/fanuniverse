@@ -7,6 +7,8 @@ import dataevents from './dataevents';
 import dropdowns from './dropdowns';
 import masonry from './masonry';
 
+import ga from './googleanalytics';
+
 function load() {
   stars();
   upload();
@@ -16,6 +18,8 @@ function load() {
   dataevents();
   dropdowns();
   masonry();
+
+  ga();
 }
 
 if (document.readyState !== 'loading') load();

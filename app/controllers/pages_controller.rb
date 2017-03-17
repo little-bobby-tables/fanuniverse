@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  PAGES = %w(intro)
+  PAGES = %w(intro privacy)
 
   def show
     @page = params[:page]
