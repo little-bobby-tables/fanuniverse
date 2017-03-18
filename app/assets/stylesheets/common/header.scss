@@ -60,16 +60,16 @@
 .navbar__user-link {
   display: inline-flex;
   align-items: center;
+  height: $header_height;
 }
 
 .navbar__user-link {
-  height: $header_height;
-  padding: 0 8px;
-}
+   padding: 0 8px;
+ }
 
 .header__user-toggle {
   /* Compensate for .header__link having border-bottom set to 3px */
-  line-height: $header_height + 3px;
+  padding-bottom: 3px;
 
   background-size: 100% 200%;
   background-image: linear-gradient(to bottom, white 50%, $black 50%);
@@ -84,8 +84,7 @@
 }
 
 .header__user-toggle__avatar {
-  margin-left: 10px;
-  vertical-align: middle;
+  margin: 1px 0 0 10px;
   width: 34px;
   height: 34px;
 }
