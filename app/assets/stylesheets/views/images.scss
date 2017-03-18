@@ -18,6 +18,22 @@
 .grid__item {
   width: 300px;
   margin: 8px 8px 0 0;
+
+  /* Small screens — iPhone 5/SE */
+  @media (max-width: 340px) {
+    width: calc(100vw - 66px);
+    max-width: 300px;
+  }
+
+  /* Landscape orientation */
+  @media (min-width: 620px) and (max-width: 659px) {
+    width: 260px;
+  }
+
+  /* Landscape orientation — bigger screens */
+  @media (min-width: 660px) and (max-width: 700px) {
+    width: 280px;
+  }
 }
 
 .image__link {
