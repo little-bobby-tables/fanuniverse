@@ -5,6 +5,8 @@ html
 
     = csrf_meta_tags
 
+    meta name="viewport" content="width=device-width, initial-scale=1"
+
     link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700|Sansita" rel="stylesheet"
     link href=asset_path('application.css') rel="stylesheet" media="all"
 
@@ -16,6 +18,7 @@ html
     script src=asset_path('application.js')
   body
     include _header.html.slim
+    include _header_mobile.html.slim
     include _header_flash.html.slim
     main.layout class=(content_for(:layout_class) || 'layout--narrow')
       = yield

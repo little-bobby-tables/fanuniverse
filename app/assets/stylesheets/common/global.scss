@@ -16,6 +16,8 @@ $meta_inverted_hover_color: #e0e0e0;
 $border_color: #e6e6e6;
 $page_background: #fcfcfc;
 
+$burger_color: #282828;
+
 $footer_color: #545454;
 
 $pagination_hover_color: #eaeaea;
@@ -35,6 +37,8 @@ $limited_layout_width: 980px;
 $medium_layout_width: 1330px;
 $layout_side_margin: 24px;
 
+$desktop_width: 960px;
+
 /* Fonts */
 
 $font_family_base: 'Raleway', sans-serif;
@@ -49,4 +53,16 @@ $font_family_header: 'Sansita', sans-serif;
 @mixin bg-color-transition {
   transition: background 0.1s ease-in-out,
               color 0.1s ease-in-out;
+}
+
+@mixin mobile {
+  @media (max-width: $desktop_width - 1px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop_width) {
+    @content;
+  }
 }

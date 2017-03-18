@@ -1,0 +1,19 @@
+header.navbar.flex
+  .flex__main
+    a.navbar__link data-click-toggle=".burger" data-toggle-class="open"
+      i.fa.fa-bars
+    a.navbar__link href='/' Fan Universe
+  .flex__right
+    - if user_signed_in?
+      a.navbar__link href=profile_path(current_user)
+        .avatar
+          img.avatar__image src=current_user.avatar.url
+    - else
+      a.navbar__link href=new_user_session_path
+        i.fa.fa-sign-in
+.burger
+  a.burger__link href="/images/new" Suggest an image
+  - if user_signed_in?
+    a.burger__link href=destroy_user_session_path data-method="delete"
+      i.fa.fa-fw.fa-sign-out>
+      | Sign out

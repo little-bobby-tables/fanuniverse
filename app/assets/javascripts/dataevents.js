@@ -10,8 +10,17 @@ export default function() {
 }
 
 const actions = {
-  toggle(element, targetSelector) { document.querySelector(targetSelector).classList.toggle('hidden'); },
-  /* show and hide allow a single link to toggle multiple elements. */
-  show(element, targetSelector) { document.querySelector(targetSelector).classList.remove('hidden'); },
-  hide(element, targetSelector) { document.querySelector(targetSelector).classList.add('hidden'); }
+  toggle(element, targetSelector) {
+    const toggleClass = element.getAttribute('data-toggle-class') || 'hidden';
+
+    document.querySelector(targetSelector).classList.toggle(toggleClass);
+  },
+
+  show(element, targetSelector) {
+    document.querySelector(targetSelector).classList.remove('hidden');
+  },
+
+  hide(element, targetSelector) {
+    document.querySelector(targetSelector).classList.add('hidden');
+  }
 };
