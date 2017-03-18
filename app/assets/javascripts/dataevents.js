@@ -4,7 +4,9 @@ export default function() {
       const target = e.target && e.target.closest(`[data-click-${action}]`),
             data   = target && target.getAttribute(`data-click-${action}`);
 
-      target && actions[action](target, data);
+      /* preventDefault unless the action returns true */
+      target && (actions[action](target, data) ||
+                 e.preventDefault());
     });
   });
 }
