@@ -886,6 +886,10 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
+"ecma-proposal-object-values-entries@https://github.com/tc39/proposal-object-values-entries.git":
+  version "0.0.0"
+  resolved "https://github.com/tc39/proposal-object-values-entries.git#1be53c9bab75607e24159c6921d666cd9cdbdb43"
+
 electron-to-chromium@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.2.5.tgz#d373727228843dfd8466c276089f13b40927a952"

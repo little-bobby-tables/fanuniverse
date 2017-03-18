@@ -8,29 +8,39 @@
   .navbar { display: none !important; }
 }
 
-.header {
+.header,
+.navbar,
+.burger {
+  font-family: $font_family_header;
+}
+
+.header,
+.navbar {
   border-bottom: 1px solid $border_color;
   background: white;
 }
 
-.navbar {
-  background: $black;
+.header__link,
+.navbar__link {
+  display: inline-block;
+}
+
+.burger__link {
+  display: block;
 }
 
 .header__link, .header__user-toggle,
-.navbar__link, .burger__link {
+.navbar__link,
+.burger__link {
   padding: 0 $header_spacing;
   font-size: $header_font_size;
   text-decoration: none;
 }
 
 .header__link,
-.navbar__link, .burger__link {
-  display: inline-block;
+.navbar__link,
+.burger__link {
   line-height: $header_height;
-}
-
-.header__link, .header__user-toggle {
   color: $black;
 }
 
@@ -40,16 +50,6 @@
   &:hover {
     border-bottom: 3px solid $black;
   }
-}
-
-.navbar__link {
-  color: white;
-}
-
-.burger__link {
-  display: block;
-
-  color: white;
 }
 
 .header__link--spacing-right {
@@ -109,6 +109,48 @@
   border-bottom: 12px solid $black;
 }
 
+.burger {
+  position: fixed;
+  overflow: hidden;
+  visibility: hidden;
+
+  left: 0;
+  top: $header_height;
+  height: calc(100% - #{$header_height});
+  width: 100%;
+  z-index: 1;
+
+  transition: background 0.3s, visibility 0.3s;
+
+  &.open {
+    visibility: visible;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.burger__menu {
+  overflow: auto;
+  height: 100%;
+  width: 200px;
+
+  border-top: 1px solid $border_color;
+  background: white;
+
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.burger.open > .burger__menu {
+  transform: translateX(0%);
+}
+
+.burger__divider {
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: #e6e6e6;
+}
+
 .flash {
   padding: 8px 12px;
   background: white;
@@ -124,24 +166,4 @@
 
 .flashy-splash__link {
   color: white;
-}
-
-.burger {
-  position: fixed;
-  overflow-x: hidden;
-  top: $header_height;
-  left: 0;
-  height: 100%;
-  width: 200px;
-  z-index: 1;
-
-  background: $burger_color;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-
-  font-family: $font_family_header;
-}
-
-.burger.open {
-  transform: translateX(0%);
 }

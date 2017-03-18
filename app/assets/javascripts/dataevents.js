@@ -10,17 +10,24 @@ export default function() {
 }
 
 const actions = {
-  toggle(element, targetSelector) {
-    const toggleClass = element.getAttribute('data-toggle-class') || 'hidden';
+  toggle(element, data) {
+    const set = data.startsWith('{') && JSON.parse(data);
 
-    document.querySelector(targetSelector).classList.toggle(toggleClass);
+    if (set) {
+      Object.entries(set).forEach(([selector, cls]) => {
+        document.querySelector(selector).classList.toggle(cls);
+      });
+    }
+    else {
+      document.querySelector(data).classList.toggle('.hidden');
+    }
   },
 
-  show(element, targetSelector) {
-    document.querySelector(targetSelector).classList.remove('hidden');
+  show(element, data) {
+    document.querySelector(data).classList.remove('hidden');
   },
 
-  hide(element, targetSelector) {
-    document.querySelector(targetSelector).classList.add('hidden');
+  hide(element, data) {
+    document.querySelector(data).classList.add('hidden');
   }
 };

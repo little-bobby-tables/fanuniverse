@@ -17,6 +17,10 @@
 @import "views/profiles";
 @import "views/comments";
 
+.no-overflow {
+  overflow: hidden;
+}
+
 .hidden {
   display: none;
 }
