@@ -21,7 +21,7 @@ const actions = {
       });
     }
     else {
-      document.querySelector(data).classList.toggle('.hidden');
+      document.querySelector(data).classList.toggle('hidden');
     }
   },
 
