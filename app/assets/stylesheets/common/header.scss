@@ -35,11 +35,7 @@
   padding: 0 $header_spacing;
   font-size: $header_font_size;
   text-decoration: none;
-}
 
-.header__link,
-.navbar__link,
-.burger__link {
   line-height: $header_height;
   color: $black;
 }
@@ -60,12 +56,18 @@
   width: 30vw;
 }
 
-.header__user-toggle {
+.header__user-toggle,
+.navbar__user-link {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  vertical-align: bottom;
+}
 
+.navbar__user-link {
+  height: $header_height;
+  padding: 0 8px;
+}
+
+.header__user-toggle {
   /* Compensate for .header__link having border-bottom set to 3px */
   line-height: $header_height + 3px;
 
@@ -82,10 +84,15 @@
 }
 
 .header__user-toggle__avatar {
-  width: 34px;
-  height: 34px;
   margin-left: 10px;
   vertical-align: middle;
+  width: 34px;
+  height: 34px;
+}
+
+.navbar__user-link__avatar {
+  width: 30px;
+  height: 30px;
 }
 
 .header__user {

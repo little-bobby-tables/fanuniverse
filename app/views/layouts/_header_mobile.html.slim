@@ -5,8 +5,8 @@ header.navbar.flex
     a.navbar__link href='/' Fan Universe
   .flex__right
     - if user_signed_in?
-      a.navbar__link href=profile_path(current_user)
-        .avatar
+      a.navbar__user-link href=profile_path(current_user)
+        .avatar.navbar__user-link__avatar
           img.avatar__image src=current_user.avatar.url
     - else
       a.navbar__link href=new_user_session_path
