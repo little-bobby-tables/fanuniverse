@@ -6,7 +6,7 @@ export default function() {
   document.addEventListener('click', (e) => {
     const star = e.target && e.target.closest('[data-starrable]');
 
-    star && toggleStar(star);
+    star && toggleStar(star) && e.preventDefault();
   });
 }
 
@@ -33,6 +33,8 @@ function toggleStar(star) {
 
         setStarCount(star, data['stars']);
       });
+
+  return true;
 }
 
 function starElement(type, id) {

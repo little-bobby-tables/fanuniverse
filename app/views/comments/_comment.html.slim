@@ -10,7 +10,7 @@ article.comment.block.flex
     .comment__meta
       | posted
       =<> time_tag(comment.created_at)
-      a.meta.meta--inline data-starrable="Comment" data-starrable-id=comment.id title="Star this comment!" href=(new_user_registration_path unless user_signed_in?)
+      a.meta.meta--inline data-starrable="Comment" data-starrable-id=comment.id title="Star this comment!" href=(if user_signed_in? then '#' else new_user_registration_path end)
         i.fa.fa-star>
         span.meta__count
           = comment.star_count if comment.star_count > 0

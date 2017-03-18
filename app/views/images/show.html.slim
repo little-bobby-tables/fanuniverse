@@ -5,7 +5,7 @@
   .image-display__content
     - if @image.processed?
       section
-        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(new_user_registration_path unless user_signed_in?)
+        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
           i.fa.fa-star>
           span.meta__count= @image.star_count
         a.meta.meta--image-display href="#comments" title="View comments"

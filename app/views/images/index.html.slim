@@ -13,7 +13,7 @@
 
       .js-dropdown.dropdown--image-sort
         - image_sort do |current, other_sorts|
-          a.js-dropdown__toggle
+          a.js-dropdown__toggle href="#"
             = current
             span
               i.fa.fa-caret-down<
@@ -30,7 +30,7 @@
     .grid.js-masonry-grid
       - @images.each do |image|
         .grid__item.block
-          a.meta data-starrable="Image" data-starrable-id=image.id title="Star this image!" href=(new_user_registration_path unless user_signed_in?)
+          a.meta data-starrable="Image" data-starrable-id=image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
             i.fa.fa-star>
             span.meta__count= image.star_count
           a.meta href=image_path(image, anchor: 'comments')
