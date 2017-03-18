@@ -1,8 +1,17 @@
 header.navbar.flex
   .flex__main
+    / Burger toggle
     a.navbar__link href="#" data-click-toggle='{".burger":"open","body":"no-overflow"}'
       i.fa.fa-bars
-    a.navbar__link href='/' Fan Universe
+    / Search
+    a.navbar__link href="#" data-click-toggle='{"#navbar-home":"hidden",".navbar__search":"hidden"}' data-click-focus=".navbar__search"
+      i.fa.fa-search
+    = form_tag images_path, method: :get, class: 'inline-form' do
+      = text_field_tag :q, params[:q], class: 'input navbar__search hidden', placeholder: 'peridot, lapis lazuli'
+      button.hidden type="submit"
+    / Home link
+    a.navbar__link#navbar-home href='/' Fan Universe
+
   .flex__right
     - if user_signed_in?
       a.navbar__user-link href=profile_path(current_user)
@@ -11,6 +20,7 @@ header.navbar.flex
     - else
       a.navbar__link href=new_user_session_path
         i.fa.fa-sign-in
+
 .burger
   .burger__menu
     a.burger__link href="/images/new" Suggest an image

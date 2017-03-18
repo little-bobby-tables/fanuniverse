@@ -31,5 +31,9 @@ const actions = {
 
   hide(element, data) {
     document.querySelector(data).classList.add('hidden');
+  },
+
+  focus(element, data) {
+    document.querySelector(data).focus();
   }
 };
