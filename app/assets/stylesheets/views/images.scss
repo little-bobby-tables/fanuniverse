@@ -85,9 +85,14 @@
 
 .image-display__content {
   display: inline-block;
+}
 
-  > img {
-    max-width: 100%;
+.image-display__image {
+  max-width: 100%;
+  max-height: calc(100vh - 108px);
+
+  &.full {
+    max-height: 100%;
   }
 }
 

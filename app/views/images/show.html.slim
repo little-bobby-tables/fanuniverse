@@ -19,7 +19,7 @@
         a.meta.meta--image-display href=@image.source
           i.fa.fa-retweet>
           = @image.short_source
-      img src=@image.image.preview_url
+      img.image-display__image src=@image.image.preview_url data-click-toggle='{".image-display__image":"full"}'
     - else
       .image-display__processing
         h1

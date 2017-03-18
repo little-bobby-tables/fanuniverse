@@ -2,7 +2,7 @@
 class ImageProcessor
   VERSIONS = {
     'thumbnail' => 300,
-    'preview' => 1600
+    'preview' => 1280
   }.freeze
 
   def initialize(image_record)
