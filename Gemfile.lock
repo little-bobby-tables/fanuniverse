@@ -36,14 +36,6 @@ GIT
       elasticsearch-rails
       rails (>= 5.0)
 
-GIT
-  remote: git@github.com:little-bobby-tables/image_metadata_scraper
-  revision: ba34981c3384d0e1c45c61e956e2c1b14dc9b7ca
-  specs:
-    image_metadata_scraper (0.1.0)
-      activesupport
-      nokogiri
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -129,6 +121,9 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.5.5)
     i18n (0.8.1)
+    image_metadata_scraper (0.1.1)
+      activesupport
+      nokogiri
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -270,7 +265,7 @@ DEPENDENCIES
   elasticfusion!
   factory_girl_rails
   faker
-  image_metadata_scraper!
+  image_metadata_scraper
   kaminari
   listen (~> 3.0.5)
   mini_magick
