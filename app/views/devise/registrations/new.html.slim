@@ -11,16 +11,28 @@ p
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render partial: 'layouts/errors', locals: { model: resource }
 
-  = f.label :name, 'Username'
+  strong= f.label :name, 'Username'
   = f.text_field :name, class: 'input', autofocus: true
 
-  = f.label :email
+  p You can use letters, numbers, and hyphens. Spaces and other special characters are not allowed.
+
+  strong= f.label :email
   = f.email_field :email, class: 'input'
 
-  = f.label :password
+  p
+    ' You will use your email address to sign in.
+    | We will only contact you for administrative purposes (e.g. resetting a password).
+  p
+    ' For more information, please refer to our
+    a href="/privacy" Privacy Policy
+    | .
+
+  strong= f.label :password
   = f.password_field :password, class: 'input', autocomplete: 'off'
 
-  = f.label :password_confirmation
+  p Your password needs to have at least 8 characters.
+
+  strong= f.label :password_confirmation
   = f.password_field :password_confirmation, class: 'input', autocomplete: 'off'
 
   = f.submit 'Sign up', class: 'button'
