@@ -1,3 +1,5 @@
+import './utils/polyfills';
+
 import stars from './stars';
 import upload from './upload';
 import timeago from './timeago';
