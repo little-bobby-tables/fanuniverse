@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file contains ActiveRecord extensions.
 
 module ActiveRecordInstanceExtensions
@@ -12,7 +13,6 @@ module ActiveRecordInstanceExtensions
 end
 
 module ActiveRecordClassExtensions
-
 end
 
 class ApplicationRecord < ActiveRecord::Base

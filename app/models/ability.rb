@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Ability
   include Corral::Ability
 
@@ -11,7 +12,7 @@ class Ability
     can :view, Profile
   end
 
-  def allow_logged_in_user_actions(user)
+  def allow_logged_in_user_actions(_user)
     can :create, Image
     can :edit, Image
     can :comment_on, Image

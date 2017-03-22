@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Comment < ApplicationRecord
   COMMENTABLE = %w(Image Profile).freeze
 

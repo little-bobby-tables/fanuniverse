@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'test_helper'
 
 class ImagesControllerTest < ActionController::TestCase
@@ -61,7 +62,8 @@ class ImagesControllerTest < ActionController::TestCase
     assert_equal %w(artist:a tag1 tag2), @image.reload.tag_names.sort
 
     # ...which controls what tags are added
-    post :update, params: { id: @image.id, image: { tags: 'artist:a, tag1, tag2, tag3, tag4', tag_cache: 'artist:a, tag1, tag2, tag3' } }
+    post :update, params: { id: @image.id, image: { tags: 'artist:a, tag1, tag2, tag3, tag4',
+                                                    tag_cache: 'artist:a, tag1, tag2, tag3' } }
     assert_equal %w(artist:a tag1 tag2 tag4), @image.reload.tag_names.sort
 
     # ...and removed

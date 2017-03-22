@@ -4,7 +4,7 @@ module ImagesHelper
   IMAGE_SORTS = { %w(created_at desc) => 'Newest first',
                   %w(created_at asc) => 'Oldest first',
                   %w(stars desc) => 'Popular',
-                  %w(stars asc) => 'Undiscovered' }
+                  %w(stars asc) => 'Undiscovered' }.freeze
 
   def image_sort
     field = params[:sf] || 'created_at'

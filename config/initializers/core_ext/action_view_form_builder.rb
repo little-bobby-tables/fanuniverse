@@ -12,7 +12,7 @@ class ActionView::Helpers::FormBuilder
 end
 
 module ActionView::Helpers::FormTagHelper
-  def styled_check_box_tag(name, text = name.to_s.humanize, value = "1", checked = false, checkbox_options = {})
+  def styled_check_box_tag(name, text = name.to_s.humanize, value = '1', checked = false, checkbox_options = {})
     content_tag(:div, class: 'checkbox') do
       checkbox_options[:class] = 'checkbox__default-input ' + checkbox_options[:class].to_s
       check_box_tag(name, value, checked, checkbox_options) +

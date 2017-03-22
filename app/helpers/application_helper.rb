@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ApplicationHelper
   $assets ||= Assets.new
 
@@ -37,7 +38,7 @@ module ApplicationHelper
   def comments_for(resource, id: nil)
     commentable = { commentable_id: resource.id, commentable_type: resource.model_name.name }
     attributes = { 'data-commentable-url': comments_path(commentable) }
-    attributes.merge! id: id if id
+    attributes[:id] = id if id
     content_tag 'div', '', attributes
   end
 end

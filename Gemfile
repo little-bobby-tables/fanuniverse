@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 # https://github.com/ruby/openssl/issues/103
@@ -17,9 +18,9 @@ gem 'paper_trail'
 gem 'kaminari' # Needs to be included before elasticfusion
 gem 'elasticfusion', git: 'git@github.com:little-bobby-tables/elasticfusion'
 # Image handling
-gem 'image_metadata_scraper'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'image_metadata_scraper'
 # Background processing
 gem 'sidekiq', '5.0.0.beta2'
 # User management
@@ -28,9 +29,6 @@ gem 'corral_acl', require: 'corral', github: 'deliciousblackink/Corral', branch:
 # Front-end
 gem 'camo'
 gem 'slim-rails', github: 'slim-template/slim-rails'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development do
   gem 'listen', '~> 3.0.5'

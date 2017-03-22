@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ProfilesController < ApplicationController
   before_action :load_user_and_profile, only: [:show]
   before_action :load_profile, only: [:edit, :update]

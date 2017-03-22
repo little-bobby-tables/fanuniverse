@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Image < ApplicationRecord
   belongs_to :suggested_by, class_name: 'User'
 

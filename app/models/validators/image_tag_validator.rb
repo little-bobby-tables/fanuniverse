@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ImageTagValidator < ActiveModel::Validator
   def validate(record)
     if record.tag_names.size < 3

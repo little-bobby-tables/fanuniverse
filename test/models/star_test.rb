@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'test_helper'
 
 class StarTest < ActiveSupport::TestCase
@@ -15,8 +16,8 @@ class StarTest < ActiveSupport::TestCase
   end
 
   test 'updates star count column on resource' do
-    assert_difference(->{ @starrable.reload.star_count }, 1) { toggle_star }
-    assert_difference(->{ @starrable.reload.star_count }, -1) { toggle_star }
+    assert_difference(-> { @starrable.reload.star_count }, 1) { toggle_star }
+    assert_difference(-> { @starrable.reload.star_count }, -1) { toggle_star }
   end
 
   def toggle_star(user: @user)

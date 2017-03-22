@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ImageProcessingJob < ApplicationJob
   queue_as :image_processing
 
