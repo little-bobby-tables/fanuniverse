@@ -9,7 +9,7 @@ SecureHeaders::Configuration.default do |config|
   config.csp = {
     default_src: %w('self'),
 
-    img_src: %w('self' https://static.fanuniverse.org https://camo.fanuniverse.org),
+    img_src: %w('self' https://static.fanuniverse.org https://camo.fanuniverse.org https://www.google-analytics.com),
     font_src: %w('self' https://static.fanuniverse.org https://fonts.gstatic.com),
     style_src: %w('self' https://static.fanuniverse.org https://fonts.googleapis.com),
     script_src: %w('self' https://static.fanuniverse.org https://www.google-analytics.com),
