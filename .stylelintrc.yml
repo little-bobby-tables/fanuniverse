@@ -1,0 +1,105 @@
+plugins:
+  - stylelint-scss
+
+rules:
+  # General style
+  indentation: [2, {
+    ignore: value
+  }]
+  max-empty-lines: 1
+  max-nesting-depth: 1
+  no-extra-semicolons: true
+  no-missing-end-of-source-newline: true
+
+  # Case
+  unit-case: lower
+  color-hex-case: lower
+  function-name-case: lower
+  value-keyword-case: lower
+  property-case: lower
+  selector-pseudo-class-case: lower
+  selector-pseudo-element-case: lower
+  selector-type-case: lower
+  media-feature-name-case: lower
+  at-rule-name-case: lower
+
+  # Autoprefixer
+  at-rule-no-vendor-prefix: true
+  value-no-vendor-prefix: true
+  property-no-vendor-prefix: true
+  selector-no-vendor-prefix: true
+
+  # Functions
+  function-calc-no-unspaced-operator: true
+  function-comma-space-after: always-single-line
+  function-comma-space-before: never
+
+  # Numbers
+  number-leading-zero: always
+  number-no-trailing-zeros: true
+
+  # Strings
+  string-quotes: double
+
+  # Units
+  length-zero-no-unit: true
+
+  # Value lists
+  value-list-comma-space-after: always-single-line
+  value-list-comma-space-before: never
+
+  # Declarations
+  declaration-colon-space-after: always-single-line
+  declaration-colon-space-before: never
+  declaration-bang-space-after: never
+  declaration-bang-space-before: always
+
+  declaration-block-semicolon-newline-after: always-multi-line
+  declaration-block-semicolon-newline-before: never-multi-line
+  declaration-block-semicolon-space-after: always-single-line
+  declaration-block-semicolon-space-before: never
+  declaration-block-single-line-max-declarations: 1
+  declaration-block-trailing-semicolon: always
+
+  # Blocks
+  block-closing-brace-empty-line-before: never
+  block-closing-brace-newline-after: always
+  block-closing-brace-newline-before: always-multi-line
+  block-no-empty: true
+  block-opening-brace-newline-after: always-multi-line
+  block-opening-brace-space-after: always-single-line
+  block-opening-brace-space-before: always
+
+  # Selectors
+  selector-attribute-brackets-space-inside: never
+  selector-attribute-operator-space-after: never
+  selector-attribute-operator-space-before: never
+  selector-attribute-quotes: always
+  selector-combinator-space-after: always
+  selector-combinator-space-before: always
+  selector-max-compound-selectors: 2
+  selector-pseudo-class-no-unknown: true
+  selector-pseudo-class-parentheses-space-inside: never
+  selector-pseudo-element-colon-notation: double
+  selector-pseudo-element-no-unknown: true
+  selector-max-empty-lines: 0
+
+  # @media
+  media-feature-colon-space-after: always
+  media-feature-colon-space-before: never
+  media-feature-parentheses-space-inside: never
+  media-feature-range-operator-space-after: always
+  media-feature-range-operator-space-before: always
+
+  # Comments
+  comment-no-empty: true
+  comment-whitespace-inside: always
+
+  # Sass
+  scss/at-mixin-pattern: ^[a-z0-9\-]+$
+  scss/dollar-variable-pattern: ^[a-z0-9_]+$
+  scss/dollar-variable-colon-space-after: always
+  scss/dollar-variable-colon-space-before: never
+  scss/declaration-nested-properties: never
+  scss/operator-no-unspaced: true
+  scss/selector-no-redundant-nesting-selector: true
