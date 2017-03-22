@@ -14,7 +14,7 @@ function masonryjs(grid) {
     itemSelector: '.grid__item',
     transitionDuration: '0.2s',
     isFitWidth: true,
-    initLayout: false /* delay layout() to bind the layoutComplete listener */
+    initLayout: false, /* delay layout() to bind the layoutComplete listener */
   });
 
   const header    = document.querySelector('.js-masonry-grid-header'),

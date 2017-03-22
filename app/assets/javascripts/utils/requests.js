@@ -13,7 +13,7 @@ function fetchJson(verb, endpoint, body) {
       'Content-Type': 'application/json',
       'X-CSRF-Token': window.Rails.csrfToken(),
     },
-  }).then(response => response.json());
+  }).then((response) => response.json());
 }
 
 export { post };

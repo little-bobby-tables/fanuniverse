@@ -7,7 +7,7 @@ export default function refreshTimeago() {
 
 export function timeago(target) {
   const dates = target.querySelectorAll('time');
-  [].slice.call(dates).forEach(date => format(date));
+  [].slice.call(dates).forEach((date) => format(date));
 }
 
 const locale = {
@@ -23,7 +23,7 @@ const locale = {
   month: 'about a month',
   months: '%d months',
   year: 'about a year',
-  years: '%d years'
+  years: '%d years',
 };
 
 function localize(string, num) {

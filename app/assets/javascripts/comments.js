@@ -13,8 +13,8 @@ export default function() {
 
 function load(container, endpoint) {
   fetch(endpoint, { credentials: 'same-origin' })
-      .then(response => response.text())
-      .then(comments => display(container, comments));
+      .then((response) => response.text())
+      .then((comments) => display(container, comments));
 }
 
 function display(container, comments) {
@@ -33,7 +33,8 @@ function pagination(container) {
 }
 
 function setupAjax(container) {
-  /* Form submission is handled by rails-ujs, we just need to display the comments we get as a response. */
+  /* Form submission is handled by rails-ujs,
+   * we just need to display the comments we get as a response. */
   document.addEventListener('ajax:success', (e) => {
     if (e.target.id === 'js-commentable-form') showPosted(container, e.detail);
   });

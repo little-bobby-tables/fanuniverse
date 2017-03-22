@@ -1,0 +1,147 @@
+env:
+  es6: true
+  browser: true
+
+parserOptions:
+  sourceType: module
+
+globals:
+  Masonry: false
+  imagesLoaded: false
+  ga: false
+
+rules:
+  # Indentation
+  indent: [error, 2, {
+    VariableDeclarator: {
+      var: 2,
+      let: 2,
+      const: 3
+    }
+  }]
+
+  # Code analysis
+  complexity: [warn, 6]
+  max-depth: [warn, 3]
+  max-statements: [warn, 14]
+  max-len: [warn, 90]
+  no-unused-vars: warn
+
+  # References
+  no-var: error
+  prefer-const: error
+  no-undef: error
+  no-with: error
+  no-void: error
+
+  # Variables
+  no-shadow-restricted-names: error
+  no-const-assign: error
+  no-delete-var: error
+
+  # Objects
+  no-new-object: error
+  object-shorthand: error
+  quote-props: [error, as-needed]
+
+  # Arrays
+  no-array-constructor: error
+  no-sparse-arrays: error
+
+  # Strings
+  quotes: [error, single]
+  no-useless-concat: error
+  prefer-template: error
+  template-curly-spacing: error
+  no-useless-escape: error
+
+  # Numbers
+  no-floating-decimal: error
+  no-octal: error
+
+  # Functions
+  no-caller: error
+  no-loop-func: error
+  prefer-rest-params: error
+  no-new-func: error
+  no-param-reassign: error
+  prefer-spread: error
+  prefer-arrow-callback: error
+  no-unreachable: error
+  no-useless-return: error
+  no-return-assign: [error, always]
+
+  # Modules
+  no-duplicate-imports: error
+
+  # Comparison
+  eqeqeq: [error, always]
+
+  # Control flow
+  no-ternary: error
+  no-cond-assign: error
+  no-else-return: error
+  no-labels: error
+
+  # Execution
+  no-eval: error
+  no-implied-eval: error
+
+  # Style
+  semi: [error, always]
+  camelcase: [error, {
+    properties: never
+  }]
+  new-cap: error
+  yoda: [error, never, {
+    exceptRange: true
+  }]
+  brace-style: [error, stroustrup]
+  comma-style: [error, last]
+  comma-dangle: [error, always-multiline]
+  dot-location: [error, property]
+  func-style: [error, declaration, {
+    allowArrowFunctions: true
+  }]
+  arrow-body-style: [error, as-needed, {
+    requireReturnForObjectLiteral: true
+  }]
+  arrow-parens: [error, always]
+  one-var-declaration-per-line: [error, always]
+
+  # Spacing
+  padded-blocks: [error, never]
+  space-before-function-paren: [error, {
+    anonymous: never,
+    named: never,
+    asyncArrow: always
+  }]
+  space-before-blocks: [error, always]
+  object-curly-spacing: [error, always]
+  keyword-spacing: [error, {
+    before: true,
+    after: true
+  }]
+  array-bracket-spacing: [error, never]
+  arrow-spacing: [error, {
+    before: true,
+    after: true
+  }]
+  comma-spacing: [error, {
+    before: false,
+    after: true
+  }]
+  semi-spacing: [error, {
+    before: false,
+    after: true
+  }]
+  space-in-parens: [error, never]
+  space-infix-ops: error
+  no-whitespace-before-property: error
+  newline-per-chained-call: [error, {
+    ignoreChainWithDepth: 2
+  }]
+  eol-last: [error, always]
+
+  # Comments
+  spaced-comment: [error, always]

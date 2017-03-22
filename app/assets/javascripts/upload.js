@@ -9,10 +9,12 @@ function setup(form) {
   form.querySelector('.js-upload__fetch').addEventListener('click', scrapeUrl);
 
   form.querySelector('.file-upload__input').addEventListener('change', (e) => {
-    e.target.files[0] && reader.readAsDataURL(e.target.files[0])
+    e.target.files[0] && reader.readAsDataURL(e.target.files[0]);
   });
 
-  reader.addEventListener('load', (e) => { showImage(e.target.result); proceedToSecondStep() });
+  reader.addEventListener('load', (e) => {
+    showImage(e.target.result); proceedToSecondStep(); 
+  });
 
   return true;
 }
@@ -24,8 +26,10 @@ function scrapeUrl(e) {
     document.querySelector('.js-upload__fetch').setAttribute('disabled', '');
 
     fetch(`/api/image_scraping/scrape?url=${url}`, { credentials: 'same-origin' })
-        .then(response => response.json())
-        .then(data => { insertScraped(data); proceedToSecondStep() });
+        .then((response) => response.json())
+        .then((data) => {
+          insertScraped(data); proceedToSecondStep(); 
+        });
   }
   else e.stopPropagation();
 }
@@ -37,9 +41,13 @@ function showImage(src) {
 }
 
 function insertScraped(data) {
-  data.image_url     && (document.getElementById('image_remote_image_url').value = data.image_url);
-  data.url           && (document.getElementById('image_source').value = data.url);
-  data.artist        && (document.getElementById('image_tags').value = `artist:${data.artist.toLowerCase()}, `);
+  data.image_url     && (document.getElementById('image_remote_image_url').value =
+                         data.image_url);
+  data.url           && (document.getElementById('image_source').value =
+                         data.url);
+  data.artist        && (document.getElementById('image_tags').value =
+                         `artist:${data.artist.toLowerCase()}, `);
+
   data.thumbnail_url && showImage(data.thumbnail_url);
 }
 

@@ -35,5 +35,5 @@ const actions = {
 
   focus(element, data) {
     document.querySelector(data).focus();
-  }
+  },
 };
