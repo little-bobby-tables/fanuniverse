@@ -24,7 +24,10 @@ SecureHeaders::Configuration.default do |config|
   config.x_content_type_options = 'nosniff'
   config.x_xss_protection       = '1; mode=block'
 
-  config.hsts                              = SecureHeaders::OPT_OUT
+  if Rails.env.production?
+    config.hsts = "max-age=#{20.years.to_i}; includeSubdomains; preload"
+  end
+
   config.x_download_options                = SecureHeaders::OPT_OUT
   config.referrer_policy                   = SecureHeaders::OPT_OUT
   config.x_permitted_cross_domain_policies = SecureHeaders::OPT_OUT
