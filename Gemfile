@@ -9,7 +9,7 @@ gem 'puma'
 gem 'secure_headers'
 # Database
 gem 'pg'
-gem 'postgres_ext', github: 'little-bobby-tables/postgres_ext', branch: 'rails-5'
+gem 'postgres_ext', git: 'git@github.com:little-bobby-tables/postgres_ext', branch: 'rails-5'
 gem 'redis'
 gem 'redis-rails'
 # Record versioning
@@ -25,10 +25,10 @@ gem 'image_metadata_scraper'
 gem 'sidekiq', '5.0.0.beta2'
 # User management
 gem 'devise'
-gem 'corral_acl', require: 'corral', github: 'deliciousblackink/Corral', branch: 'override-by-deny'
+gem 'corral_acl', require: 'corral', git: 'git@github.com:deliciousblackink/Corral', branch: 'override-by-deny'
 # Front-end
 gem 'camo'
-gem 'slim-rails', github: 'slim-template/slim-rails'
+gem 'slim-rails', git: 'git@github.com:slim-template/slim-rails'
 
 group :development do
   gem 'listen', '~> 3.0.5'

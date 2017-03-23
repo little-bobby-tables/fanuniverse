@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/deliciousblackink/Corral.git
+  remote: git@github.com:deliciousblackink/Corral
   revision: 5c8b1c9cc81812c5ee785c9506460b698fcb5130
   branch: override-by-deny
   specs:
@@ -7,7 +7,18 @@ GIT
       rails (~> 5.0)
 
 GIT
-  remote: git://github.com/little-bobby-tables/postgres_ext.git
+  remote: git@github.com:little-bobby-tables/elasticfusion
+  revision: fde97341815763b15909947b7758bcc2101b11fb
+  specs:
+    elasticfusion (1.0.0)
+      chronic
+      elasticsearch
+      elasticsearch-model
+      elasticsearch-rails
+      rails (>= 5.0)
+
+GIT
+  remote: git@github.com:little-bobby-tables/postgres_ext
   revision: f7a1cb3cab1783a307e5a87fdfb99d1d8fcb2619
   branch: rails-5
   specs:
@@ -17,24 +28,13 @@ GIT
       pg_array_parser (~> 0.0.9)
 
 GIT
-  remote: git://github.com/slim-template/slim-rails.git
-  revision: 8dbc1fbf859ebfa95b0884a0196a6ad9f0ca9cd5
+  remote: git@github.com:slim-template/slim-rails
+  revision: 2e57f80db663a5109a3eda88489d9f52f56545f5
   specs:
     slim-rails (3.1.2)
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
-
-GIT
-  remote: git@github.com:little-bobby-tables/elasticfusion
-  revision: b1460cbeb92e0fae92a024db5d0b2b495c3fa394
-  specs:
-    elasticfusion (0.2.0)
-      chronic
-      elasticsearch
-      elasticsearch-model
-      elasticsearch-rails
-      rails (>= 5.0)
 
 GEM
   remote: https://rubygems.org/
@@ -87,7 +87,7 @@ GEM
     chronic (0.10.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
-    devise (4.2.0)
+    devise (4.2.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -153,7 +153,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     nio4r (2.0.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     openssl (2.0.3)
     orm_adapter (0.5.0)
@@ -162,7 +162,7 @@ GEM
       request_store (~> 1.1)
     pg (0.20.0)
     pg_array_parser (0.0.9)
-    puma (3.8.1)
+    puma (3.8.2)
     rack (2.0.1)
     rack-protection (1.5.3)
       rack
@@ -244,7 +244,7 @@ GEM
     temple (0.7.7)
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (2.0.6)
+    tilt (2.0.7)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     useragent (0.16.8)
