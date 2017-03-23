@@ -7,7 +7,7 @@ header.navbar.flex
     a.navbar__link href="#" data-click-toggle='{"#navbar-home":"hidden",".navbar__search":"hidden"}' data-click-focus=".navbar__search"
       i.fa.fa-search
     = form_tag images_path, method: :get, class: 'inline-form' do
-      = text_field_tag :q, params[:q], class: 'input navbar__search hidden', placeholder: 'peridot, lapis lazuli'
+      = text_field_tag :q, params[:q], class: 'input navbar__search hidden', placeholder: 'ruby, sapphire'
       button.hidden type="submit"
     / Home link
     a.navbar__link#navbar-home href='/' Fan Universe
