@@ -1,11 +1,12 @@
 default:
-  image_root: /
-  asset_root: /
-
-development:
   image_root: /system/images
   asset_root: /assets
 
+test:
+  # Overrides default settings in test environment only.
+
+development:
+  # Overrides default settings in development environment only.
+
 production:
-  image_root: //cookielessdomain.com/images
-  asset_root: //cookielessdomain.com/assets
+  # Overrides default settings in production environment only.
