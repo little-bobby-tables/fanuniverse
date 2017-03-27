@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@github.com:little-bobby-tables/elasticfusion
-  revision: fde97341815763b15909947b7758bcc2101b11fb
+  revision: 9759755bfd365695bca53bc25e75c7d7713e1dd1
   specs:
     elasticfusion (1.0.0)
       chronic
@@ -245,7 +245,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     useragent (0.16.8)
     warden (1.2.7)

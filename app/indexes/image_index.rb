@@ -35,9 +35,7 @@ Elasticfusion.define Image do
 
     keyword_field :tag_names
 
-    allowed_search_fields [:stars, :width, :height, :suggested_by, :created_at]
-
-    allowed_sort_fields [:stars, :created_at]
+    searchable_fields [:stars, :width, :height, :suggested_by, :created_at]
 
     default_sort created_at: :desc
 
