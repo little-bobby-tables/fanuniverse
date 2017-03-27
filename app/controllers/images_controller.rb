@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy, :history]
+  before_action :set_image, only: [:show, :edit, :update, :history]
 
   def index
-    sort_field = params.fetch :sf, :created_at
-    sort_direction = params.fetch :sd, :desc
+    sort_field, sort_direction = *helpers.image_sort
     @images = search_images do |s|
       s.sort_by sort_field, sort_direction
       s.scope :processed
@@ -51,11 +50,6 @@ class ImagesController < ApplicationController
     end
   end
 
-  def destroy
-    @image.destroy
-    redirect_to images_url, notice: 'Image was successfully destroyed.'
-  end
-
   def history
   end
 
@@ -63,12 +57,8 @@ class ImagesController < ApplicationController
 
   def search_images(&block)
     query = params[:q].presence
-    search = if query
-      Image.search_by_query(query, &block)
-    else
-      Image.custom_search(&block)
-    end
-    paginate(search).records
+    search = Image.custom_search(query, &block)
+    paginate(search.perform).records
   end
 
   def set_image
