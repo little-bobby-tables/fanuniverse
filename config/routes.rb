@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :images, only: [:show, :new, :edit, :create, :update], constraints: { id: /\d+/ } do
     member do
+      get 'navigate/:direction', action: :navigate, as: :navigate
       get 'history'
     end
   end

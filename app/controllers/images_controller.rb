@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :history]
+  before_action :set_image, only: [:show, :edit, :update, :history, :navigate]
 
   def index
-    sort_field, sort_direction = *helpers.image_sort
-    @images = search_images do |s|
-      s.sort_by sort_field, sort_direction
-      s.scope :processed
-    end
+    @images = paginate(image_search.perform).records
   rescue Elasticfusion::Search::SearchError => @search_error
   end
 
@@ -53,12 +49,27 @@ class ImagesController < ApplicationController
   def history
   end
 
+  def navigate
+    target = if params[:direction] == 'next'
+      image_search.next_record(@image)
+    elsif params[:direction] == 'previous'
+      image_search.previous_record(@image)
+    end
+    target ||= @image
+
+    redirect_to image_url(target, params.permit(:q, :sort))
+  end
+
   private
 
-  def search_images(&block)
+  def image_search
     query = params[:q].presence
-    search = Image.custom_search(query, &block)
-    paginate(search.perform).records
+    sort_field, sort_direction = *helpers.image_sort
+
+    Image.custom_search(query) do |s|
+      s.scope :processed
+      s.sort_by sort_field, sort_direction
+    end
   end
 
   def set_image
