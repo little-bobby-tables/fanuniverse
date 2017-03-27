@@ -1,15 +1,29 @@
 # frozen_string_literal: true
 
 module ImagesHelper
-  IMAGE_SORTS = { %w(created_at desc) => 'Newest first',
-                  %w(created_at asc) => 'Oldest first',
-                  %w(stars desc) => 'Popular',
-                  %w(stars asc) => 'Undiscovered' }.freeze
+  IMAGE_SORTS_CONSTRAINT = /newest|oldest|popular|undiscovered/
+
+  IMAGE_SORTS = {
+    'newest'       => %i(created_at desc),
+    'oldest'       => %i(created_at asc),
+    'popular'      => %i(stars desc),
+    'undiscovered' => %i(stars asc)
+  }.freeze
+
+  IMAGE_SORT_LABELS = {
+    'newest'       => 'Newest first',
+    'oldest'       => 'Oldest first',
+    'popular'      => 'Popular',
+    'undiscovered' => 'Undiscovered'
+  }.freeze
 
   def image_sort
-    field = params[:sf] || 'created_at'
-    direction = params[:sd] || 'desc'
-    current_sort = IMAGE_SORTS.keys.detect { |sort| sort == [field, direction] }
-    yield IMAGE_SORTS[current_sort], IMAGE_SORTS.except(current_sort)
+    sort = params[:sort] || 'newest'
+    IMAGE_SORTS[sort]
+  end
+
+  def image_sort_labels
+    sort = params[:sort] || 'newest'
+    yield IMAGE_SORT_LABELS[sort], IMAGE_SORT_LABELS.except(sort)
   end
 end

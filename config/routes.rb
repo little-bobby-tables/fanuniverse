@@ -4,13 +4,18 @@ Rails.application.routes.draw do
 
   root to: 'images#index'
 
-  resources :images, constraints: { id: /\d+/ } do
+  constraints sort: ImagesHelper::IMAGE_SORTS_CONSTRAINT do
+    get '/images(/:sort)', to: 'images#index', as: :images
+  end
+
+  resources :images, only: [:show, :new, :edit, :create, :update], constraints: { id: /\d+/ } do
     member do
       get 'history'
     end
   end
 
   resources :profiles, param: :name, only: [:show]
+
   authenticated :user do
     resource :profile, only: [:edit, :update]
   end
