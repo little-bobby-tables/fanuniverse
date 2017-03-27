@@ -2,21 +2,23 @@
 = custom_layout
 
 .image-display
+  a.image-display__navigation.image-display__navigation-left.image-display__meta href=navigate_image_path(@image, :previous, params.permit(:q, :sort))
+    i.fa.fa-chevron-left
   .image-display__content
     - if @image.processed?
       section
-        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
+        a.meta.image-display__meta data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
           i.fa.fa-star>
           span.meta__count= @image.star_count
-        a.meta.meta--image-display href="#comments" title="View comments"
+        a.meta.image-display__meta href="#comments" title="View comments"
           i.fa.fa-comments>
           span.meta__count= @image.comment_count
-        a.meta.meta--image-display href=@image.image.url title="View full-sized image"
+        a.meta.image-display__meta href=@image.image.url title="View full-sized image"
           i.fa.fa-eye>
           = @image.width
           | x
           = @image.height
-        a.meta.meta--image-display href=@image.source
+        a.meta.image-display__meta href=@image.source
           i.fa.fa-retweet>
           = @image.short_source
       img.image-display__image src=@image.image.preview_url data-click-toggle='{".image-display__image":"full"}'
@@ -26,6 +28,9 @@
           i.fa.fa-cogs>
           | Hold on…
         p We need a few more seconds to process the image. Refresh the page to see if we're done!
+
+  a.image-display__navigation.image-display__navigation-right.image-display__meta href=navigate_image_path(@image, :next, params.permit(:q, :sort))
+    i.fa.fa-chevron-right
 
 .layout.layout--narrow
   .block.flex
