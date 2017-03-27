@@ -6,7 +6,7 @@ header.navbar.flex
     / Search
     a.navbar__link href="#" data-click-toggle='{"#navbar-home":"hidden",".navbar__search":"hidden"}' data-click-focus=".navbar__search"
       i.fa.fa-search
-    = form_tag images_path, method: :get, class: 'inline-form' do
+    = form_tag images_path, method: :get, enforce_utf8: false, class: 'inline-form' do
       = text_field_tag :q, params[:q], class: 'input navbar__search hidden', placeholder: 'ruby, sapphire'
       button.hidden type="submit"
     / Home link
