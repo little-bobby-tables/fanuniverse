@@ -7,7 +7,7 @@ header.header.flex
       button.hidden type="submit"
   .flex__right
     - if user_signed_in?
-      .js-dropdown
+      .js-dropdown.js-signed-in
         a.js-dropdown__toggle.header__user-toggle href=profile_path(current_user)
           = current_user.name
           .avatar.header__user-toggle__avatar

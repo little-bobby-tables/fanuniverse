@@ -1,4 +1,5 @@
 import { post } from './utils/requests';
+import { signedIn } from './utils/users';
 
 export default function() {
   loadStarrable(document);
@@ -6,7 +7,7 @@ export default function() {
   document.addEventListener('click', (e) => {
     const star = e.target && e.target.closest('[data-starrable]');
 
-    star && toggleStar(star) && e.preventDefault();
+    star && signedIn(e) && toggleStar(star);
   });
 }
 
@@ -33,8 +34,6 @@ function toggleStar(star) {
 
         setStarCount(star, data['stars']);
       });
-
-  return true;
 }
 
 function starElement(type, id) {

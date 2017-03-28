@@ -11,7 +11,7 @@
 
     .image-display__content
       section
-        a.meta.image-display__meta data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
+        a.meta.image-display__meta data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href="#"
           i.fa.fa-star>
           span.meta__count= @image.star_count
         a.meta.image-display__meta href="#comments" title="View comments"
