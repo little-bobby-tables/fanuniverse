@@ -1,11 +1,15 @@
 - title "#{@image.id} ∙ #{@image.tags}"
 = custom_layout
 
-.image-display
-  a.image-display__navigation.image-display__navigation-left.image-display__meta href=navigate_image_path(@image, :previous, params.permit(:q, :sort))
-    i.fa.fa-chevron-left
-  .image-display__content
-    - if @image.processed?
+- previous_href = navigate_image_path(@image, :previous, params.permit(:q, :sort))
+- next_href = navigate_image_path(@image, :next, params.permit(:q, :sort))
+
+.image-display data-swipe-to='{"left":"#{next_href}","right":"#{previous_href}"}'
+  - if @image.processed?
+    a.image-display__navigation.image-display__navigation-left.image-display__meta href=previous_href
+      i.fa.fa-chevron-left
+
+    .image-display__content
       section
         a.meta.image-display__meta data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
           i.fa.fa-star>
@@ -22,15 +26,21 @@
           i.fa.fa-retweet>
           = @image.short_source
       img.image-display__image src=@image.image.preview_url data-click-toggle='{".image-display__image":"full"}'
-    - else
+      .image-display__touch-info
+        i.fa.fa-angle-double-left>
+        | Swipe to navigate
+        i.fa.fa-angle-double-right<
+
+    a.image-display__navigation.image-display__navigation-right.image-display__meta href=next_href
+      i.fa.fa-chevron-right
+
+  - else
+    .image-display__content
       .image-display__processing
         h1
           i.fa.fa-cogs>
           | Hold on…
         p We need a few more seconds to process the image. Refresh the page to see if we're done!
-
-  a.image-display__navigation.image-display__navigation-right.image-display__meta href=navigate_image_path(@image, :next, params.permit(:q, :sort))
-    i.fa.fa-chevron-right
 
 .layout.layout--narrow
   .block.flex
