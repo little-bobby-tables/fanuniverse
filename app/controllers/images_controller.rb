@@ -1,14 +1,9 @@
 # frozen_string_literal: true
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy, :history]
+  before_action :set_image, only: [:show, :edit, :update, :history, :navigate]
 
   def index
-    sort_field = params.fetch :sf, :created_at
-    sort_direction = params.fetch :sd, :desc
-    @images = search_images do |s|
-      s.sort_by sort_field, sort_direction
-      s.scope :processed
-    end
+    @images = paginate(image_search.perform).records
   rescue Elasticfusion::Search::SearchError => @search_error
   end
 
@@ -51,24 +46,31 @@ class ImagesController < ApplicationController
     end
   end
 
-  def destroy
-    @image.destroy
-    redirect_to images_url, notice: 'Image was successfully destroyed.'
+  def history
   end
 
-  def history
+  def navigate
+    target = if params[:direction] == 'next'
+      image_search.next_record(@image)
+    elsif params[:direction] == 'previous'
+      image_search.previous_record(@image)
+    end
+    target ||= @image
+
+    redirect_to image_url(target, params.permit(:q, :sort))
   end
 
   private
 
-  def search_images(&block)
+  def image_search
     query = params[:q].presence
-    search = if query
-      Image.search_by_query(query, &block)
-    else
-      Image.custom_search(&block)
+    sort_field, sort_direction = *helpers.image_sort
+
+    Image.custom_search(query) do |s|
+      s.scope :processed
+      s.sort_by sort_field, sort_direction
+      s.ensure_deterministic_order_with_unique_field :id
     end
-    paginate(search).records
   end
 
   def set_image

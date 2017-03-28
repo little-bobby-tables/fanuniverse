@@ -2,7 +2,7 @@ header.header.flex
   .flex__main
     a.header__link.header__link--spacing-right href="/" Fan Universe
     a.header__link.header__link--spacing-right href="/images/new" Suggest an image
-    = form_tag images_path, method: :get, class: 'inline-form' do
+    = form_tag images_path, method: :get, enforce_utf8: false, class: 'inline-form' do
       = text_field_tag :q, params[:q], class: 'input input--inline header__search-input', placeholder: 'ruby, sapphire'
       button.hidden type="submit"
   .flex__right

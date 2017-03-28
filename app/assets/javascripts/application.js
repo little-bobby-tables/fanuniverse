@@ -8,6 +8,7 @@ import comments from './comments';
 import dataevents from './dataevents';
 import dropdowns from './dropdowns';
 import masonry from './masonry';
+import swipeto from './swipeto';
 
 import ga from './googleanalytics';
 
@@ -20,6 +21,7 @@ function load() {
   dataevents();
   dropdowns();
   masonry();
+  swipeto();
 
   ga();
 }

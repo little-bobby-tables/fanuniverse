@@ -1,26 +1,41 @@
 - title "#{@image.id} ∙ #{@image.tags}"
 = custom_layout
 
-.image-display
-  .image-display__content
-    - if @image.processed?
+- previous_href = navigate_image_path(@image, :previous, params.permit(:q, :sort))
+- next_href = navigate_image_path(@image, :next, params.permit(:q, :sort))
+
+.image-display data-swipe-to='{"left":"#{next_href}","right":"#{previous_href}"}'
+  - if @image.processed?
+    a.image-display__navigation.image-display__navigation-left.image-display__meta href=previous_href
+      i.fa.fa-chevron-left
+
+    .image-display__content
       section
-        a.meta.meta--image-display data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
+        a.meta.image-display__meta data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href=(if user_signed_in? then '#' else new_user_registration_path end)
           i.fa.fa-star>
           span.meta__count= @image.star_count
-        a.meta.meta--image-display href="#comments" title="View comments"
+        a.meta.image-display__meta href="#comments" title="View comments"
           i.fa.fa-comments>
           span.meta__count= @image.comment_count
-        a.meta.meta--image-display href=@image.image.url title="View full-sized image"
+        a.meta.image-display__meta href=@image.image.url title="View full-sized image"
           i.fa.fa-eye>
           = @image.width
           | x
           = @image.height
-        a.meta.meta--image-display href=@image.source
+        a.meta.image-display__meta href=@image.source
           i.fa.fa-retweet>
           = @image.short_source
       img.image-display__image src=@image.image.preview_url data-click-toggle='{".image-display__image":"full"}'
-    - else
+      .image-display__touch-info
+        i.fa.fa-angle-double-left>
+        | Swipe to navigate
+        i.fa.fa-angle-double-right<
+
+    a.image-display__navigation.image-display__navigation-right.image-display__meta href=next_href
+      i.fa.fa-chevron-right
+
+  - else
+    .image-display__content
       .image-display__processing
         h1
           i.fa.fa-cogs>

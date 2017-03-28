@@ -12,15 +12,15 @@
         h1 Images
 
       .js-dropdown.dropdown--image-sort
-        - image_sort do |current, other_sorts|
+        - image_sort_labels do |current, others|
           a.js-dropdown__toggle href="#"
             = current
             span
               i.fa.fa-caret-down<
           .js-dropdown__content.hidden
-            - other_sorts.each do |(sf, sd), text|
-              a href=url_for(params.permit(:q).merge(sf: sf, sd: sd))
-                = text
+            - others.each do |sort, label|
+              a href=url_for(params.permit(:q).merge(sort: sort))
+                = label
 
       - if @images.any?
         = render partial: 'layouts/pagination', locals: { resources: @images }
@@ -36,7 +36,7 @@
           a.meta href=image_path(image, anchor: 'comments')
             i.fa.fa-comments>
             span.meta__count= image.comment_count
-          a.image__link href=image_path(image) title=image.tag_names.join(', ')
+          a.image__link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
             img src=image.image.thumbnail_url
           a.meta.meta--bottom href=image.source
             i.fa.fa-retweet>
