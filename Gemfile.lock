@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git@github.com:little-bobby-tables/elasticfusion
-  revision: 9759755bfd365695bca53bc25e75c7d7713e1dd1
+  revision: a2af008920a6267c9eb87225262a0d4966c861c1
   specs:
     elasticfusion (1.0.0)
       chronic

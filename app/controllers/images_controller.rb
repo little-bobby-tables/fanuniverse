@@ -69,6 +69,7 @@ class ImagesController < ApplicationController
     Image.custom_search(query) do |s|
       s.scope :processed
       s.sort_by sort_field, sort_direction
+      s.ensure_deterministic_order_with_unique_field :id
     end
   end
 
