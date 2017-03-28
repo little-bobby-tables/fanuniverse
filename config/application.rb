@@ -6,6 +6,9 @@ require 'slim/include'
 
 Bundler.require(*Rails.groups)
 
+CORE_EXTENSIONS = File.expand_path('../../lib/core_ext/*.rb', __FILE__)
+Dir.glob(CORE_EXTENSIONS, &method(:load))
+
 class Application < Rails::Application
   config.active_job.queue_adapter = :sidekiq
 
