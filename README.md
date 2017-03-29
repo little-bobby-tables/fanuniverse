@@ -20,7 +20,7 @@ Install the following dependencies
 * [Yarn](https://yarnpkg.com/en/docs/install)
 
 You'll also need a Ruby version manager
-(such as [chruby](https://github.com/postmodern/chruby)) with Ruby 2.4.0 installed.
+(such as [chruby](https://github.com/postmodern/chruby)) with Ruby 2.4.1 installed.
 
 ### Running the application
 
