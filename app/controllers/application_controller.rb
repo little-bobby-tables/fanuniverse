@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def paginate(resource)
     @page = params[:page].to_i
     @per_page = params[:per_page].to_i
-    @per_page = 20 unless @per_page.between? 1, 50
+    @per_page = 12 unless @per_page.between? 1, 50
     resource.page(@page).per(@per_page)
   end
 
