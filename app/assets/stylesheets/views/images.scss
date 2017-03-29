@@ -78,7 +78,7 @@
 .meta {
   display: inline-block;
   padding: 4px;
-  margin-bottom: 8px;
+  margin: 0 8px 8px 0;
   text-decoration: none;
 
   color: $meta_color;
@@ -94,10 +94,6 @@
     font-weight: bold;
     color: $black;
   }
-}
-
-.meta + .meta {
-  margin-left: 8px;
 }
 
 .meta--inline {

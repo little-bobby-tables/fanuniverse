@@ -8,7 +8,6 @@ article.comment.block.flex
         span.role Site Administrator
     = comment.body
     .comment__meta
-      | posted
       =<> time_tag(comment.created_at)
       a.meta.meta--inline data-starrable="Comment" data-starrable-id=comment.id title="Star this comment!" href="#"
         i.fa.fa-star>
