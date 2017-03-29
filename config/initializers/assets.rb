@@ -7,7 +7,7 @@ class Assets
   def path(file)
     file = production_manifest[file] if Rails.env.production?
 
-    "#{Settings[:asset_root]}/#{file}"
+    "#{Settings[:asset_url_root]}/#{file}"
   end
 
   private

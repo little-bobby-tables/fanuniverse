@@ -10,4 +10,4 @@ settings_file = YAML.load_file Rails.root.join('config', 'settings.yml')
 default       = settings_file['default'] || {}
 env_overrides = settings_file[Rails.env] || {}
 
-Settings = default.merge(env_overrides).symbolize_keys
+Settings = default.merge(env_overrides)

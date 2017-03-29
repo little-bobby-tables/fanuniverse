@@ -1,12 +1,15 @@
 default:
-  image_root: /system/images
-  asset_root: /assets
+  :asset_url_root: /assets
+  :image_url_root: /system/images
 
-test:
-  # Overrides default settings in test environment only.
+  :carrierwave_root_path: public
 
 development:
   # Overrides default settings in development environment only.
 
 production:
   # Overrides default settings in production environment only.
+
+test:
+  # Overrides default settings in test environment only.
+  :carrierwave_root_path: public/test

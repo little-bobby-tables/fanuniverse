@@ -13,11 +13,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    if Rails.env.test?
-      "test/images/#{model.id}"
-    else
-      "system/images/#{model.id}"
-    end
+    "system/images/#{model.id}"
   end
 
   def filename
@@ -25,12 +21,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def url
-    "#{Settings[:image_root]}/#{model.id}/source.#{file.extension}"
+    "#{Settings[:image_url_root]}/#{model.id}/source.#{file.extension}"
   end
 
   ImageProcessor::VERSIONS.each do |version, _|
     define_method "#{version}_url" do
-      "#{Settings[:image_root]}/#{model.id}/#{version}.#{file.extension}"
+      "#{Settings[:image_url_root]}/#{model.id}/#{version}.#{file.extension}"
     end
   end
 end
