@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class PagesController < ApplicationController
-  PAGES = %w(intro privacy).freeze
+  PAGES = %w(intro privacy contact).freeze
 
   def show
     @page = params[:page]

@@ -1,7 +1,11 @@
 doctype html
 html
   head
-    title = [content_for(:page_title), 'Fan Universe, a Steven Universe fan site'].compact.join(' ∙ ')
+    title
+      = [content_for(:page_title), 'Fan Universe, a Steven Universe fan site'].compact.join(' ∙ ')
+
+    - if content_for(:no_index).present?
+      meta name="robots" content="noindex, nofollow"
 
     = csrf_meta_tags
 

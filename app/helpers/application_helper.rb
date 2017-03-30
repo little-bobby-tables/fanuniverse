@@ -6,6 +6,10 @@ module ApplicationHelper
     content_for :page_title, title
   end
 
+  def no_index
+    content_for :no_index, true
+  end
+
   def wide_layout
     content_for :layout_class, 'layout--wide'
   end
