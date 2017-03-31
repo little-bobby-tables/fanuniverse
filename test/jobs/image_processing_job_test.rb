@@ -20,12 +20,12 @@ class ImageProcessingJobTest < ActiveJob::TestCase
   end
 
   test 'generates downsized versions for raster images' do
-    process! :image_large_file
+    process! :image_large_png
 
-    path, ext = @image.image.file.try { |f| [File.dirname(f.path), f.extension] }
+    path = File.dirname(@image.image.file.path).shellescape
 
-    assert File.file? "#{path}/thumbnail.#{ext}"
-    assert File.file? "#{path}/preview.#{ext}"
+    assert valid_image? "#{path}/thumbnail.png", 'PNG', 300
+    assert valid_image? "#{path}/preview.png", 'PNG', 1280
   end
 
   test 'generates mp4 versions for gif animations' do
@@ -33,17 +33,10 @@ class ImageProcessingJobTest < ActiveJob::TestCase
 
     path = File.dirname(@image.image.file.path).shellescape
 
-    Open3.popen3("ffprobe #{path}/rendered.mp4") do |_, _, output, _|
-      info = output.read
-      assert info.match? /Video: h264.+500x280/
-    end
+    assert valid_video? "#{path}/rendered.mp4", 'h264', '500x280'
+    assert valid_video? "#{path}/rendered.webm", 'vp9', '500x280'
 
-    Open3.popen3("ffprobe #{path}/rendered.webm") do |_, _, output, _|
-      info = output.read
-      assert info.match? /Video: vp9.+500x280/
-    end
-
-    assert File.file? "#{path}/fallback.png"
+    assert valid_image? "#{path}/fallback.png", 'PNG', 500
   end
 
   test 'creates symbolic links for versions larger than source' do
@@ -57,6 +50,20 @@ class ImageProcessingJobTest < ActiveJob::TestCase
 
   def valid_symlink?(path)
     File.symlink?(path) && File.exist?(File.readlink(path))
+  end
+
+  def valid_image?(path, type, width)
+    Open3.popen3("identify #{path}") do |_, output, _, _|
+      info = output.read
+      assert info.match? /#{type} #{width}x\d+/
+    end
+  end
+
+  def valid_video?(path, type, dimensions)
+    Open3.popen3("ffprobe #{path}") do |_, _, output, _|
+      info = output.read
+      assert info.match? /Video: #{type}.+#{dimensions}/
+    end
   end
 
   def process!(factory)
