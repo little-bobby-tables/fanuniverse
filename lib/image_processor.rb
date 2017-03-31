@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 class ImageProcessor
   VERSIONS = {
-    'thumbnail' => 300,
-    'preview'   => 1280
+    thumbnail: 300,
+    preview:   1280
+  }.freeze
+
+  ANIMATED_VERSIONS = {
+    mp4:    'rendered.mp4',
+    webm:   'rendered.webm',
+    poster: 'poster.jpg'
   }.freeze
 
   def initialize(image_record)
@@ -76,7 +82,7 @@ class ImageProcessor
              '-movflags', '+faststart',
              '-vf',       'scale=trunc(iw/2)*2:trunc(ih/2)*2',
              '-c:v',      'libx264',
-             "#{@path}/rendered.mp4"
+             "#{@path}/#{ANIMATED_VERSIONS[:mp4]}"
 
       # Create a WebM/VP9 version
       system 'ffmpeg',
@@ -88,13 +94,14 @@ class ImageProcessor
              '-b:v',            '1200K',
              '-tile-columns',   '6',
              '-frame-parallel', '1',
-             "#{@path}/rendered.webm"
+             "#{@path}/#{ANIMATED_VERSIONS[:webm]}"
 
-      # Create a fallback thumbnail
+      # Create a fallback/poster image
       system 'ffmpeg',
-             '-i',       "#{@path}/rendered.mp4",
+             '-i',       "#{@path}/#{ANIMATED_VERSIONS[:mp4]}",
+             '-q:v',     '8',
              '-vframes', '1',
-             "#{@path}/fallback.png"
+             "#{@path}/#{ANIMATED_VERSIONS[:poster]}"
     end
   end
 end

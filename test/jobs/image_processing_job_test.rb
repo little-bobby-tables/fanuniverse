@@ -36,7 +36,7 @@ class ImageProcessingJobTest < ActiveJob::TestCase
     assert valid_video? "#{path}/rendered.mp4", 'h264', '500x280'
     assert valid_video? "#{path}/rendered.webm", 'vp9', '500x280'
 
-    assert valid_image? "#{path}/fallback.png", 'PNG', 500
+    assert valid_image? "#{path}/poster.jpg", 'JPEG', 500
   end
 
   test 'creates symbolic links for versions larger than source' do
