@@ -16,8 +16,12 @@
 }
 
 .grid__item {
-  width: 300px;
   margin: 8px 8px 0 0;
+}
+
+.grid__item,
+.image__video {
+  width: 300px;
 
   /* Small screens — iPhone 5/SE */
   @media (max-width: 340px) {
@@ -34,11 +38,6 @@
   @media (min-width: 660px) and (max-width: 700px) {
     width: 280px;
   }
-}
-
-.image__video {
-  width: 300px;
-  display: block;
 }
 
 .image__link {
@@ -62,6 +61,30 @@
 .image__link:hover::after {
   opacity: 0.08;
   cursor: pointer;
+}
+
+.image__media-controls {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+
+  font-family: $font_family_header;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Remove video playback button on iOS — we have custom controls */
+.image__video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
 }
 
 .image-preview {
@@ -107,6 +130,13 @@
 
 .meta--bottom {
   margin: 4px 0 0;
+}
+
+.meta--text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
 }
 
 .image-display {

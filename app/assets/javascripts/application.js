@@ -7,6 +7,7 @@ import comments from './comments';
 
 import dataevents from './dataevents';
 import dropdowns from './dropdowns';
+import media from './media';
 import masonry from './masonry';
 import swipeto from './swipeto';
 
@@ -20,6 +21,7 @@ function load() {
 
   dataevents();
   dropdowns();
+  media();
   masonry();
   swipeto();
 
