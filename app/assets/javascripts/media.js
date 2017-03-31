@@ -1,8 +1,7 @@
 export default function() {
   const mediaLinks = [].slice.call(document.querySelectorAll('.js-media-link'));
 
-  (mediaLinks.length > 0) &&
-    mediaLinks.forEach((l) => l.addEventListener('click', toggleMedia));
+  mediaLinks.forEach((l) => l.addEventListener('click', toggleMedia));
 }
 
 function toggleMedia(e) {
