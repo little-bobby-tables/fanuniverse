@@ -16,6 +16,7 @@ Install the following dependencies
 * [Elasticsearch 5](https://www.elastic.co/guide/en/elasticsearch/reference/current/rpm.html)
 * [PostgreSQL 9.6](https://www.postgresql.org/download/linux/redhat/#yum)
 * ImageMagick (`ImageMagick`)
+* FFmpeg (`ffmpeg` with RPM Fusion)
 * Node.js (`nodejs`)
 * [Yarn](https://yarnpkg.com/en/docs/install)
 
