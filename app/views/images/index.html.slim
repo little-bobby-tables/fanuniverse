@@ -3,15 +3,15 @@
 - if @search_error.blank?
   - wide_layout
 
-  .js-grid-loading
+  .js-grid-container.invisible
 
-    .grid-header.js-masonry-grid-header
+    .media-grid-header.js-grid-header
       - if params[:q].present?
         h1 = "Searching for \"#{params[:q]}\""
       - else
         h1 Images
 
-      .js-dropdown.dropdown--image-sort
+      .image-sort-dropdown.js-dropdown
         - image_sort_labels do |current, others|
           a.js-dropdown__toggle href="#"
             = current
@@ -27,9 +27,9 @@
       - else
         p No images found.
 
-    .grid.js-masonry-grid
+    .media-grid.js-grid
       - @images.each do |image|
-        .grid__item.block
+        .media.block.js-grid__item
           / Meta links
           a.meta data-starrable="Image" data-starrable-id=image.id title="Star this image!" href="#"
             i.fa.fa-star>
@@ -39,19 +39,19 @@
             span.meta__count= image.comment_count
           / Animated image
           - if image.image.animated?
-            a.image__link.js-media-link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
-              .image__media-controls.js-media-controls
+            a.media__link.js-media-link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
+              .media__video-controls.js-media-controls
                 section
                   i.fa.fa-play
                   br
                   span.js-media-state Animated
-              video.image__video(loop muted playsinline preload="none" poster=image.image.poster_url)
+              video.media__video(loop muted playsinline preload="none" poster=image.image.poster_url)
                 source src=image.image.webm_url type="video/webm"
                 source src=image.image.mp4_url type="video/mp4"
                 img src=image.image.poster_url
           / Still image
           - else
-            a.image__link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
+            a.media__link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
               img src=image.image.thumbnail_url
           / Source
           a.meta.meta--bottom.meta--text-overflow href=image.source
