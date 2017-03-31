@@ -30,14 +30,24 @@
     .grid.js-masonry-grid
       - @images.each do |image|
         .grid__item.block
+          / Meta links
           a.meta data-starrable="Image" data-starrable-id=image.id title="Star this image!" href="#"
             i.fa.fa-star>
             span.meta__count= image.star_count
           a.meta href=image_path(image, anchor: 'comments')
             i.fa.fa-comments>
             span.meta__count= image.comment_count
+          / Image
           a.image__link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
-            img src=image.image.thumbnail_url
+            - if image.image.animated?
+              / Poster image allows Masonry to judge the item size before the media has loaded, preventing layout "jumps".
+              video.image__video autoplay="" loop="" muted="" poster=image.image.poster_url
+                source src=image.image.webm_url type="video/webm"
+                source src=image.image.mp4_url type="video/mp4"
+                img src=image.image.poster_url
+            - else
+              img src=image.image.thumbnail_url
+          / Source
           a.meta.meta--bottom href=image.source
             i.fa.fa-retweet>
             = image.short_source

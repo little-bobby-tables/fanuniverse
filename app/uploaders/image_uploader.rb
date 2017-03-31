@@ -24,9 +24,19 @@ class ImageUploader < CarrierWave::Uploader::Base
     "#{Settings[:image_url_root]}/#{model.id}/source.#{file.extension}"
   end
 
+  def animated?
+    file.content_type == 'image/gif'
+  end
+
   ImageProcessor::VERSIONS.each do |version, _|
     define_method "#{version}_url" do
       "#{Settings[:image_url_root]}/#{model.id}/#{version}.#{file.extension}"
+    end
+  end
+
+  ImageProcessor::ANIMATED_VERSIONS.each do |version, file|
+    define_method "#{version}_url" do
+      "#{Settings[:image_url_root]}/#{model.id}/#{file}"
     end
   end
 end
