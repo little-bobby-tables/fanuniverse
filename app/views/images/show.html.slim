@@ -10,6 +10,7 @@
       i.fa.fa-chevron-left
 
     .image__content
+      / Meta links & source
       section
         a.meta.image__meta data-starrable="Image" data-starrable-id=@image.id title="Star this image!" href="#"
           i.fa.fa-star>
@@ -22,10 +23,24 @@
           = @image.width
           | x
           = @image.height
-        a.meta.image__meta href=@image.source
+        a.meta.image__meta.meta--text-overflow href=@image.source
           i.fa.fa-retweet>
           = @image.short_source
-      img.image__image src=@image.image.preview_url data-click-toggle='{".image__image":"full"}'
+      / Animated image
+      - if @image.image.animated?
+        .video-container.interactable.js-video
+          .video-container__overlay.js-video__controls
+            section
+              i.fa.fa-play
+              br
+              span.js-video__state Animated
+          video.video-container__video.image__video.js-video__autoplayed(autoplay loop muted playsinline poster=@image.image.poster_url)
+            source src=@image.image.webm_url type="video/webm"
+            source src=@image.image.mp4_url type="video/mp4"
+            img src=@image.image.poster_url
+      / Still image
+      - else
+        img.image__image src=@image.image.preview_url data-click-toggle='{".image__image":"full"}'
       .image__touch-info
         i.fa.fa-angle-double-left>
         | Swipe to navigate

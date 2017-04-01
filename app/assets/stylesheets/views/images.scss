@@ -69,16 +69,18 @@
 }
 
 .image__content {
-  display: inline-block;
+  overflow: hidden;
+  text-align: center;
 }
 
-.image__image {
+.image__image,
+.image__video {
   max-width: 100%;
   max-height: calc(100vh - 108px);
+}
 
-  &.full {
-    max-height: 100%;
-  }
+.image__image.full {
+  max-height: 100%;
 }
 
 .image__processing {

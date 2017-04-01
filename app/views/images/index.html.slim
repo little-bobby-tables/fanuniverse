@@ -39,16 +39,17 @@
             span.meta__count= image.comment_count
           / Animated image
           - if image.image.animated?
-            a.media__link.js-media-link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
-              .media__video-controls.js-media-controls
-                section
-                  i.fa.fa-play
-                  br
-                  span.js-media-state Animated
-              video.media__video(loop muted playsinline preload="none" poster=image.image.poster_url)
-                source src=image.image.webm_url type="video/webm"
-                source src=image.image.mp4_url type="video/mp4"
-                img src=image.image.poster_url
+            .video-container.js-video
+              a.media__link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
+                .video-container__overlay.js-video__controls
+                  section
+                    i.fa.fa-play
+                    br
+                    span.js-video__state Animated
+                video.video-container__video.media__video(loop muted playsinline preload="none" poster=image.image.poster_url)
+                  source src=image.image.webm_url type="video/webm"
+                  source src=image.image.mp4_url type="video/mp4"
+                  img src=image.image.poster_url
           / Still image
           - else
             a.media__link href=image_path(image, params.permit(:q, :sort)) title=image.tag_names.join(', ')
