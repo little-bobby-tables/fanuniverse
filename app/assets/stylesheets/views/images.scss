@@ -1,110 +1,11 @@
 @import "common/global";
 
-.js-grid-loading {
-  visibility: hidden;
-}
-
-.grid-header {
-  box-sizing: border-box;
-
-  /* Compensate for .grid__item's side margin. */
-  padding-right: 8px;
-}
-
-.grid-header, .grid {
-  margin: 0 auto;
-}
-
-.grid__item {
-  width: 300px;
-  margin: 8px 8px 0 0;
-
-  /* Small screens — iPhone 5/SE */
-  @media (max-width: 340px) {
-    width: calc(100vw - 66px);
-    max-width: 300px;
-  }
-
-  /* Landscape orientation */
-  @media (min-width: 620px) and (max-width: 659px) {
-    width: 260px;
-  }
-
-  /* Landscape orientation — bigger screens */
-  @media (min-width: 660px) and (max-width: 700px) {
-    width: 280px;
-  }
-}
-
-.image__link {
-  display: inline-block;
-  position: relative;
-  font-size: 0;
-}
-
-.image__link::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: $black;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.image__link:hover::after {
-  opacity: 0.08;
-  cursor: pointer;
-}
-
 .image-preview {
   display: inline-block;
   width: 200px;
 }
 
-.dropdown--image-sort {
-  font-family: $font_family_header;
-  margin-bottom: 8px;
-  padding-bottom: 4px;
-}
-
-.dropdown--image-sort:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.meta {
-  display: inline-block;
-  padding: 4px;
-  margin: 0 8px 8px 0;
-  text-decoration: none;
-
-  color: $meta_color;
-
-  @include color-transition;
-
-  &:hover {
-    cursor: pointer;
-    color: $meta_hover_color;
-  }
-
-  &.active {
-    font-weight: bold;
-    color: $black;
-  }
-}
-
-.meta--inline {
-  margin: 0;
-}
-
-.meta--bottom {
-  margin: 4px 0 0;
-}
-
-.image-display {
+.image {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -112,8 +13,8 @@
   padding: 8px 0;
 }
 
-.image-display__meta,
-.image-display__navigation {
+.image__meta,
+.image__navigation {
   font-size: 18px;
   color: $meta_inverted_color;
 
@@ -127,7 +28,7 @@
   }
 }
 
-.image-display__navigation {
+.image__navigation {
   flex-grow: 1;
 
   display: flex;
@@ -137,50 +38,52 @@
   text-decoration: none;
 }
 
-.image-display__navigation-left {
+.image__navigation--left {
   justify-content: flex-start;
 }
 
-.image-display__navigation-right {
+.image__navigation--right {
   justify-content: flex-end;
 }
 
 @include desktop {
-  .image-display__touch-info {
+  .image__touch-info {
     display: none;
   }
 }
 
 @include mobile {
-  .image-display {
+  .image {
     padding: 8px 16px;
   }
 
-  .image-display__navigation {
+  .image__navigation {
     display: none;
   }
 
-  .image-display__touch-info {
+  .image__touch-info {
     color: $meta_inverted_hover_color;
     text-align: center;
     padding-top: 4px;
   }
 }
 
-.image-display__content {
-  display: inline-block;
+.image__content {
+  overflow: hidden;
+  text-align: center;
 }
 
-.image-display__image {
+.image__image,
+.image__video {
   max-width: 100%;
   max-height: calc(100vh - 108px);
-
-  &.full {
-    max-height: 100%;
-  }
 }
 
-.image-display__processing {
+.image__image.full {
+  max-height: 100%;
+}
+
+.image__processing {
   color: white;
   font-family: $font_family_header;
   font-size: 24px;

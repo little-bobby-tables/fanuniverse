@@ -1,5 +1,5 @@
 export default function() {
-  const grid    = document.querySelector('.js-masonry-grid'),
+  const grid    = document.querySelector('.js-grid'),
         masonry = grid && masonryjs(grid),
         imgload = grid && imagesLoaded(grid);
 
@@ -11,14 +11,14 @@ export default function() {
 
 function masonryjs(grid) {
   const masonry = new Masonry(grid, {
-    itemSelector: '.grid__item',
+    itemSelector: '.js-grid__item',
     transitionDuration: '0.2s',
     isFitWidth: true,
     initLayout: false, /* delay layout() to bind the layoutComplete listener */
   });
 
-  const header    = document.querySelector('.js-masonry-grid-header'),
-        container = document.querySelector('.js-grid-loading');
+  const container = document.querySelector('.js-grid-container'),
+        header    = document.querySelector('.js-grid-header');
 
   masonry.on('layoutComplete', () => {
     const gridWidth = (masonry.cols * masonry.columnWidth);
@@ -27,10 +27,10 @@ function masonryjs(grid) {
 
   masonry.layout();
 
-  /* .js-grid-loading makes the element invisible. We only remove this class
-   * after setting the header width; this prevents layout "jumps" caused by
-   * undetermined width coupled with margin: auto. */
-  container.classList.remove('js-grid-loading');
+  /* When the header width is being updated, the layout "jumps" due to margin: auto.
+   * To avoid this effect on page load, .js-grid-container is initially set to .invisible —
+   * we can make it visible once the correct width is set. */
+  container.classList.remove('invisible');
 
   return masonry;
 }

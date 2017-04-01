@@ -7,8 +7,12 @@ FactoryGirl.define do
 
     image { File.open Rails.root.join('test', 'fixtures', 'images', 'small.jpg') }
 
-    factory :image_large_file do
+    factory :image_large_png do
       image { File.open Rails.root.join('test', 'fixtures', 'images', 'large.png') }
+    end
+
+    factory :image_gif do
+      image { File.open Rails.root.join('test', 'fixtures', 'images', 'animated.gif') }
     end
   end
 end
