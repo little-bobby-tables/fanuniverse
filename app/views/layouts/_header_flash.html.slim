@@ -5,8 +5,8 @@
     - session[:splash_displays] ||= 0
     - session[:splash_displays] += 1
     header.flashy-splash
-      ' Hey, this looks like your first visit to Fan Universe. Would you like a quick introduction?
-      a.flashy-splash__link href='/intro' Yup
+      ' Hey, this looks like your first visit to Fan Universe.
+      a.flashy-splash__link href='/intro' Would you like a quick introduction?
 
 - if flash[:notice]
   .flash = flash[:notice]

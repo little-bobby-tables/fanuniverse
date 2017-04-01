@@ -23,6 +23,7 @@
 .intro__section {
   margin: 0 auto;
   max-width: 800px;
+  padding: 0 2vw;
   font-size: 18px;
 }
 
@@ -32,4 +33,13 @@
 
 .intro__tag-row {
   margin-bottom: 4px;
+}
+
+.intro__tag-row-title {
+  margin: 16px 0;
+
+  text-transform: uppercase;
+  font-family: $font_family_header;
+  font-size: 16px;
+  color: $accent_color;
 }
