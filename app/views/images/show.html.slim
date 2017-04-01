@@ -34,7 +34,7 @@
               i.fa.fa-play
               br
               span.js-video__state Animated
-          video.video-container__video.image__video.js-video__autoplayed(autoplay loop muted playsinline poster=@image.image.poster_url)
+          video.video-container__video.image__video(autoplay loop muted playsinline poster=@image.image.poster_url)
             source src=@image.image.webm_url type="video/webm"
             source src=@image.image.mp4_url type="video/mp4"
             img src=@image.image.poster_url

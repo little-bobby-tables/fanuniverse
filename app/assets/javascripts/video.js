@@ -1,13 +1,13 @@
 export default function() {
   const containers = [].slice.call(document.querySelectorAll('.js-video')),
-        autoplayed = [].slice.call(document.querySelectorAll('.js-video__autoplayed'));
+        videos =     [].slice.call(document.querySelectorAll('.js-video video'));
 
-  containers.forEach((m) => m.addEventListener('click', toggleMedia));
+  containers.forEach((c) => c.addEventListener('click', playVideo));
 
-  autoplayed.forEach((v) => v.addEventListener('play', hideControls));
+  videos.forEach((v) => v.addEventListener('play', hideControls));
 }
 
-function toggleMedia(e) {
+function playVideo(e) {
   e.preventDefault();
 
   const container = e.target.closest('.js-video'),
@@ -16,11 +16,9 @@ function toggleMedia(e) {
 
   container.classList.remove('interactable');
 
-  container.removeEventListener('click', toggleMedia);
+  container.removeEventListener('click', playVideo);
 
   state.textContent = 'loading';
-
-  video.addEventListener('play', hideControls);
 
   video.play();
 }
