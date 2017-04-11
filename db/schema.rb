@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222084738) do
+ActiveRecord::Schema.define(version: 20170411075736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,18 @@ ActiveRecord::Schema.define(version: 20170222084738) do
     t.string   "bio",           default: "", null: false
     t.integer  "comment_count", default: 0
     t.datetime "updated_at"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "reportable_id"
+    t.string   "reportable_type"
+    t.integer  "reported_by_id"
+    t.string   "body"
+    t.string   "category"
+    t.integer  "resolved_by_id"
+    t.boolean  "resolved",        default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "stars", force: :cascade do |t|
