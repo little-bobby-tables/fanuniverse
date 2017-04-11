@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170411075736) do
     t.string   "reportable_type"
     t.integer  "reported_by_id"
     t.string   "body"
-    t.string   "category"
     t.integer  "resolved_by_id"
     t.boolean  "resolved",        default: false
     t.datetime "created_at",                      null: false

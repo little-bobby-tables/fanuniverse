@@ -5,7 +5,6 @@ class CreateReports < ActiveRecord::Migration[5.0]
       t.string  :reportable_type
       t.integer :reported_by_id
       t.string  :body
-      t.string  :category
       t.integer :resolved_by_id
       t.boolean :resolved, default: false
       t.timestamps
