@@ -9,7 +9,7 @@
             = report.reportable.id
 
       .flex__fixed.flex__right
-        a.button.button--round title="Resolve this report" href="#"
+        a.button.button--round title="Resolve this report" href=resolve_report_path(report) data-method="post"
           i.fa.fa-check
 
     .flex.report__main

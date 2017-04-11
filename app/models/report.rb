@@ -7,4 +7,12 @@ class Report < ApplicationRecord
   belongs_to :resolved_by, class_name: 'User', optional: true
 
   validates :body, presence: { message: 'should not be blank.' }
+
+  def self.unresolved
+    where resolved: false
+  end
+
+  def resolve(by:)
+    update_attributes resolved: true, resolved_by: by
+  end
 end

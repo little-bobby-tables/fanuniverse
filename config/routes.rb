@@ -23,7 +23,11 @@ Rails.application.routes.draw do
 
   resources :comments, except: [:new]
 
-  resources :reports
+  resources :reports, only: [:index, :new, :create] do
+    member do
+      post 'resolve', as: :resolve
+    end
+  end
 
   namespace :api do
     get 'image_scraping/scrape'
