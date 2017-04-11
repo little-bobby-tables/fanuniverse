@@ -1,0 +1,13 @@
+h1 Administration dashboard
+
+h2
+  a href=admin_reports_path Reports
+
+p
+  - if @unresolved_reports == 0
+    | No unresolved reports.
+  - else
+    strong= pluralize @unresolved_reports, 'unresolved report'
+
+h2
+  a href='/admin/sidekiq' Sidekiq
