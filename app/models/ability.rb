@@ -6,7 +6,7 @@ class Ability
     allow_guest_user_actions
     allow_logged_in_user_actions(user) if user
 
-    allow_anything! if user.administrator?
+    allow_anything! if user && user.administrator?
   end
 
   def allow_guest_user_actions
