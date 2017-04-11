@@ -9,7 +9,7 @@
     - if @user == current_user
       a.button.button--round.button--inline.profile__info__button--edit href=edit_profile_path
         i.fa.fa-pencil
-    - if @user.role == 'admin'
+    - if @user.administrator?
       .role.role--block Site Administrator
     br
     | Member for

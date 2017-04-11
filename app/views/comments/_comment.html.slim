@@ -4,7 +4,7 @@ article.comment.block.flex
   .flex__grow.comment__body
     .comment__author
       a.comment__author-link href=profile_path(comment.author.name) =comment.author.name
-      - if comment.author.role == 'admin'
+      - if comment.author.administrator?
         span.role Site Administrator
     = comment.body
     .comment__meta
