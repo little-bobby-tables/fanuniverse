@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
 
@@ -23,15 +25,22 @@ Rails.application.routes.draw do
 
   resources :comments, except: [:new]
 
-  resources :reports, only: [:index, :new, :create] do
-    member do
-      post 'resolve', as: :resolve
-    end
-  end
+  resources :reports, only: [:new, :create]
 
   namespace :api do
     get 'image_scraping/scrape'
     post 'stars/toggle'
+  end
+
+  authenticated :user, -> (u) { u.administrator? } do
+    namespace :admin do
+      get  'dashboard',       to: 'dashboard#show',  as: :dashboard
+
+      get  'reports',         to: 'reports#index',   as: :reports
+      post 'reports/resolve', to: 'reports#resolve', as: :resolve_report
+
+      mount Sidekiq::Web => '/sidekiq'
+    end
   end
 
   PagesController::PAGES.each do |page|
