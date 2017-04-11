@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170411075736) do
     t.integer  "width"
     t.integer  "height"
     t.boolean  "processed",       default: false
+    t.text     "phash"
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
   end
 
