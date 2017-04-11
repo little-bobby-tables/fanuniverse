@@ -19,8 +19,14 @@ class User < ApplicationRecord
               message: 'may contain alphanumeric characters or hyphens only, and cannot begin or end with a hyphen.'
             }
 
+  validates :role, inclusion: { in: %w(admin) }, allow_blank: true
+
   def ability
     @ability ||= Ability.new(self)
+  end
+
+  def administrator?
+    role == 'admin'
   end
 
   def to_param

@@ -9,6 +9,10 @@ header.navbar.flex
     = form_tag images_path, method: :get, enforce_utf8: false, class: 'inline-form' do
       = text_field_tag :q, params[:q], class: 'input navbar__search hidden', placeholder: 'ruby, sapphire'
       button.hidden type="submit"
+    / Admin tools
+    - if user_signed_in? && current_user.administrator?
+      a.navbar__link href= admin_dashboard_path
+        i.fa.fa-diamond
     / Home link
     a.navbar__link#navbar-home href='/' Fan Universe
 

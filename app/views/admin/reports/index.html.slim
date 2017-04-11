@@ -1,0 +1,8 @@
+h1 Reports
+
+- if @reports.any?
+  = render partial: 'layouts/pagination', locals: { resources: @reports }
+
+  = render partial: 'admin/reports/report', collection: @reports, as: :report
+- else
+  | No unresolved reports found.

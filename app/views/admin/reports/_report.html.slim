@@ -1,0 +1,33 @@
+- cache report do
+  .report.block
+
+    .report__title.flex
+      .flex__grow
+        - if report.reportable.is_an? Image
+          a href=image_path(report.reportable.id)
+            | Image #
+            = report.reportable.id
+
+      .flex__fixed.flex__right
+        a.button.button--round title="Resolve this report" href=admin_resolve_report_path(id: report.id) data-method="post"
+          i.fa.fa-check
+
+    .flex.report__main
+
+      .flex__fixed
+        .report__side
+          - if report.reportable.is_an? Image
+            img.image-preview src=report.reportable.image.url
+
+      .flex__grow
+        .report__body
+          = report.body
+
+        .report__reported-by
+          - if report.reported_by.present?
+            ' Reported by
+            a href=profile_path(report.reported_by)
+              = report.reported_by.name
+          - else
+            | System report
+

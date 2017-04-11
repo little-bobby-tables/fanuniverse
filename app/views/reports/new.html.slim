@@ -1,0 +1,26 @@
+- reportable_name = @reportable.model_name.name.downcase
+
+h1
+  ' Reporting
+  => reportable_name
+  ' #
+  = @reportable.id
+
+- if @reportable.is_an? Image
+  img.image-preview src=@reportable.image.url
+
+= form_for @report do |f|
+  = render partial: 'layouts/errors', locals: { model: @report }
+
+  = hidden_field_tag :reportable_type, @reportable.model_name.name
+  = hidden_field_tag :reportable_id, @reportable.id
+
+  p
+    ' Tell us what's wrong with this
+    = reportable_name
+    | , and we'll do our best to resolve the issue.
+
+  = f.text_area :body, class: 'input input--wide', placeholder: 'Please provide us as many details as possible.'
+
+  br
+  = f.submit class: 'button'
