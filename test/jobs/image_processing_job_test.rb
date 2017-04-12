@@ -2,6 +2,16 @@
 require 'test_helper'
 
 class ImageProcessingJobTest < ActiveJob::TestCase
+  include ActiveJob::TestHelper
+
+  test 'enqueues duplicate detection job' do
+    @image = create(:image)
+
+    assert_enqueued_with job: ImageDuplicateDetectionJob, args: [@image.id] do
+      ImageProcessingJob.perform_now @image.id
+    end
+  end
+
   test 'processes images' do
     @image = create(:image)
 
