@@ -1,5 +1,7 @@
 @import "common/global";
 
+/* Reports */
+
 .report__title {
   align-items: center;
 
@@ -24,4 +26,22 @@
 
 .report__reported-by {
   font-size: 14px;
+}
+
+/* Images */
+
+.image-comparison {
+  display: flex;
+}
+
+.image-comparison__item {
+  flex: 50%;
+
+  &:first-child {
+    margin-right: 16px;
+  }
+
+  > img {
+    max-width: 100%;
+  }
 }

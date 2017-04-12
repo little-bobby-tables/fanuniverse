@@ -10,4 +10,14 @@ p
     strong= pluralize @unresolved_reports, 'unresolved report'
 
 h2
+  a href=images_path Images
+
+h4 Merging
+
+= form_tag admin_merge_images_path, method: :get do
+  = number_field_tag :source, '', class: 'input input--inline', placeholder: 'Source image #'
+  = number_field_tag :target, '', class: 'input input--inline input--spacing-left', placeholder: 'Target image #'
+  = submit_tag 'Merge', class: 'button button--inline button--spacing-left'
+
+h2
   a href='/admin/sidekiq' Sidekiq

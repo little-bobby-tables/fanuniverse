@@ -1,0 +1,26 @@
+- medium_layout
+
+h1
+  | Merging #
+  => @source.id
+  | into #
+  => @target.id
+
+.image-comparison
+  .image-comparison__item
+    img src=@source.image.url
+  .image-comparison__item
+    img src=@target.image.url
+
+p
+  ' The image on the left will be hidden. All comments and stars associated with it
+  | will be moved to the image on the right.
+
+p
+  strong This action is irreversible.
+
+a.button.button--inline(
+  href=admin_commit_image_merge_path(source: @source, target: @target)
+  data-method="post"
+  data-confirm="Are you, like, completely sure?")
+  | Proceed

@@ -34,10 +34,13 @@ Rails.application.routes.draw do
 
   authenticated :user, -> (u) { u.administrator? } do
     namespace :admin do
-      get  'dashboard',       to: 'dashboard#show',  as: :dashboard
+      get  'dashboard',           to: 'dashboard#show',      as: :dashboard
 
-      get  'reports',         to: 'reports#index',   as: :reports
-      post 'reports/resolve', to: 'reports#resolve', as: :resolve_report
+      get  'reports',             to: 'reports#index',       as: :reports
+      post 'reports/resolve',     to: 'reports#resolve',     as: :resolve_report
+
+      get  'images/merge',        to: 'images#merge',        as: :merge_images
+      post 'images/commit_merge', to: 'images#commit_merge', as: :commit_image_merge
 
       mount Sidekiq::Web => '/sidekiq'
     end
