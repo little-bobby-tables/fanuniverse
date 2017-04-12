@@ -8,6 +8,7 @@ class ImagesController < ApplicationController
   end
 
   def show
+    redirect_to image_path(@image.merged_into_id) if @image.merged_into_id
   end
 
   def new
@@ -67,7 +68,7 @@ class ImagesController < ApplicationController
     sort_field, sort_direction = *helpers.image_sort
 
     Image.custom_search(query) do |s|
-      s.scope :processed
+      s.scope :visible
       s.sort_by sort_field, sort_direction
       s.ensure_deterministic_order_with_unique_field :id
     end
