@@ -17,7 +17,7 @@ class ImageAnalyzer
 
     {}.tap do |p|
       p[:width], p[:height] = magick.dimensions
-      p[:phash] = phash.fingerprint
+      p[:phash] = phash.fingerprint.to_s(2)
     end
   end
 end

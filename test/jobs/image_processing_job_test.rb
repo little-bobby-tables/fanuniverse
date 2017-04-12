@@ -17,7 +17,7 @@ class ImageProcessingJobTest < ActiveJob::TestCase
 
     assert_equal 200, @image.reload.width
     assert_equal 198, @image.height
-    assert_equal '13597467515327605323', @image.phash
+    assert_equal '1011110010110011111010001010100110101000000000111110101001001011', @image.phash
   end
 
   test 'generates downsized versions for raster images' do
