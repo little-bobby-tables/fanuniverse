@@ -30,6 +30,10 @@ class Image < ApplicationRecord
     @tags = nil
   end
 
+  def visible?
+    processed? && !merged_into_id
+  end
+
   def short_source
     URI(source).host rescue nil
   end
