@@ -7,15 +7,16 @@ class ImageDuplicateDetectionJob < ApplicationJob
   def perform(id)
     image = Image.find(id)
 
-    Image
-      .select(:id)
-      .where.not(id: image.id)
-      .where('length(phash) = ?', image.phash.length)
+    duplicates = Image
+      .from_cte(:possible_duplicates,
+                Image.select(:id, :phash)
+                     .where.not(id: image.id)
+                     .where('length(phash) = ?', image.phash.length))
       .where('hamming_text(phash, ?) > ?', image.phash, DUPLICATE_THRESHOLD)
-      .find_each do |duplicate|
 
+    duplicates.each do |d|
       Report.create reportable: image,
-                    body: "This image might be a duplicate of ##{duplicate.id}."
+                    body: "This image might be a duplicate of ##{d.id}."
     end
   end
 end
