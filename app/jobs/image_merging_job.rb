@@ -18,7 +18,7 @@ class ImageMergingJob < ApplicationJob
     Image.reset_counters @target.id, :stars, :comments
 
     # Reindex
-    @source.reindex_now
-    @target.reindex_now
+    @source.reload.reindex_now
+    @target.reload.reindex_now
   end
 end
