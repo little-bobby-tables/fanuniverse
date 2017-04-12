@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411075736) do
+ActiveRecord::Schema.define(version: 20170412102535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_similarity"
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20170411075736) do
     t.integer  "height"
     t.boolean  "processed",       default: false
     t.text     "phash"
+    t.integer  "merged_into_id"
     t.index ["tag_names"], name: "index_images_on_tag_names", using: :gin
   end
 
