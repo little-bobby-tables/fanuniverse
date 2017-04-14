@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   ALLOWED_PARAMETERS = [:name, :email, :password, :password_confirmation, :remember_me,
                         :avatar, :avatar_cache, :remove_avatar].freeze
 
