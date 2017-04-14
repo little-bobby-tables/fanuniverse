@@ -10,6 +10,8 @@ class ImageDeduplication < ActiveRecord::Migration[5.0]
                    type: Image.document_type,
                    body: Image.mappings.to_hash
 
+    Image.import force: true
+
     Image.select(:id, :image).find_each do |image|
       phashion = Phashion::Image.new image.image.file.path
       image.update_columns phash: phashion.fingerprint.to_s(2)
