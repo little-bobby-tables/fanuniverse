@@ -1,3 +1,4 @@
 :queues:
+  - low
   - indexing
   - image_processing

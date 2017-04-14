@@ -29,6 +29,14 @@ class ImagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'redirects merged images' do
+    @target = create(:image)
+    ImageMergingJob.perform_now @image.id, @target.id
+
+    get :show, params: { id: @image.id }
+    assert_redirected_to image_url(@target)
+  end
+
   test 'only displays images that are processed' do
     @images = [@image] + create_list(:image, 2)
     refresh_index Image

@@ -24,10 +24,9 @@ class ImageProcessor
   private
 
   def analyze
-    image = MiniMagick::Image.open @file.path
-    width, height = image.dimensions
-
-    @image.update_columns width: width, height: height
+    ImageAnalyzer
+      .new(@image)
+      .run
   end
 
   def generate_versions

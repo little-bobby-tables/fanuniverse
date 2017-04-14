@@ -7,6 +7,8 @@ class ImageProcessingJob < ApplicationJob
 
     ImageProcessor.new(image).process!
 
+    ImageDuplicateDetectionJob.perform_later(image.id)
+
     image.reload.processed = true
     image.save!
   end

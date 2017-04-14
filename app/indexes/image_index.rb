@@ -11,7 +11,7 @@ Elasticfusion.define Image do
       indexes :suggested_by, type: 'keyword'
       indexes :starred_by_ids, type: 'keyword'
       indexes :created_at, type: 'date'
-      indexes :processed, type: 'boolean'
+      indexes :visible, type: 'boolean'
     end
   end
 
@@ -25,7 +25,7 @@ Elasticfusion.define Image do
       suggested_by: suggested_by.name.downcase,
       starred_by_ids: stars.pluck(:user_id),
       created_at: created_at,
-      processed: processed?
+      visible: visible?
     }
   end
 
@@ -41,7 +41,7 @@ Elasticfusion.define Image do
 
     scopes do
       {
-        processed: -> { { term: { processed: true } } }
+        visible: -> { { term: { visible: true } } }
       }
     end
   end

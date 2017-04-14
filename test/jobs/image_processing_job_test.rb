@@ -2,6 +2,16 @@
 require 'test_helper'
 
 class ImageProcessingJobTest < ActiveJob::TestCase
+  include ActiveJob::TestHelper
+
+  test 'enqueues duplicate detection job' do
+    @image = create(:image)
+
+    assert_enqueued_with job: ImageDuplicateDetectionJob, args: [@image.id] do
+      ImageProcessingJob.perform_now @image.id
+    end
+  end
+
   test 'processes images' do
     @image = create(:image)
 
@@ -17,6 +27,7 @@ class ImageProcessingJobTest < ActiveJob::TestCase
 
     assert_equal 200, @image.reload.width
     assert_equal 198, @image.height
+    assert_equal '1011110010110011111010001010100110101000000000111110101001001011', @image.phash
   end
 
   test 'generates downsized versions for raster images' do
