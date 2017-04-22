@@ -8,12 +8,13 @@ h1 Suggest an image
   = form_for @image, html: { class: 'js-upload' } do |f|
     = render partial: 'layouts/errors', locals: { model: @image }
 
-    img.js-upload__preview.image-preview.hidden
+    img.js-upload__preview.image-preview class=('hidden' unless @image.image.url) src=(@image.image.url)
 
     .js-upload__file
       h3 Link an image page or a blog post
       = text_field_tag :fetch_image, '', class: 'input input--wide js-upload__url', placeholder: 'http://artist.tumblr.com/post/1', autofocus: true
-      a.button.button--inline.js-upload__fetch data-disable-with="Loading…" Fetch
+      p.js-upload__fetch-error.hidden Oops! There doesn't seem to be any images at the URL you provided.
+      a.button.button--inline.js-upload__fetch data-toggle-text="Loading…" Fetch
       h3 Alternatively, upload a file from your computer
       p You'll need to specify some things manually.
       = render partial: 'layouts/image_upload', locals: { form: f, field: :image }

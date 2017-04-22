@@ -21,6 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def url
+    return super if model.new_record?
     "#{Settings[:image_url_root]}/#{model.id}/source.#{file.extension}"
   end
 
