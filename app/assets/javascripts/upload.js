@@ -25,7 +25,7 @@ function scrapeUrl(e) {
   if (url) {
     document.querySelector('.js-upload__fetch').setAttribute('disabled', '');
 
-    fetch(`/api/image_scraping/scrape?url=${url}`, { credentials: 'same-origin' })
+    fetch(`https://scraper.fanuniverse.org/?url=${url}`)
         .then((response) => response.json())
         .then((data) => {
           insertScraped(data); proceedToSecondStep(); 
@@ -41,14 +41,13 @@ function showImage(src) {
 }
 
 function insertScraped(data) {
-  data.image_url     && (document.getElementById('image_remote_image_url').value =
-                         data.image_url);
-  data.url           && (document.getElementById('image_source').value =
-                         data.url);
-  data.artist        && (document.getElementById('image_tags').value =
+  data.imageUrl     && (document.getElementById('image_remote_image_url').value =
+                         data.imageUrl);
+  data.pageUrl      && (document.getElementById('image_source').value =
+                         data.pageUrl);
+  data.artist       && (document.getElementById('image_tags').value =
                          `artist:${data.artist.toLowerCase()}, `);
-
-  data.thumbnail_url && showImage(data.thumbnail_url);
+  data.thumbnailUrl && showImage(data.thumbnailUrl);
 }
 
 function proceedToSecondStep() {
