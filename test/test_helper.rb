@@ -7,7 +7,7 @@ require 'sidekiq/testing'
 
 Minitest.after_run do
   Sidekiq::Queues.clear_all
-  FileUtils.rm_r Rails.root.join('public', 'test')
+  FileUtils.rm_r Rails.root.join('public', 'test') rescue nil
 end
 
 class ActiveSupport::TestCase
