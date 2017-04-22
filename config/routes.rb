@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   resources :reports, only: [:new, :create]
 
   namespace :api do
-    get 'image_scraping/scrape'
     post 'stars/toggle'
   end
 

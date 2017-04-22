@@ -21,7 +21,6 @@ gem 'elasticfusion', git: 'git@github.com:little-bobby-tables/elasticfusion'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'phashion'
-gem 'image_metadata_scraper'
 # Background processing
 gem 'sidekiq', '5.0.0.beta2'
 # User management
