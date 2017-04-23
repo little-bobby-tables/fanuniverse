@@ -16,7 +16,7 @@ gem 'redis-rails'
 gem 'paper_trail'
 # Search
 gem 'kaminari' # Needs to be included before elasticfusion
-gem 'elasticfusion', git: 'git@github.com:little-bobby-tables/elasticfusion'
+gem 'elasticfusion'
 # Image handling
 gem 'carrierwave'
 gem 'mini_magick'

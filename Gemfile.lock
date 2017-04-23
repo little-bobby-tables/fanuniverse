@@ -7,17 +7,6 @@ GIT
       rails (~> 5.0)
 
 GIT
-  remote: git@github.com:little-bobby-tables/elasticfusion
-  revision: a2af008920a6267c9eb87225262a0d4966c861c1
-  specs:
-    elasticfusion (1.0.0)
-      chronic
-      elasticsearch
-      elasticsearch-model
-      elasticsearch-rails
-      rails (>= 5.0)
-
-GIT
   remote: git@github.com:little-bobby-tables/postgres_ext
   revision: f7a1cb3cab1783a307e5a87fdfb99d1d8fcb2619
   branch: rails-5
@@ -93,6 +82,12 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    elasticfusion (1.0.0)
+      chronic
+      elasticsearch
+      elasticsearch-model
+      elasticsearch-rails
+      rails (>= 5.0)
     elasticsearch (5.0.4)
       elasticsearch-api (= 5.0.4)
       elasticsearch-transport (= 5.0.4)
@@ -260,7 +255,7 @@ DEPENDENCIES
   carrierwave
   corral_acl!
   devise
-  elasticfusion!
+  elasticfusion
   factory_girl_rails
   faker
   kaminari
