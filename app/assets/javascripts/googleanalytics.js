@@ -1,3 +1,5 @@
+import { $ } from './utils/dom';
+
 export default function() {
   if (localStorage['disable-ga'] !== 'true') run();
   setupPrivacyHelpers();
@@ -17,7 +19,7 @@ function run() {
 }
 
 function setupPrivacyHelpers() {
-  const optOutLink = document.querySelector('.js-ga-opt-out');
+  const optOutLink = $('.js-ga-opt-out');
 
   if (!optOutLink) return;
 
@@ -25,6 +27,7 @@ function setupPrivacyHelpers() {
   else {
     optOutLink.addEventListener('click', (e) => {
       e.preventDefault();
+
       togglePrivacyState();
 
       localStorage['disable-ga'] = true;
@@ -33,9 +36,6 @@ function setupPrivacyHelpers() {
 }
 
 function togglePrivacyState() {
-  const optOutInfo   = document.querySelector('.js-ga-opt-out-info'),
-        optedOutInfo = document.querySelector('.js-ga-opted-out-info');
-
-  optOutInfo.classList.toggle('hidden');
-  optedOutInfo.classList.toggle('hidden');
+  $('.js-ga-opt-out-info').classList.toggle('hidden');
+  $('.js-ga-opted-out-info').classList.toggle('hidden');
 }

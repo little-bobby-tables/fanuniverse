@@ -1,3 +1,4 @@
+import { $, $$ } from './utils/dom';
 import { post } from './utils/requests';
 import { signedIn } from './utils/users';
 
@@ -12,9 +13,9 @@ export default function() {
 }
 
 export function loadStarrable(container) {
-  const datasets = container.querySelectorAll('[data-starrable-ids]');
+  const datasets = $$('[data-starrable-ids]', container);
 
-  [].slice.call(datasets).forEach((dataset) => {
+  datasets.forEach((dataset) => {
     const starrable = dataset.getAttribute('data-starrable-type'),
           ids = JSON.parse(dataset.getAttribute('data-starrable-ids'));
 
@@ -25,7 +26,8 @@ export function loadStarrable(container) {
 function toggleStar(star) {
   const { starrable, starrableId } = star.dataset;
 
-  post('/api/stars/toggle', { starrable_type: starrable, starrable_id: starrableId })
+  post('/api/stars/toggle',
+      { starrable_type: starrable, starrable_id: starrableId })
       .then((data) => {
         const star = starElement(starrable, starrableId);
 
@@ -37,7 +39,7 @@ function toggleStar(star) {
 }
 
 function starElement(type, id) {
-  return document.querySelector(`[data-starrable="${type}"][data-starrable-id="${id}"]`);
+  return $(`[data-starrable="${type}"][data-starrable-id="${id}"]`);
 }
 
 function show(star) {
@@ -49,5 +51,5 @@ function remove(star) {
 }
 
 function setStarCount(star, count) {
-  star.querySelector('.meta__count').textContent = count; 
+  $('.meta__count', star).textContent = count;
 }

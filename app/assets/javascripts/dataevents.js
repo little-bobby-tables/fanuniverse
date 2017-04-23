@@ -1,3 +1,5 @@
+import { $ } from './utils/dom';
+
 export default function() {
   document.addEventListener('click', (e) => {
     Object.keys(actions).forEach((action) => {
@@ -17,23 +19,23 @@ const actions = {
 
     if (set) {
       Object.entries(set).forEach(([selector, cls]) => {
-        document.querySelector(selector).classList.toggle(cls);
+        $(selector).classList.toggle(cls);
       });
     }
     else {
-      document.querySelector(data).classList.toggle('hidden');
+      $(data).classList.toggle('hidden');
     }
   },
 
   show(element, data) {
-    document.querySelector(data).classList.remove('hidden');
+    $(data).classList.remove('hidden');
   },
 
   hide(element, data) {
-    document.querySelector(data).classList.add('hidden');
+    $(data).classList.add('hidden');
   },
 
   focus(element, data) {
-    document.querySelector(data).focus();
+    $(data).focus();
   },
 };

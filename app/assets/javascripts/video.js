@@ -1,18 +1,19 @@
+import { $, $$ } from './utils/dom';
+
 export default function() {
-  const containers = [].slice.call(document.querySelectorAll('.js-video')),
-        videos =     [].slice.call(document.querySelectorAll('.js-video video'));
+  $$('.js-video').forEach((container) =>
+      container.addEventListener('click', playVideo));
 
-  containers.forEach((c) => c.addEventListener('click', playVideo));
-
-  videos.forEach((v) => v.addEventListener('play', hideControls));
+  $$('.js-video video').forEach((video) =>
+      video.addEventListener('play', hideControls));
 }
 
 function playVideo(e) {
   e.preventDefault();
 
   const container = e.target.closest('.js-video'),
-        state     = container.querySelector('.js-video__state'),
-        video     = container.querySelector('video');
+        state     = $('.js-video__state', container),
+        video     = $('video', container);
 
   container.classList.remove('interactable');
 
@@ -25,7 +26,7 @@ function playVideo(e) {
 
 function hideControls(e) {
   const container = e.target.closest('.js-video'),
-        controls  = container.querySelector('.js-video__controls');
+        controls  = $('.js-video__controls', container);
 
   controls.classList.add('fade-out');
 }

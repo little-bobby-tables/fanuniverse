@@ -1,12 +1,14 @@
+import { $ } from './utils/dom';
+
 /* Based on http://stackoverflow.com/a/23230280/1726690
  * and https://lehollandaisvolant.net/tout/examples/swipe/ */
 
 export default function() {
-  document.querySelector('[data-swipe-to]') && setupSwipeEvent();
+  $('[data-swipe-to]') && setupSwipeEvent();
 }
 
 function swipe(direction) {
-  const data = document.querySelector('[data-swipe-to]').getAttribute('data-swipe-to'),
+  const data = $('[data-swipe-to]').getAttribute('data-swipe-to'),
         urls = JSON.parse(data);
 
   window.location.href = urls[direction];
@@ -34,8 +36,7 @@ function touchMove(e) {
 
   const movement = e.touches[0];
 
-  /* Is the gesture performed on an element that has swipe actions? If no, return. */
-  if (!movement.target.closest('[data-swipe-to]')) return;
+  if (!hasSwipeActions(movement)) return;
 
   const endX   = movement.clientX,
         endY   = movement.clientY,
@@ -49,4 +50,8 @@ function touchMove(e) {
   if (deltaX < -minSwipeDelta) swipe('right');
 
   startX = startY = null;
+}
+
+function hasSwipeActions(movement) {
+  return !!movement.target.closest('[data-swipe-to]');
 }

@@ -1,8 +1,9 @@
+import { $ } from './utils/dom';
 import { timeago } from './timeago';
 import { loadStarrable } from './stars';
 
 export default function() {
-  const commentable = document.querySelector('[data-commentable-url]');
+  const commentable = $('[data-commentable-url]');
 
   if (commentable) {
     load(commentable, commentable.getAttribute('data-commentable-url'));
@@ -45,8 +46,8 @@ function setupAjax(container) {
 
 function showPosted(container, response) {
   const comments      = response[2].responseText,
-        editArea      = document.querySelector('#js-commentable-form textarea'),
-        previousError = document.querySelector('.js-model-errors');
+        editArea      = $('#js-commentable-form textarea'),
+        previousError = $('.js-model-errors');
 
   editArea.value = '';
   previousError && previousError.remove();
@@ -56,8 +57,8 @@ function showPosted(container, response) {
 
 function showError(response) {
   const errorHtml     = response[2].status === 422 && response[2].responseText,
-        container     = document.getElementById('js-commentable-form').parentNode,
-        previousError = container.querySelector('.js-model-errors');
+        container     = $('#js-commentable-form').parentNode,
+        previousError = $('.js-model-errors', container);
 
   previousError && previousError.remove();
 

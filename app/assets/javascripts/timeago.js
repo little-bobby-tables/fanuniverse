@@ -1,3 +1,5 @@
+import { $$ } from './utils/dom';
+
 /* Based on jQuery.timeago, see http://timeago.yarp.com/ */
 
 export default function refreshTimeago() {
@@ -6,8 +8,7 @@ export default function refreshTimeago() {
 }
 
 export function timeago(target) {
-  const dates = target.querySelectorAll('time');
-  [].slice.call(dates).forEach((date) => format(date));
+  $$('time', target).forEach((time) => format(time));
 }
 
 const locale = {
@@ -31,7 +32,8 @@ function localize(string, num) {
 }
 
 function format(element) {
-  const distance = Math.abs(new Date() - new Date(element.getAttribute('datetime')));
+  const distance = Math.abs(
+      new Date() - new Date(element.getAttribute('datetime')));
 
   const seconds = distance / 1000,
         minutes = seconds / 60,
@@ -53,7 +55,10 @@ function format(element) {
       years < 1.5    && localize(locale.year, 1)               ||
                         localize(locale.years, years);
 
-  if (!element.getAttribute('title')) element.setAttribute('title', element.textContent);
+  if (!element.getAttribute('title')) {
+    element.setAttribute('title', element.textContent);
+  }
+
   element.textContent = timeago;
 }
 

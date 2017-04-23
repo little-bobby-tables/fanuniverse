@@ -1,20 +1,22 @@
+import { $ } from './utils/dom';
+
 export default function() {
-  const form = document.querySelector('.js-upload');
-  form && (restore(form) || setup(form));
+  const form = $('.js-upload');
+  form && (restoreForm() || setupForm());
 }
 
-function restore(form) {
-  const previousSubmission = form.querySelector('.js-model-errors');
+function restoreForm() {
+  const previousSubmission = $('.js-model-errors');
 
   return previousSubmission && proceedToNextStep();
 }
 
-function setup(form) {
+function setupForm() {
+  $('.js-upload__fetch').addEventListener('click', scrapeUrl);
+
   const reader = new FileReader();
 
-  form.querySelector('.js-upload__fetch').addEventListener('click', scrapeUrl);
-
-  form.querySelector('.file-upload__input').addEventListener('change', (e) =>
+  $('.file-upload__input').addEventListener('change', (e) =>
     e.target.files[0] && reader.readAsDataURL(e.target.files[0]));
 
   reader.addEventListener('load', (e) =>
@@ -24,7 +26,7 @@ function setup(form) {
 }
 
 function scrapeUrl(e) {
-  const url = document.querySelector('.js-upload__url').value;
+  const url = $('.js-upload__url').value;
 
   if (url) {
     toggleFetchButton();
@@ -38,21 +40,21 @@ function scrapeUrl(e) {
         .then((data) => insertScraped(data) && proceedToNextStep())
         .catch(() => {
           toggleFetchButton();
-          document.querySelector('.js-upload__fetch-error').classList.remove('hidden');
+          $('.js-upload__fetch-error').classList.remove('hidden');
         });
   }
   else e.stopPropagation();
 }
 
 function toggleFetchButton() {
-  const button = document.querySelector('.js-upload__fetch'),
+  const button = $('.js-upload__fetch'),
         oldState = button.textContent;
   button.textContent = button.getAttribute('data-toggle-text');
   button.setAttribute('data-toggle-text', oldState);
 }
 
 function showImage(src) {
-  const image = document.querySelector('.js-upload__preview');
+  const image = $('.js-upload__preview');
   image.classList.remove('hidden');
   image.src = src;
 
@@ -60,9 +62,11 @@ function showImage(src) {
 }
 
 function insertScraped(data) {
-  data.imageUrl && (document.getElementById('image_remote_image_url').value = data.imageUrl);
-  data.pageUrl  && (document.getElementById('image_source').value = data.pageUrl);
-  data.artist   && (document.getElementById('image_tags').value = `artist:${data.artist.toLowerCase()}, `);
+  data.imageUrl && ($('#image_remote_image_url').value = data.imageUrl);
+
+  data.pageUrl && ($('#image_source').value = data.pageUrl);
+
+  data.artist && ($('#image_tags').value = `artist:${data.artist.toLowerCase()}, `);
 
   data.thumbnailUrl && showImage(data.thumbnailUrl);
 
@@ -70,9 +74,9 @@ function insertScraped(data) {
 }
 
 function proceedToNextStep() {
-  document.querySelector('.js-upload__file').classList.add('hidden');
-  document.querySelector('.js-upload__meta').classList.remove('hidden');
-  document.querySelector('#image_tags').focus();
+  $('.js-upload__file').classList.add('hidden');
+  $('.js-upload__meta').classList.remove('hidden');
+  $('#image_tags').focus();
 
   return true;
 }

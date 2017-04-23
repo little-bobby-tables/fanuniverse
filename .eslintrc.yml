@@ -24,7 +24,7 @@ rules:
   complexity: [warn, 6]
   max-depth: [warn, 3]
   max-statements: [warn, 14]
-  max-len: [warn, 90]
+  max-len: [warn, 80]
   no-unused-vars: warn
 
   # References
