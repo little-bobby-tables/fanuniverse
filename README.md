@@ -15,6 +15,8 @@ Install the following dependencies
 * Java 8+ (`java-1.8.0-openjdk`)
 * [Elasticsearch 5](https://www.elastic.co/guide/en/elasticsearch/reference/current/rpm.html)
 * [PostgreSQL 9.6](https://www.postgresql.org/download/linux/redhat/#yum)
+with [pg_similarity](https://github.com/eulerto/pg_similarity#unix-based-operating-systems) extension
+* Redis (`redis`)
 * ImageMagick (`ImageMagick`)
 * libpng and libjpeg development headers (`libpng-devel`, `libjpeg-devel`)
 * FFmpeg (`ffmpeg` with RPM Fusion)
